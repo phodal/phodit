@@ -23,6 +23,7 @@
     "electron": "^2.0.5"
   },
   "dependencies": {
+    "showdown": "^1.8.6",
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   }
