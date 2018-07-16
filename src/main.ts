@@ -49,3 +49,14 @@ app.on("activate", () => {
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
+
+const {ipcMain} = require('electron');
+ipcMain.on('asynchronous-message', (event: any, arg: any) => {
+  event.sender.send('asynchronous-reply', 'pong')
+});
+
+ipcMain.on('synchronous-message', (event: any, arg: any) => {
+  console.log(arg); // prints "ping"
+  event.returnValue = 'pong'
+});
+
