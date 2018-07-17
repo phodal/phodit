@@ -1,7 +1,7 @@
 import { app, BrowserWindow, dialog, globalShortcut, Menu } from "electron";
 import * as path from "path";
 import * as fs from "fs";
-import { buildMenu } from "./menu";
+import { buildMenu } from "./i18n/menu/menu";
 
 let mainWindow: Electron.BrowserWindow;
 let dir;
