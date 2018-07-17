@@ -3,14 +3,23 @@ body {
   overflow-y: scroll;
   margin: 0 auto;
   position: relative;
+  overflow-x: hidden;
 }
 
 .row {
   position: absolute;
 }
 
+.row .column {
+  padding: 0;
+  margin: 0;
+}
+
 textarea#input {
   border-radius: 0;
+  padding-left: 1em;
+  font-size: 14px;
+  resize: horizontal; /* user can resize vertically, but width is fixed */
 }
 
 #output,
