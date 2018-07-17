@@ -1,6 +1,7 @@
-import { app, BrowserWindow, dialog, globalShortcut, ipcMain } from "electron";
+import { app, BrowserWindow, dialog, globalShortcut, Menu } from "electron";
 import * as path from "path";
 import * as fs from "fs";
+import { buildMenu } from "./menu";
 
 let mainWindow: Electron.BrowserWindow;
 let dir;
@@ -46,6 +47,9 @@ function createWindow () {
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
+
+  const menu = Menu.buildFromTemplate(buildMenu(app));
+  Menu.setApplicationMenu(menu);
 }
 
 app.on("ready", createWindow);
