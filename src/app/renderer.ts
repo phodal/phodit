@@ -1,15 +1,14 @@
 const showdown = require('showdown');
 const {ipcRenderer} = require('electron');
 
-const converter = new showdown.Converter();
-const text = '# hello, markdown!';
-const html = converter.makeHtml(text);
-
-console.log(html);
-
-console.log(ipcRenderer.sendSync('synchronous-message', 'ping')); // prints "pong"
-
-ipcRenderer.on('asynchronous-reply', (event: any, arg: any) => {
-  console.log(arg) // prints "pong"
+const converter = new showdown.Converter({
+  tables: true
 });
-ipcRenderer.send('asynchronous-message', 'ping');
+
+ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
+  let $input = document.getElementById('input');
+  let $output = document.getElementById('output');
+
+  $input.innerText = arg;
+  $output.innerHTML = converter.makeHtml(arg);
+});
