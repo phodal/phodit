@@ -29,33 +29,31 @@ declare global {
 declare global {
 
   namespace StencilComponents {
-    interface MyComponent {
-      'first': string;
-      'last': string;
+    interface PhoditHeader {
+      'action': string;
     }
   }
 
-  interface HTMLMyComponentElement extends StencilComponents.MyComponent, HTMLStencilElement {}
+  interface HTMLPhoditHeaderElement extends StencilComponents.PhoditHeader, HTMLStencilElement {}
 
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  var HTMLPhoditHeaderElement: {
+    prototype: HTMLPhoditHeaderElement;
+    new (): HTMLPhoditHeaderElement;
   };
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'phodit-header': HTMLPhoditHeaderElement;
   }
   interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'phodit-header': HTMLPhoditHeaderElement;
   }
   namespace JSX {
     interface IntrinsicElements {
-      'my-component': JSXElements.MyComponentAttributes;
+      'phodit-header': JSXElements.PhoditHeaderAttributes;
     }
   }
   namespace JSXElements {
-    export interface MyComponentAttributes extends HTMLAttributes {
-      'first'?: string;
-      'last'?: string;
+    export interface PhoditHeaderAttributes extends HTMLAttributes {
+      'action'?: string;
     }
   }
 }

@@ -1,5 +1,5 @@
 exports.config = {
-  namespace: 'mycomponent',
+  namespace: 'phodit-header',
   outputTargets:[
     {
       type: 'dist'

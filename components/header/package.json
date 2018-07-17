@@ -1,5 +1,5 @@
 {
-  "name": "my-component",
+  "name": "phodit-header",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "module": "dist/esm/index.js",

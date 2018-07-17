@@ -1,18 +1,18 @@
 import { TestWindow } from '@stencil/core/testing';
-import { MyComponent } from './my-component';
+import { PhoditHeader } from './phodit-header';
 
 describe('my-component', () => {
   it('should build', () => {
-    expect(new MyComponent()).toBeTruthy();
+    expect(new PhoditHeader()).toBeTruthy();
   });
 
   describe('rendering', () => {
-    let element: HTMLMyComponentElement;
+    let element: any;
     let testWindow: TestWindow;
     beforeEach(async () => {
       testWindow = new TestWindow();
       element = await testWindow.load({
-        components: [MyComponent],
+        components: [PhoditHeader],
         html: '<my-component></my-component>'
       });
     });
