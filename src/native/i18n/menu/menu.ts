@@ -1,5 +1,24 @@
-export function buildMenu(app: any) {
+export function buildMenu(app: any, funcs: any) {
   const template: any[] = [
+    {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Open...',
+          accelerator: 'CmdOrCtrl+O',
+          click () {
+            funcs.open()
+          }
+        },
+        {
+          label: 'Save...',
+          accelerator: 'CmdOrCtrl+S',
+          click () {
+            funcs.saveFile();
+          }
+        }
+      ]
+    },
     {
       label: 'Edit',
       submenu: [

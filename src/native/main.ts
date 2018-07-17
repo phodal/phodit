@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, globalShortcut, Menu } from "electron";
+import { app, BrowserWindow, dialog, globalShortcut, Menu, MenuItem } from "electron";
 import * as path from "path";
 import * as fs from "fs";
 import { buildMenu } from "./i18n/menu/menu";
@@ -6,44 +6,47 @@ import { buildMenu } from "./i18n/menu/menu";
 let mainWindow: Electron.BrowserWindow;
 let dir;
 
-app.on('ready', () => {
-  globalShortcut.register('CommandOrControl+O', () => {
-    dir = dialog.showOpenDialog(mainWindow, {
-      filters: [
-        {name: 'Markdown ', extensions: ['markdown', 'md', 'txt']},
-        {name: 'All Files', extensions: ['*']}
-      ],
-      properties: ['openFile', 'openDirectory', 'multiSelections']
-    }, (fileNames: any) => {
-      console.log(fileNames);
-      if (!fileNames) {
-        return;
-      }
 
-      if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isFile()) {
-        fs.readFile(fileNames[0], 'utf-8', (err, data) => {
-          if (err) {
-            console.log("An error ocurred reading the file :" + err.message);
-            return;
-          }
+function open() {
+  dir = dialog.showOpenDialog(mainWindow, {
+    filters: [
+      {name: 'Markdown ', extensions: ['markdown', 'md', 'txt']},
+      {name: 'All Files', extensions: ['*']}
+    ],
+    properties: ['openFile', 'openDirectory', 'multiSelections']
+  }, (fileNames: any) => {
+    console.log(fileNames);
+    if (!fileNames) {
+      return;
+    }
 
-          mainWindow.webContents.send('phodit.open.one-file', data);
-        });
-      }
+    if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isFile()) {
+      fs.readFile(fileNames[0], 'utf-8', (err, data) => {
+        if (err) {
+          console.log("An error ocurred reading the file :" + err.message);
+          return;
+        }
 
-      if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isDirectory()) {
-        const dirFiles: any[] = [];
-        fs.readdir(fileNames[0], (err, files) => {
-          for (const file of files) {
-            dirFiles.push(file);
-          }
+        mainWindow.webContents.send('phodit.open.one-file', data);
+      });
+    }
 
-          mainWindow.webContents.send('phodit.open.path', dirFiles);
-        });
-      }
-    });
-  })
-});
+    if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isDirectory()) {
+      const dirFiles: any[] = [];
+      fs.readdir(fileNames[0], (err, files) => {
+        for (const file of files) {
+          dirFiles.push(file);
+        }
+
+        mainWindow.webContents.send('phodit.open.path', dirFiles);
+      });
+    }
+  });
+}
+
+function saveFile() {
+  console.log(saveFile);
+}
 
 function createWindow () {
   mainWindow = new BrowserWindow({
@@ -59,7 +62,10 @@ function createWindow () {
     mainWindow = null;
   });
 
-  const menu = Menu.buildFromTemplate(buildMenu(app));
+  const menu = Menu.buildFromTemplate(buildMenu(app, {
+    open: open,
+    saveFile: saveFile
+  }));
   Menu.setApplicationMenu(menu);
 }
 
