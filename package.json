@@ -2,9 +2,10 @@
   "name": "phodit",
   "version": "0.0.0",
   "description": "Phodal's new Markdown Editor",
-  "main": "index.js",
+  "main": "dist/native/main.js",
   "scripts": {
     "build": "tsc",
+    "build:app": "electron-packager . Phodit --platform=darwin --overwrite",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start": "npm run build && electron ./dist/native/main.js"
@@ -20,7 +21,8 @@
   },
   "homepage": "https://github.com/phodal/phodit#readme",
   "devDependencies": {
-    "electron": "^2.0.5"
+    "electron": "^2.0.5",
+    "electron-packager": "^12.1.0"
   },
   "dependencies": {
     "electron-window-state": "^4.1.1",
