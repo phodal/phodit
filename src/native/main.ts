@@ -53,6 +53,10 @@ function saveFile() {
   console.log(saveFile);
 }
 
+function debug() {
+  mainWindow.webContents.openDevTools();
+}
+
 function createWindow () {
   let mainWindowState = windowStateKeeper({
     defaultWidth: 1000,
@@ -70,15 +74,14 @@ function createWindow () {
 
   mainWindow.loadFile(path.join(__dirname, "../../index.html"));
 
-  mainWindow.webContents.openDevTools();
-
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
 
   const menu = Menu.buildFromTemplate(buildMenu(app, {
     open: open,
-    saveFile: saveFile
+    saveFile: saveFile,
+    debug: debug
   }));
   Menu.setApplicationMenu(menu);
 }

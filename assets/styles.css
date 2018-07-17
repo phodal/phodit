@@ -1,0 +1,82 @@
+body {
+  height: 100%;
+  overflow-y: scroll;
+  margin: 0 auto;
+  position: relative;
+}
+
+.row {
+  position: absolute;
+}
+
+textarea#input {
+  border-radius: 0;
+}
+
+#output,
+#input {
+  width: 100vw;
+  height: 100vh;
+}
+
+#output {
+  height: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
+}
+
+p {
+  font-size: 14px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 15px;
+}
+
+pre.prettyprint {
+  border: none;
+  border-left: 0.3rem solid #1abc9c !important;
+}
+
+figure {
+  margin: 0;
+}
+
+blockquote, dl, figure, form, ol, p, pre, table, ul {
+  margin-bottom: 16px;
+}
+
+ol li,
+ul li,
+li p {
+  font-size: 14px;
+  color: #384452;
+}

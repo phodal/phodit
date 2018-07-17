@@ -16,6 +16,13 @@ export function buildMenu(app: any, funcs: any) {
           click () {
             funcs.saveFile();
           }
+        },
+        {
+          label: 'Debug...',
+          accelerator: 'CmdOrCtrl+D',
+          click () {
+            funcs.debug();
+          }
         }
       ]
     },
@@ -72,8 +79,6 @@ export function buildMenu(app: any, funcs: any) {
       label: app.getName(),
       submenu: [
         {role: 'about'},
-        {type: 'separator'},
-        {role: 'services', submenu: []},
         {type: 'separator'},
         {role: 'hide'},
         {role: 'hideothers'},
