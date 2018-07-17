@@ -17,7 +17,7 @@ body {
 
 textarea#input {
   border-radius: 0;
-  padding-left: 1em;
+  padding: 1.5em;
   font-size: 14px;
   resize: horizontal; /* user can resize vertically, but width is fixed */
 }
