@@ -1,5 +1,6 @@
-import { app, BrowserWindow, dialog, globalShortcut } from "electron";
+import { app, BrowserWindow, dialog, globalShortcut, ipcMain } from "electron";
 import * as path from "path";
+import * as fs from "fs";
 
 let mainWindow: Electron.BrowserWindow;
 let dir;
@@ -7,9 +8,26 @@ let dir;
 app.on('ready', () => {
   globalShortcut.register('CommandOrControl+O', () => {
     dir = dialog.showOpenDialog(mainWindow, {
-      properties: ['openDirectory']
+      filters: [
+        {name: 'Markdown ', extensions: ['markdown', 'md', 'txt']},
+        {name: 'All Files', extensions: ['*']}
+      ],
+      properties: ['openFile', 'openDirectory', 'multiSelections']
+    }, (fileNames: any) => {
+      console.log("--------------------");
+      console.log(fileNames);
+
+      fs.readFile(fileNames[0], 'utf-8', (err, data) => {
+        if (err) {
+          alert("An error ocurred reading the file :" + err.message);
+          return;
+        }
+
+        // Change how to handle the file content
+        console.log("The file content is : " + data);
+        mainWindow.webContents.send('open-file', data);
+      });
     });
-    console.log(dir);
   })
 });
 
@@ -60,7 +78,6 @@ app.on("activate", () => {
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.
 
-const {ipcMain} = require('electron');
 ipcMain.on('asynchronous-message', (event: any, arg: any) => {
   event.sender.send('asynchronous-reply', 'pong')
 });
