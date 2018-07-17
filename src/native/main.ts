@@ -1,6 +1,9 @@
 import { app, BrowserWindow, dialog, globalShortcut, Menu, MenuItem } from "electron";
+const windowStateKeeper = require('electron-window-state');
+
 import * as path from "path";
 import * as fs from "fs";
+
 import { buildMenu } from "./i18n/menu/menu";
 
 let mainWindow: Electron.BrowserWindow;
@@ -49,10 +52,19 @@ function saveFile() {
 }
 
 function createWindow () {
-  mainWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 1000,
+    defaultHeight: 800
   });
+
+  mainWindow = new BrowserWindow({
+    'x': mainWindowState.x,
+    'y': mainWindowState.y,
+    'width': mainWindowState.width,
+    'height': mainWindowState.height
+  });
+
+  mainWindowState.manage(mainWindow);
 
   mainWindow.loadFile(path.join(__dirname, "../../index.html"));
 
