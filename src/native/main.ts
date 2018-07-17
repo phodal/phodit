@@ -15,21 +15,32 @@ app.on('ready', () => {
       ],
       properties: ['openFile', 'openDirectory', 'multiSelections']
     }, (fileNames: any) => {
-      console.log("--------------------");
       console.log(fileNames);
-
       if (!fileNames) {
         return;
       }
 
-      fs.readFile(fileNames[0], 'utf-8', (err, data) => {
-        if (err) {
-          alert("An error ocurred reading the file :" + err.message);
-          return;
-        }
+      if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isFile()) {
+        fs.readFile(fileNames[0], 'utf-8', (err, data) => {
+          if (err) {
+            console.log("An error ocurred reading the file :" + err.message);
+            return;
+          }
 
-        mainWindow.webContents.send('phodit.open.one-file', data);
-      });
+          mainWindow.webContents.send('phodit.open.one-file', data);
+        });
+      }
+
+      if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isDirectory()) {
+        const dirFiles: any[] = [];
+        fs.readdir(fileNames[0], (err, files) => {
+          for (const file of files) {
+            dirFiles.push(file);
+          }
+
+          mainWindow.webContents.send('phodit.open.path', dirFiles);
+        });
+      }
     });
   })
 });

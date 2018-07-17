@@ -12,3 +12,7 @@ ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
   $input.innerText = arg;
   $output.innerHTML = converter.makeHtml(arg);
 });
+
+ipcRenderer.on('phodit.open.path', (event: any, arg: any) => {
+  console.log(arg);
+});
