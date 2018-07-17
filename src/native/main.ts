@@ -1,4 +1,5 @@
 import { app, BrowserWindow, dialog, globalShortcut, Menu, MenuItem } from "electron";
+
 const windowStateKeeper = require('electron-window-state');
 
 import * as path from "path";
@@ -10,6 +11,10 @@ let mainWindow: Electron.BrowserWindow;
 let dir;
 
 function openFile (willLoadFile: string) {
+  if (mainWindow) {
+    let fileName = path.basename(willLoadFile);
+    mainWindow.setTitle(fileName);
+  }
   fs.readFile(willLoadFile, 'utf-8', (err, data) => {
     if (err) {
       console.log("An error ocurred reading the file :" + err.message);
@@ -22,7 +27,7 @@ function openFile (willLoadFile: string) {
   });
 }
 
-function open() {
+function open () {
   dir = dialog.showOpenDialog(mainWindow, {
     filters: [
       {name: 'Markdown ', extensions: ['markdown', 'md', 'txt']},
@@ -53,11 +58,11 @@ function open() {
   });
 }
 
-function saveFile() {
+function saveFile () {
   console.log(saveFile);
 }
 
-function debug() {
+function debug () {
   mainWindow.webContents.openDevTools();
 }
 
@@ -72,7 +77,7 @@ function createWindow () {
     'y': mainWindowState.y,
     'width': mainWindowState.width,
     'height': mainWindowState.height,
-    frame: false,
+    // frame: false,
     backgroundColor: '#fff'
   });
 
