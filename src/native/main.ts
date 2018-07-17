@@ -9,6 +9,18 @@ import { buildMenu } from "./i18n/menu/menu";
 let mainWindow: Electron.BrowserWindow;
 let dir;
 
+function openFile (willLoadFile: string) {
+  fs.readFile(willLoadFile, 'utf-8', (err, data) => {
+    if (err) {
+      console.log("An error ocurred reading the file :" + err.message);
+      return;
+    }
+
+    app.addRecentDocument(willLoadFile);
+
+    mainWindow.webContents.send('phodit.open.one-file', data);
+  });
+}
 
 function open() {
   dir = dialog.showOpenDialog(mainWindow, {
@@ -24,16 +36,8 @@ function open() {
     }
 
     if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isFile()) {
-      fs.readFile(fileNames[0], 'utf-8', (err, data) => {
-        if (err) {
-          console.log("An error ocurred reading the file :" + err.message);
-          return;
-        }
-
-        app.addRecentDocument(fileNames[0]);
-
-        mainWindow.webContents.send('phodit.open.one-file', data);
-      });
+      let willLoadFile = fileNames[0];
+      openFile(willLoadFile);
     }
 
     if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isDirectory()) {
@@ -98,4 +102,8 @@ app.on("activate", () => {
   if (mainWindow === null) {
     createWindow();
   }
+});
+
+app.on("open-file", (event, arg) => {
+  openFile(arg);
 });
