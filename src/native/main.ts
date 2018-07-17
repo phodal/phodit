@@ -30,6 +30,8 @@ function open() {
           return;
         }
 
+        app.addRecentDocument(fileNames[0]);
+
         mainWindow.webContents.send('phodit.open.one-file', data);
       });
     }
