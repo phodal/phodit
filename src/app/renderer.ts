@@ -1,10 +1,8 @@
 import {getWordLength} from "./utils/utils";
 import './menu';
 import {createEvent} from "./utils/event.util";
-import IpcRenderer = Electron.IpcRenderer;
-
 const showdown = require('showdown');
-const {ipcRenderer} = require('electron');
+const {ipcRenderer, shell} = require('electron');
 
 const converter = new showdown.Converter({
   tables: true

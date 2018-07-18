@@ -118,6 +118,20 @@ function createWindow() {
     mainWindow = null;
   });
 
+
+  mainWindow.webContents.on('new-window', function(e, url) {
+    e.preventDefault();
+    require('electron').shell.openExternal(url);
+  });
+
+  mainWindow.webContents.on('will-navigate', function(e, url) {
+    /* If url isn't the actual page */
+    if(url != mainWindow.webContents.getURL()) {
+      e.preventDefault();
+      require('electron').shell.openExternal(url);
+    }
+  });
+
   const menu = Menu.buildFromTemplate(buildMenu(app, {
     open: open,
     saveFile: saveFile,
