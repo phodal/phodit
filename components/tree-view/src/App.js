@@ -5,109 +5,19 @@ import Tree from "react-ui-tree";
 class App extends Component {
   state = {
     active: null,
-    tree: {
-      module: 'react-ui-tree',
-      children: [
-        {
-          module: 'dist',
-          collapsed: true,
-          children: [
-            {
-              module: 'node.js',
-              leaf: true
-            },
-            {
-              module: 'react-ui-tree.css',
-              leaf: true
-            },
-            {
-              module: 'react-ui-tree.js',
-              leaf: true
-            },
-            {
-              module: 'tree.js',
-              leaf: true
-            }
-          ]
-        },
-        {
-          module: 'example',
-          children: [
-            {
-              module: 'app.js',
-              leaf: true
-            },
-            {
-              module: 'app.less',
-              leaf: true
-            },
-            {
-              module: 'index.html',
-              leaf: true
-            }
-          ]
-        },
-        {
-          module: 'lib',
-          children: [
-            {
-              module: 'node.js',
-              leaf: true
-            },
-            {
-              module: 'react-ui-tree.js',
-              leaf: true
-            },
-            {
-              module: 'react-ui-tree.less',
-              leaf: true
-            },
-            {
-              module: 'tree.js',
-              leaf: true
-            }
-          ]
-        },
-        {
-          module: '.gitiignore',
-          leaf: true
-        },
-        {
-          module: 'index.js',
-          leaf: true
-        },
-        {
-          module: 'LICENSE',
-          leaf: true
-        },
-        {
-          module: 'Makefile',
-          leaf: true
-        },
-        {
-          module: 'package.json',
-          leaf: true
-        },
-        {
-          module: 'README.md',
-          leaf: true
-        },
-        {
-          module: 'webpack.config.js',
-          leaf: true
-        }
-      ]
-    }
+    tree: {}
   };
+
+  componentDidMount() {
+    window.document.addEventListener('phodit.tree.open', function(data) {
+      console.log(data);
+    })
+  }
 
   renderNode = node => {
     return (
-      <span
-        className={cx('node', {
-          'is-active': node === this.state.active
-        })}
-        onClick={this.onClickNode.bind(null, node)}
-      >
+      <span className={cx('node', {'is-active': node === this.state.active})}
+            onClick={this.onClickNode.bind(null, node)}>
         {node.module}
       </span>
     );
