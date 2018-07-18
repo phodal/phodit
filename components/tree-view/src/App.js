@@ -43,7 +43,7 @@ class App extends Component {
       <div className="App">
         <div className="tree">
           <Tree
-            paddingLeft={20}
+            paddingLeft={10}
             tree={this.state.tree}
             onChange={this.handleChange}
             renderNode={this.renderNode}

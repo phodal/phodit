@@ -14,16 +14,17 @@ let dir;
 function dirTree(filename: string) {
   let stats = fs.lstatSync(filename);
   let info: any = {
+    filename: filename,
     module: path.basename(filename)
   };
 
   if (stats.isDirectory()) {
     // info.type = "folder";
     info.collapsed = true;
-    info.children = fs.readdirSync(filename).map(function (child) {
-      if (path.basename(filename) !== '.git') {
-        return dirTree(filename + '/' + child);
-      }
+    info.children = fs.readdirSync(filename).filter((child: string) => {
+      return child !== '.git'
+    }).map(function (child) {
+      return dirTree(filename + '/' + child);
     });
   } else {
     info.leaf = true;
