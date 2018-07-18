@@ -66,6 +66,10 @@ function debug () {
   mainWindow.webContents.openDevTools();
 }
 
+function reload () {
+  mainWindow.webContents.reload();
+}
+
 function createWindow () {
   let mainWindowState = windowStateKeeper({
     defaultWidth: 1000,
@@ -92,7 +96,8 @@ function createWindow () {
   const menu = Menu.buildFromTemplate(buildMenu(app, {
     open: open,
     saveFile: saveFile,
-    debug: debug
+    debug: debug,
+    reload: reload
   }));
   Menu.setApplicationMenu(menu);
 }

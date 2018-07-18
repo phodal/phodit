@@ -23,6 +23,13 @@ export function buildMenu(app: any, funcs: any) {
           click () {
             funcs.debug();
           }
+        },
+        {
+          label: 'Reload...',
+          accelerator: 'CmdOrCtrl+R',
+          click () {
+            funcs.reload();
+          }
         }
       ]
     },

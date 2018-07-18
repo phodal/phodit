@@ -8,6 +8,16 @@
   z-index: 1;
 }
 
+.footer {
+  height: 22px;
+  width: 100%;
+  background: #eef1f5;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1;
+}
+
 #editor {
   height: 100%;
   overflow-y: scroll;
@@ -36,7 +46,7 @@ textarea#input {
 #output,
 #input {
   width: 100vw;
-  height: calc(100vh - 22px);
+  height: calc(100vh - 44px);
 }
 
 #output {
