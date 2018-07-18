@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="./assets/css/normalize.css">
   <link rel="stylesheet" href="./assets/css/styles.css">
   <link rel="stylesheet" href="./assets/css/fa/all.min.css">
+  <link rel="stylesheet" href="./components/tree-view/build/main.css">
 </head>
 <body>
   <div class="header">
@@ -15,14 +16,14 @@
     <i class="fab fa-weixin"></i>
   </div>
 	<section class="row" id="editor">
-    <!--<div id="root"></div>-->
+    <div id="tree-view"></div>
     <textarea class="column column50" id="input"></textarea>
     <div class="column column50" id="output"></div>
 	</section>
   <div class="footer"></div>
 </body>
 
-<!--<script type="text/javascript" src="./components/tree-view/build/main.js"></script>-->
+<script type="text/javascript" src="./components/tree-view/build/main.js"></script>
 <script>
   // You can also require other files to run in this process
   require('./dist/app/renderer.js')

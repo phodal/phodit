@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import cx from 'classnames';
 import Tree from "react-ui-tree";
-import './App.css';
 
 class App extends Component {
   state = {
