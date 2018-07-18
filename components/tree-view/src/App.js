@@ -30,6 +30,11 @@ class App extends Component {
     this.setState({
       active: node
     });
+
+    const event = new CustomEvent('tree.pub.open', {
+      detail: JSON.stringify(node)
+    });
+    window.document.dispatchEvent(event);
   };
 
   handleChange = tree => {

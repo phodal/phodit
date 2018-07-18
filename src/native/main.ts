@@ -1,12 +1,11 @@
-import { app, BrowserWindow, dialog, globalShortcut, Menu, MenuItem } from "electron";
-
-const windowStateKeeper = require('electron-window-state');
-
+import {app, BrowserWindow, dialog, Menu, ipcMain} from "electron";
 import * as path from "path";
 import * as fs from "fs";
 
-import { buildMenu } from "./i18n/menu/menu";
+import {buildMenu} from "./i18n/menu/menu";
 import {git} from "./features/git";
+
+const windowStateKeeper = require('electron-window-state');
 
 let mainWindow: Electron.BrowserWindow;
 let dir;
@@ -22,7 +21,7 @@ function dirTree(filename: string) {
     // info.type = "folder";
     info.collapsed = true;
     info.children = fs.readdirSync(filename).filter((child: string) => {
-      return child !== '.git'
+      return child !== '.git' && child !== '.DS_Store';
     }).map(function (child) {
       return dirTree(filename + '/' + child);
     });
@@ -34,7 +33,7 @@ function dirTree(filename: string) {
   return info;
 }
 
-function openFile (willLoadFile: string) {
+function openFile(willLoadFile: string) {
   if (mainWindow) {
     let fileName = path.basename(willLoadFile);
     mainWindow.setTitle(fileName);
@@ -51,7 +50,7 @@ function openFile (willLoadFile: string) {
   });
 }
 
-function open () {
+function open() {
   dir = dialog.showOpenDialog(mainWindow, {
     filters: [
       {name: 'Markdown ', extensions: ['markdown', 'md', 'txt']},
@@ -84,19 +83,19 @@ function open () {
   });
 }
 
-function saveFile () {
+function saveFile() {
   console.log(saveFile);
 }
 
-function debug () {
+function debug() {
   mainWindow.webContents.openDevTools();
 }
 
-function reload () {
+function reload() {
   mainWindow.webContents.reload();
 }
 
-function createWindow () {
+function createWindow() {
   let mainWindowState = windowStateKeeper({
     defaultWidth: 1000,
     defaultHeight: 800
@@ -143,5 +142,9 @@ app.on("activate", () => {
 });
 
 app.on("open-file", (event, arg) => {
+  openFile(arg);
+});
+
+ipcMain.on('phodit.open.file', (event: any, arg: any) => {
   openFile(arg);
 });
