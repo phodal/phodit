@@ -6,6 +6,7 @@ import * as path from "path";
 import * as fs from "fs";
 
 import { buildMenu } from "./i18n/menu/menu";
+import {git} from "./features/git";
 
 let mainWindow: Electron.BrowserWindow;
 let dir;
@@ -51,7 +52,7 @@ function open () {
         for (const file of files) {
           dirFiles.push(file);
         }
-
+        mainWindow.webContents.send('phodit.git.status', git.status(fileNames[0]));
         mainWindow.webContents.send('phodit.open.path', dirFiles);
       });
     }
