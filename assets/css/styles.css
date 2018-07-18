@@ -3,8 +3,8 @@
   width: 100%;
   background: #fff;
   position: fixed;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   z-index: 1;
 }
 
@@ -13,9 +13,14 @@
   width: 100%;
   background: #eef1f5;
   position: fixed;
-  bottom: 0px;
-  left: 0px;
+  bottom: 0;
+  left: 0;
   z-index: 1;
+}
+
+.far {
+  height: 22px;
+  width: 22px;
 }
 
 #editor {
