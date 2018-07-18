@@ -11,6 +11,28 @@ import {git} from "./features/git";
 let mainWindow: Electron.BrowserWindow;
 let dir;
 
+function dirTree(filename: string) {
+  let stats = fs.lstatSync(filename);
+  let info: any = {
+    module: path.basename(filename)
+  };
+
+  if (stats.isDirectory()) {
+    // info.type = "folder";
+    info.collapsed = true;
+    info.children = fs.readdirSync(filename).map(function (child) {
+      if (path.basename(filename) !== '.git') {
+        return dirTree(filename + '/' + child);
+      }
+    });
+  } else {
+    info.leaf = true;
+    // info.type = "file";
+  }
+
+  return info;
+}
+
 function openFile (willLoadFile: string) {
   if (mainWindow) {
     let fileName = path.basename(willLoadFile);
@@ -47,13 +69,15 @@ function open () {
     }
 
     if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isDirectory()) {
-      const dirFiles: any[] = [];
+      let dirFiles: any[] = [];
       fs.readdir(fileNames[0], (err, files) => {
-        for (const file of files) {
-          dirFiles.push(file);
-        }
+        dirFiles = dirTree(fileNames[0]);
+
         mainWindow.webContents.send('phodit.git.status', git.status(fileNames[0]));
-        mainWindow.webContents.send('phodit.open.path', dirFiles);
+        mainWindow.webContents.send('phodit.open.path', {
+          module: 'react-ui-tree',
+          children: [dirFiles]
+        });
       });
     }
   });

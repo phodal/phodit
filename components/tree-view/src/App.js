@@ -9,8 +9,11 @@ class App extends Component {
   };
 
   componentDidMount() {
+    var that = this;
     window.document.addEventListener('phodit.tree.open', function(data) {
-      console.log(data);
+      that.setState({
+        tree: JSON.parse(data.detail)
+      })
     })
   }
 
@@ -30,14 +33,6 @@ class App extends Component {
   };
 
   handleChange = tree => {
-    this.setState({
-      tree: tree
-    });
-  };
-
-  updateTree = () => {
-    const {tree} = this.state;
-    tree.children.push({module: 'test'});
     this.setState({
       tree: tree
     });

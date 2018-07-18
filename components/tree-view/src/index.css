@@ -73,13 +73,12 @@ body {
 .m-node .inner {
   color: #9da5b4;
   font-size: 12px;
-  font-family: Menlo
 }
 
 .m-node .node {
   display: inline-block;
   width: 100%;
-  padding: 4px 5px;
+  padding: 2px 3px;
   text-align: left;
 }
 

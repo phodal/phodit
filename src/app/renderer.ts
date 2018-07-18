@@ -8,10 +8,10 @@ const {ipcRenderer} = require('electron');
 const converter = new showdown.Converter({
   tables: true
 });
-
-window.document.addEventListener('phodit.tree.open', (data) => {
-  console.log(data);
-});
+//
+// window.document.addEventListener('phodit.tree.open', (data) => {
+//   console.log(data);
+// });
 
 ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
   let $input = document.getElementById('input');
