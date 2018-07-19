@@ -223,6 +223,5 @@ ipcMain.on('phodit.open.file', (event: any, arg: any) => {
 });
 
 ipcMain.on('phodit.save.file', (event: any, arg: any) => {
-  console.log(arg);
   saveFile(arg);
 });
