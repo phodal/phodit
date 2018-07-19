@@ -16,10 +16,6 @@ const converter = new showdown.Converter({
 
 ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
   simplemde.value(arg);
-
-  let $output = document.getElementById('output');
-  $output.innerHTML = converter.makeHtml(simplemde.value());
-  console.log(`length ${getWordLength($output.innerText)}`)
 });
 
 ipcRenderer.on('phodit.open.path', (event: any, arg: any) => {
