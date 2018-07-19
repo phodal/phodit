@@ -44,9 +44,8 @@ function openFile(willLoadFile: string) {
     let fileName = path.basename(willLoadFile);
     mainWindow.setTitle(fileName);
   }
-  storage.set('storage.last.file', { file: willLoadFile }, function(error: any) {
-    if (error) throw error;
-  });
+  storage.set('storage.last.file', { file: willLoadFile });
+  storage.remove('storage.last.path');
   fs.readFile(willLoadFile, 'utf-8', (err, data) => {
     if (err) {
       console.log("An error ocurred reading the file :" + err.message);
@@ -56,6 +55,22 @@ function openFile(willLoadFile: string) {
     app.addRecentDocument(willLoadFile);
 
     mainWindow.webContents.send('phodit.open.one-file', data);
+  });
+}
+
+function openPath(pathName: any) {
+  storage.set('storage.last.path', {file: pathName});
+  storage.remove('storage.last.file');
+
+  let dirFiles: any[] = [];
+  fs.readdir(pathName, (err, files) => {
+    dirFiles = dirTree(pathName);
+
+    mainWindow.webContents.send('phodit.git.status', git.status(pathName));
+    mainWindow.webContents.send('phodit.open.path', {
+      module: 'react-ui-tree',
+      children: [dirFiles]
+    });
   });
 }
 
@@ -73,21 +88,11 @@ function open() {
     }
 
     if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isFile()) {
-      let willLoadFile = fileNames[0];
-      openFile(willLoadFile);
+      openFile(fileNames[0]);
     }
 
     if (fileNames.length === 1 && fs.lstatSync(fileNames[0]).isDirectory()) {
-      let dirFiles: any[] = [];
-      fs.readdir(fileNames[0], (err, files) => {
-        dirFiles = dirTree(fileNames[0]);
-
-        mainWindow.webContents.send('phodit.git.status', git.status(fileNames[0]));
-        mainWindow.webContents.send('phodit.open.path', {
-          module: 'react-ui-tree',
-          children: [dirFiles]
-        });
-      });
+      openPath(fileNames[0]);
     }
   });
 }
@@ -131,10 +136,20 @@ function createWindow() {
     storage.get('storage.last.file', function(error: any, data: any) {
       if (error) throw error;
 
-      openFile(data.file);
+      if (data && data.file) {
+        console.log(data);
+        openFile(data.file);
+      }
     });
+    storage.get('storage.last.path', function(error: any, data: any) {
+      if (error) throw error;
 
-  })
+      if (data && data.file) {
+        console.log(data);
+        openPath(data.file);
+      }
+    });
+  });
 
   mainWindow.webContents.on('new-window', function(e, url) {
     e.preventDefault();
