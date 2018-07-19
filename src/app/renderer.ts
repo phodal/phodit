@@ -7,7 +7,9 @@ const {ipcRenderer, shell} = require('electron');
 let simplemde = new (window as any).SimpleMDE({
   spellChecker: false,
   autosave: {
-    enabled: true
+    enabled: true,
+    uniqueId: "phodit",
+    delay: 1000,
   },
   element: document.getElementById('input-section')
 });

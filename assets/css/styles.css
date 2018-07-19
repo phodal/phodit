@@ -19,7 +19,6 @@
   margin: 0 auto;
   position: relative;
   overflow-x: hidden;
-  top: 22px;
 }
 
 .row {
@@ -81,8 +80,9 @@ textarea#input {
   margin: 0;
 }
 
-#input.CodeMirror {
+#input .CodeMirror {
   top: 29px;
+  position: relative;
 }
 
 #input .editor-statusbar {
