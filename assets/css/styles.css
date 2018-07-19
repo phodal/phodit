@@ -74,6 +74,10 @@ textarea#input {
   padding-top: 10px;
 }
 
+#input .CodeMirror.CodeMirror-fullscreen {
+  top: 49px;
+}
+
 #input .editor-toolbar.fullscreen:after,
 #input .editor-toolbar:before,
 #input .editor-toolbar:after {
