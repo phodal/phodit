@@ -2,15 +2,15 @@ import {BrowserWindow} from "electron";
 import * as path from "path";
 
 export function buildAboutPage() {
-  let newWindow: any = null;
+  let aboutWindow: any = null;
 
   function openAboutWindow() {
-    if (newWindow) {
-      newWindow.focus();
+    if (aboutWindow) {
+      aboutWindow.focus();
       return;
     }
 
-    newWindow = new BrowserWindow({
+    aboutWindow = new BrowserWindow({
       height: 800,
       width: 600,
       title: "帮助"
@@ -18,18 +18,16 @@ export function buildAboutPage() {
 
     console.log(__dirname);
     console.log(path.join(__dirname, "../../views/about.html"));
-    newWindow.loadURL(path.join(__dirname, "../../views/about.html"));
 
-    newWindow.webContents.on('did-finish-load', ()=>{
-      newWindow.show();
-      newWindow.focus();
+    aboutWindow.on('closed', function () {
+      aboutWindow = null;
     });
 
-    newWindow.on('closed', function () {
-      newWindow = null;
-    });
+    aboutWindow.loadURL(path.join(__dirname, "../../views/about.html"));
 
-    newWindow.webContents.openDevTools();
+    aboutWindow.once('ready-to-show', () => aboutWindow.show())
+
+    aboutWindow.webContents.openDevTools();
   }
 
   openAboutWindow();

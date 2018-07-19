@@ -13,7 +13,6 @@ let currentFile: string;
 
 console.log(`storage path: ${defaultDataPath}`);
 
-
 let mainWindow: Electron.BrowserWindow;
 let dir;
 
@@ -170,17 +169,20 @@ function createWindow() {
       }
     });
   });
+  //
+  // mainWindow.webContents.on('new-window', function(e, url) {
+  //   e.preventDefault();
+  //   require('electron').shell.openExternal(url);
+  // });
 
-  mainWindow.webContents.on('new-window', function(e, url) {
-    e.preventDefault();
-    require('electron').shell.openExternal(url);
-  });
-
-  mainWindow.webContents.on('will-navigate', function(e, url) {
-    /* If url isn't the actual page */
+  mainWindow.webContents.on('will-navigate', function(event: any, url) {
+    console.log('will-navigate');
     if(url != mainWindow.webContents.getURL()) {
-      e.preventDefault();
-      require('electron').shell.openExternal(url);
+      event.preventDefault();
+      const win = new BrowserWindow({show: false});
+      win.loadURL(url);
+      win.show();
+      event.newGuest = win
     }
   });
 
