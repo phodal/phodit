@@ -4,7 +4,7 @@ import * as fs from "fs";
 
 import {buildMenu} from "./i18n/menu/menu";
 import {git} from "./features/git";
-import {buildAboutPage} from "./pages/about";
+import {buildAboutPage} from "./pages/about.page";
 
 const windowStateKeeper = require('electron-window-state');
 const storage = require('electron-json-storage');
@@ -124,7 +124,7 @@ function reload() {
 }
 
 function openAboutPage() {
-  buildAboutPage();
+  buildAboutPage(BrowserWindow);
 }
 
 function createWindow() {

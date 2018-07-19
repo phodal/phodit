@@ -4,28 +4,29 @@
   <meta charset="utf-8">
   <title>Markdown Guide</title>
   <meta name="description" content="A simple guide to writing Markdown.">
+  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    h4{
-      margin-top:20px;
-      margin-bottom:5px;
+    h4 {
+      margin-top: 20px;
+      margin-bottom: 5px;
     }
 
-    h4 small{
-      font-style:italic;
+    h4 small {
+      font-style: italic;
     }
 
     pre {
-      overflow:auto;
-      word-wrap:normal;
-      white-space:pre;
+      overflow: auto;
+      word-wrap: normal;
+      white-space: pre;
     }
 
-    footer{
-      margin:20px 0 30px;
-      font-size:80%;
-      color:#999;
-      text-align:center;
+    footer {
+      margin: 20px 0 30px;
+      font-size: 80%;
+      color: #999;
+      text-align: center;
     }
   </style>
 </head>
@@ -56,31 +57,33 @@
       <h4>Quotes</h4>
       <pre>> This is a quote.
 > It can span multiple lines!</pre>
-      <h4>Images &nbsp; <small>Need to upload an image? <a href="http://imgur.com/" target="_blank">Imgur</a> has a great interface.</small></h4>
+      <h4>Images &nbsp;
+        <small>Need to upload an image? <a href="http://imgur.com/" target="_blank">Imgur</a> has a great interface.
+        </small>
+      </h4>
       <pre>![](http://www.example.com/image.jpg)</pre>
       <h4>Tables</h4>
       <pre>| Column 1 | Column 2 | Column 3 |
 | -------- | -------- | -------- |
 | John     | Doe      | Male     |
 | Mary     | Smith    | Female   |
+      </pre>
 
-<em>Or without aligning the columns...</em>
-
-| Column 1 | Column 2 | Column 3 |
+      <em>Or without aligning the columns...</em>
+      <pre>| Column 1 | Column 2 | Column 3 |
 | -------- | -------- | -------- |
 | John | Doe | Male |
 | Mary | Smith | Female |
 </pre>
       <h4>Displaying code</h4>
-      <pre>`var example = "hello!";`
+      <pre>`var example = "hello!";`</pre>
 
-<em>Or spanning multiple lines...</em>
+      <em>Or spanning multiple lines...</em>
 
-```
+      <pre>```
 var example = "hello!";
 alert(example);
 ```</pre>
-      <footer>Provided for use with <a href="http://sparksuite.github.io/simplemde-markdown-editor" target="_blank">SimpleMDE</a></footer>
     </div>
   </div>
 </div>
