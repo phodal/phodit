@@ -46,7 +46,7 @@ function openFile(willLoadFile: string) {
     mainWindow.setRepresentedFilename(willLoadFile)
   }
 
-  storage.set('storage.last.file', { file: willLoadFile });
+  storage.set('storage.last.file', {file: willLoadFile});
   storage.remove('storage.last.path');
   currentFile = willLoadFile;
   fs.readFile(willLoadFile, 'utf-8', (err, data) => {
@@ -101,14 +101,18 @@ function open() {
 }
 
 function saveFileSignal() {
-  mainWindow.webContents.send('client.save.file');
+  if (mainWindow.webContents) {
+    mainWindow.webContents.send('client.save.file');
+  } else {
+    dialog.showErrorBox('error', 'not open file')
+  }
 }
 
 function saveFile(data: any) {
   if (currentFile) {
     fs.writeFileSync(currentFile, data);
   } else {
-    dialog.showOpenDialog(mainWindow, {}, function(filename){
+    dialog.showOpenDialog(mainWindow, {}, function (filename) {
       console.log(filename);
       fs.writeFileSync(currentFile, data);
     })
@@ -151,8 +155,8 @@ function createWindow() {
   });
 
   mainWindow.setDocumentEdited(true);
-  mainWindow.webContents.on('did-finish-load', function() {
-    storage.get('storage.last.file', function(error: any, data: any) {
+  mainWindow.webContents.on('did-finish-load', function () {
+    storage.get('storage.last.file', function (error: any, data: any) {
       if (error) throw error;
 
       if (data && data.file) {
@@ -160,7 +164,7 @@ function createWindow() {
         openFile(data.file);
       }
     });
-    storage.get('storage.last.path', function(error: any, data: any) {
+    storage.get('storage.last.path', function (error: any, data: any) {
       if (error) throw error;
 
       if (data && data.file) {
@@ -175,9 +179,9 @@ function createWindow() {
   //   require('electron').shell.openExternal(url);
   // });
 
-  mainWindow.webContents.on('will-navigate', function(event: any, url) {
+  mainWindow.webContents.on('will-navigate', function (event: any, url) {
     console.log('will-navigate');
-    if(url != mainWindow.webContents.getURL()) {
+    if (url != mainWindow.webContents.getURL()) {
       event.preventDefault();
       const win = new BrowserWindow({show: false});
       win.loadURL(url);
