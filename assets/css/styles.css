@@ -21,6 +21,10 @@
   overflow-x: hidden;
 }
 
+#phodit-editor.row {
+  width: 100%;
+}
+
 .row {
   position: absolute;
 }
