@@ -85,6 +85,7 @@ textarea#input {
 }
 
 #input .CodeMirror {
+  font-size: 14px;
   top: 29px;
   position: relative;
 }
