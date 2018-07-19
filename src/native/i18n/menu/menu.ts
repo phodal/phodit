@@ -74,7 +74,7 @@ export function buildMenu(app: any, funcs: any) {
         {
           label: 'More',
           click () {
-            require('electron').shell.openExternal('https://www.phodit.com/')
+            funcs.openAboutPage();
           }
         }
       ]

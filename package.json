@@ -4,7 +4,7 @@
   "description": "Phodal's new Markdown Editor",
   "main": "dist/native/main.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp -a views dist",
     "build:app": "electron-packager --ignore=components . Phodit --platform=darwin --overwrite",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",

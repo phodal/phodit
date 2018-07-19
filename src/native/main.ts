@@ -4,6 +4,7 @@ import * as fs from "fs";
 
 import {buildMenu} from "./i18n/menu/menu";
 import {git} from "./features/git";
+import {buildAboutPage} from "./pages/about";
 
 const windowStateKeeper = require('electron-window-state');
 const storage = require('electron-json-storage');
@@ -123,6 +124,10 @@ function reload() {
   mainWindow.webContents.reload();
 }
 
+function openAboutPage() {
+  buildAboutPage();
+}
+
 function createWindow() {
   let mainWindowState = windowStateKeeper({
     defaultWidth: 1000,
@@ -183,7 +188,8 @@ function createWindow() {
     open: open,
     saveFileSignal: saveFileSignal,
     debug: debug,
-    reload: reload
+    reload: reload,
+    openAboutPage: openAboutPage
   }));
   Menu.setApplicationMenu(menu);
 }
