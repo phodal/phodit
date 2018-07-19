@@ -39,7 +39,7 @@ textarea#input {
 
 #input {
   width: 100vw;
-  height: calc(100vh - 44px);
+  height: calc(100vh - 22px);
 }
 
 #tree-view {
@@ -47,8 +47,8 @@ textarea#input {
 }
 
 #input-section {
-  height: calc(100vh - 44px);
-  max-height: calc(100vh - 44px);
+  height: calc(100vh - 22px);
+  max-height: calc(100vh - 22px);
   overflow-y: scroll
 }
 
