@@ -107,6 +107,11 @@ function saveFileSignal() {
 function saveFile(data: any) {
   if (currentFile) {
     fs.writeFileSync(currentFile, data);
+  } else {
+    dialog.showOpenDialog(mainWindow, {}, function(filename){
+      console.log(filename);
+      fs.writeFileSync(currentFile, data);
+    })
   }
 }
 

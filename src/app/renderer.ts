@@ -4,7 +4,6 @@ import {createEvent} from "./utils/event.util";
 require('devtron').install();
 
 const {ipcRenderer,} = require('electron');
-const Mousetrap = require('mousetrap');
 
 
 let simplemde = new (window as any).SimpleMDE({
