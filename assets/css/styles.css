@@ -8,16 +8,6 @@
   z-index: 1;
 }
 
-.footer {
-  height: 22px;
-  width: 100%;
-  background: #eef1f5;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-}
-
 .far {
   height: 22px;
   width: 22px;
@@ -71,7 +61,12 @@ textarea#input {
 }
 
 .editor-statusbar {
-  display: none;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  background: #eef1f5;
+  height: 22px;
 }
 
 p {
