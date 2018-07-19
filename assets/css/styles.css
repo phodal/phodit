@@ -60,12 +60,14 @@ textarea#input {
   overflow-y: scroll;
 }
 
-.editor-statusbar {
+#input .editor-statusbar {
+  padding: 2px 10px;
   width: 100%;
   left: 0;
   bottom: 0;
   position: fixed;
   background: #eef1f5;
+  border-top: 1px solid #ddd;
   height: 22px;
 }
 
