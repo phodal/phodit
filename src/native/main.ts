@@ -1,10 +1,9 @@
-import {app, BrowserWindow, dialog, Menu, ipcMain} from "electron";
+import {app, BrowserWindow, dialog, ipcMain, Menu} from "electron";
 import * as path from "path";
 import * as fs from "fs";
 
 import {buildMenu} from "./i18n/menu/menu";
 import {git} from "./features/git";
-import * as os from "os";
 
 const windowStateKeeper = require('electron-window-state');
 const storage = require('electron-json-storage');
@@ -43,7 +42,9 @@ function openFile(willLoadFile: string) {
   if (mainWindow) {
     let fileName = path.basename(willLoadFile);
     mainWindow.setTitle(fileName);
+    mainWindow.setRepresentedFilename(willLoadFile)
   }
+
   storage.set('storage.last.file', { file: willLoadFile });
   storage.remove('storage.last.path');
   fs.readFile(willLoadFile, 'utf-8', (err, data) => {
@@ -132,6 +133,7 @@ function createWindow() {
     mainWindow = null;
   });
 
+  mainWindow.setDocumentEdited(true);
   mainWindow.webContents.on('did-finish-load', function() {
     storage.get('storage.last.file', function(error: any, data: any) {
       if (error) throw error;
