@@ -231,9 +231,11 @@ ipcMain.on('phodit.open.guide', (event: any, arg: any) => {
 });
 
 ipcMain.on('phodit.fullscreen', (event: any, arg: any) => {
+  mainWindow.setFullScreen(true);
   mainWindow.maximize();
 });
 
 ipcMain.on('phodit.unfullscreen', (event: any, arg: any) => {
+  mainWindow.setFullScreen(false);
   mainWindow.unmaximize();
 });
