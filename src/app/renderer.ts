@@ -1,5 +1,6 @@
 import './menu';
 import {createEvent} from "./utils/event.util";
+require('devtron').install()
 
 const {ipcRenderer, shell} = require('electron');
 

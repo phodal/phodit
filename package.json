@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/phodal/phodit#readme",
   "devDependencies": {
+    "devtron": "^1.4.0",
     "electron": "^2.0.5",
     "electron-packager": "^12.1.0"
   },
