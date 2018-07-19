@@ -7,3 +7,7 @@
 https://github.com/bruce/node-temp
 
 
+
+https://github.com/eligrey/FileSaver.js/
+
+https://github.com/electron/electron/issues/2721
