@@ -12,7 +12,6 @@ export function buildMenu(app: any, funcs: any) {
         },
         {
           label: 'Save...',
-          accelerator: 'CmdOrCtrl+S',
           click () {
             funcs.saveFile();
           }

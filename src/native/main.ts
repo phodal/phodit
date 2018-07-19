@@ -8,6 +8,7 @@ import {git} from "./features/git";
 const windowStateKeeper = require('electron-window-state');
 const storage = require('electron-json-storage');
 const defaultDataPath = storage.getDefaultDataPath();
+let currentFile: string;
 
 console.log(`storage path: ${defaultDataPath}`);
 
@@ -47,6 +48,7 @@ function openFile(willLoadFile: string) {
 
   storage.set('storage.last.file', { file: willLoadFile });
   storage.remove('storage.last.path');
+  currentFile = willLoadFile;
   fs.readFile(willLoadFile, 'utf-8', (err, data) => {
     if (err) {
       console.log("An error ocurred reading the file :" + err.message);
@@ -98,8 +100,10 @@ function open() {
   });
 }
 
-function saveFile() {
-  console.log(saveFile);
+function saveFile(data: any) {
+  if (currentFile) {
+    fs.writeFileSync(currentFile, data);
+  }
 }
 
 function debug() {
@@ -195,4 +199,9 @@ app.on("open-file", (event, arg) => {
 
 ipcMain.on('phodit.open.file', (event: any, arg: any) => {
   openFile(arg);
+});
+
+ipcMain.on('phodit.save.file', (event: any, arg: any) => {
+  console.log(arg);
+  saveFile(arg);
 });

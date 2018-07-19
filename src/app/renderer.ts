@@ -1,8 +1,11 @@
 import './menu';
 import {createEvent} from "./utils/event.util";
+
 require('devtron').install();
 
-const {ipcRenderer, shell} = require('electron');
+const {ipcRenderer,} = require('electron');
+const Mousetrap = require('mousetrap');
+
 
 let simplemde = new (window as any).SimpleMDE({
   spellChecker: false,
@@ -18,8 +21,8 @@ let simplemde = new (window as any).SimpleMDE({
 //   console.log(data);
 // });
 
-ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
-  simplemde.value(arg);
+Mousetrap.bind(['command+s', 'ctrl+s'], function () {
+  ipcRenderer.send('phodit.save.file', simplemde.value());
 });
 
 ipcRenderer.on('phodit.open.path', (event: any, arg: any) => {
