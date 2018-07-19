@@ -1,7 +1,6 @@
 import {getWordLength} from "./utils/utils";
 import './menu';
 import {createEvent} from "./utils/event.util";
-const showdown = require('showdown');
 const {ipcRenderer, shell} = require('electron');
 
 let simplemde = new (window as any).SimpleMDE({
@@ -9,10 +8,6 @@ let simplemde = new (window as any).SimpleMDE({
   element: document.getElementById('input-section')
 });
 
-const converter = new showdown.Converter({
-  tables: true
-});
-//
 // window.document.addEventListener('phodit.tree.open', (data) => {
 //   console.log(data);
 // });
