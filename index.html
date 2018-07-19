@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./assets/css/styles.css">
   <link rel="stylesheet" href="./assets/css/fa/all.min.css">
   <link rel="stylesheet" href="./dist/components/tree-view/tree-view.css">
+  <link rel="stylesheet" href="./assets/simplemde/simplemde.min.css">
 </head>
 <body>
   <div class="header">
@@ -17,12 +18,14 @@
   </div>
 	<section class="row" id="editor">
     <div id="tree-view"></div>
-    <textarea class="column column50" id="input"></textarea>
-    <div class="column column50" id="output"></div>
+    <div class="column" id="input">
+      <textarea id="input-section"></textarea>
+    </div>
 	</section>
   <div class="footer"></div>
 </body>
 
+<script type="text/javascript" src="./assets/simplemde/simplemde.min.js"></script>
 <script type="text/javascript" src="./dist/components/tree-view/tree-view.js"></script>
 <script>
   // You can also require other files to run in this process

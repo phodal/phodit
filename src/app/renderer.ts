@@ -4,6 +4,8 @@ import {createEvent} from "./utils/event.util";
 const showdown = require('showdown');
 const {ipcRenderer, shell} = require('electron');
 
+let simplemde = new (window as any).SimpleMDE({ element: document.getElementById('input-section') });
+
 const converter = new showdown.Converter({
   tables: true
 });
@@ -13,11 +15,10 @@ const converter = new showdown.Converter({
 // });
 
 ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
-  let $input = document.getElementById('input');
-  let $output = document.getElementById('output');
+  simplemde.value(arg);
 
-  $input.innerText = arg;
-  $output.innerHTML = converter.makeHtml(arg);
+  let $output = document.getElementById('output');
+  $output.innerHTML = converter.makeHtml(simplemde.value());
   console.log(`length ${getWordLength($output.innerText)}`)
 });
 
