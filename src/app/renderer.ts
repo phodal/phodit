@@ -20,6 +20,11 @@ let simplemde = new (window as any).SimpleMDE({
 //   console.log(data);
 // });
 
+
+ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
+  simplemde.value(arg);
+});
+
 ipcRenderer.on('client.save.file', () => {
   ipcRenderer.send('phodit.save.file', simplemde.value());
 });
