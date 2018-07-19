@@ -1,6 +1,6 @@
-import {getWordLength} from "./utils/utils";
 import './menu';
 import {createEvent} from "./utils/event.util";
+
 const {ipcRenderer, shell} = require('electron');
 
 let simplemde = new (window as any).SimpleMDE({
