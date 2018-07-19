@@ -68,6 +68,12 @@ assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assert-plus/-/assert-plus-1.0.0.tgz#f12e0f3c5d77b0b1cdd9146942e4e96c1e4dd525"
 
+async@^2.0.0:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
+  dependencies:
+    lodash "^4.17.10"
+
 asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
@@ -342,6 +348,17 @@ electron-download@^4.0.0:
     semver "^5.3.0"
     sumchecker "^2.0.1"
 
+electron-json-storage@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/electron-json-storage/-/electron-json-storage-4.1.1.tgz#4995a03e6d44552527bc0e9f6cdc34e98a6dcca7"
+  dependencies:
+    async "^2.0.0"
+    electron "^2.0.4"
+    lockfile "^1.0.4"
+    lodash "^4.0.1"
+    mkdirp "^0.5.1"
+    rimraf "^2.5.1"
+
 electron-osx-sign@^0.4.1:
   version "0.4.10"
   resolved "https://registry.yarnpkg.com/electron-osx-sign/-/electron-osx-sign-0.4.10.tgz#be4f3b89b2a75a1dc5f1e7249081ab2929ca3a26"
@@ -383,7 +400,7 @@ electron-window-state@^4.1.1:
     jsonfile "^2.2.3"
     mkdirp "^0.5.1"
 
-electron@^2.0.5:
+electron@^2.0.4, electron@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/electron/-/electron-2.0.5.tgz#6045db011e2547062a36e8c5da84d4982f434fc0"
   dependencies:
@@ -813,9 +830,19 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
+lockfile@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/lockfile/-/lockfile-1.0.4.tgz#07f819d25ae48f87e538e6578b6964a4981a5609"
+  dependencies:
+    signal-exit "^3.0.2"
+
 lodash.get@^4.0.0:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+
+lodash@^4.0.1, lodash@^4.17.10:
+  version "4.17.10"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
 loud-rejection@^1.0.0:
   version "1.6.0"
@@ -1244,7 +1271,7 @@ resolve@^1.1.6, resolve@^1.3.2:
   dependencies:
     path-parse "^1.0.5"
 
-rimraf@^2.2.8:
+rimraf@^2.2.8, rimraf@^2.5.1:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.2.tgz#2ed8150d24a16ea8651e6d6ef0f47c4158ce7a36"
   dependencies:
@@ -1288,7 +1315,7 @@ showdown@^1.8.6:
   dependencies:
     yargs "^10.0.3"
 
-signal-exit@^3.0.0:
+signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
 

@@ -4,8 +4,14 @@ import * as fs from "fs";
 
 import {buildMenu} from "./i18n/menu/menu";
 import {git} from "./features/git";
+import * as os from "os";
 
 const windowStateKeeper = require('electron-window-state');
+const storage = require('electron-json-storage');
+const defaultDataPath = storage.getDefaultDataPath();
+
+console.log(`storage path: ${defaultDataPath}`);
+
 
 let mainWindow: Electron.BrowserWindow;
 let dir;
@@ -38,6 +44,9 @@ function openFile(willLoadFile: string) {
     let fileName = path.basename(willLoadFile);
     mainWindow.setTitle(fileName);
   }
+  storage.set('storage.last.file', { file: willLoadFile }, function(error: any) {
+    if (error) throw error;
+  });
   fs.readFile(willLoadFile, 'utf-8', (err, data) => {
     if (err) {
       console.log("An error ocurred reading the file :" + err.message);
@@ -118,6 +127,14 @@ function createWindow() {
     mainWindow = null;
   });
 
+  mainWindow.webContents.on('did-finish-load', function() {
+    storage.get('storage.last.file', function(error: any, data: any) {
+      if (error) throw error;
+
+      openFile(data.file);
+    });
+
+  })
 
   mainWindow.webContents.on('new-window', function(e, url) {
     e.preventDefault();
