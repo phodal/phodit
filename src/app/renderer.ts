@@ -1,11 +1,14 @@
 import './menu';
 import {createEvent} from "./utils/event.util";
-require('devtron').install()
+require('devtron').install();
 
 const {ipcRenderer, shell} = require('electron');
 
 let simplemde = new (window as any).SimpleMDE({
   spellChecker: false,
+  autosave: {
+    enabled: true
+  },
   element: document.getElementById('input-section')
 });
 
