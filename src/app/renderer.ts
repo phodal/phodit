@@ -20,6 +20,13 @@ window.document.addEventListener('phodit.editor.open.guide', (data) => {
   ipcRenderer.send('phodit.open.guide', simplemde.value());
 });
 
+window.document.addEventListener('phodit.editor.fullscreen', (data) => {
+  ipcRenderer.send('phodit.fullscreen');
+});
+
+window.document.addEventListener('phodit.editor.unfullscreen', (data) => {
+  ipcRenderer.send('phodit.unfullscreen');
+});
 
 ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
   simplemde.value(arg);

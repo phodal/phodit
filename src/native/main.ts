@@ -229,3 +229,11 @@ ipcMain.on('phodit.save.file', (event: any, arg: any) => {
 ipcMain.on('phodit.open.guide', (event: any, arg: any) => {
   openAboutPage();
 });
+
+ipcMain.on('phodit.fullscreen', (event: any, arg: any) => {
+  mainWindow.maximize();
+});
+
+ipcMain.on('phodit.unfullscreen', (event: any, arg: any) => {
+  mainWindow.unmaximize();
+});
