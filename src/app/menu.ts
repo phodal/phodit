@@ -1,10 +1,10 @@
-const {remote} = require('electron');
+const {remote, clipboard} = require('electron');
 const {Menu, MenuItem} = remote;
 
 const menu = new Menu();
 menu.append(new MenuItem({
   label: 'Wechat', click() {
-    console.log('item 1 clicked')
+    clipboard.writeText('Example String', 'selection')
   }
 }));
 // menu.append(new MenuItem({type: 'separator'}));
