@@ -16,9 +16,9 @@ let simplemde = new (window as any).SimpleMDE({
   element: document.getElementById('input-section')
 });
 
-// window.document.addEventListener('phodit.tree.open', (data) => {
-//   console.log(data);
-// });
+window.document.addEventListener('phodit.editor.open.guide', (data) => {
+  ipcRenderer.send('phodit.open.guide', simplemde.value());
+});
 
 
 ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {

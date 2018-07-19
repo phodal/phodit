@@ -225,3 +225,7 @@ ipcMain.on('phodit.open.file', (event: any, arg: any) => {
 ipcMain.on('phodit.save.file', (event: any, arg: any) => {
   saveFile(arg);
 });
+
+ipcMain.on('phodit.open.guide', (event: any, arg: any) => {
+  openAboutPage();
+});
