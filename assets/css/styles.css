@@ -60,13 +60,38 @@ textarea#input {
   overflow-y: scroll;
 }
 
+#input .editor-toolbar {
+  position: fixed;
+  opacity: 1;
+  background: #fdfdfd;
+  z-index: 2;
+  width: 100%;
+  border-radius: 0;
+  border-bottom: 1px solid #ddd;
+  padding: 0 5px;
+}
+
+#input .editor-toolbar.fullscreen {
+  padding-top: 10px;
+}
+
+#input .editor-toolbar.fullscreen:after,
+#input .editor-toolbar:before,
+#input .editor-toolbar:after {
+  margin: 0;
+}
+
+#input.CodeMirror {
+  top: 29px;
+}
+
 #input .editor-statusbar {
   padding: 2px 10px;
   width: 100%;
   left: 0;
   bottom: 0;
   position: fixed;
-  background: #eef1f5;
+  background: #fdfdfd;
   border-top: 1px solid #ddd;
   height: 22px;
 }
