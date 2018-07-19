@@ -21,12 +21,11 @@ let simplemde = new (window as any).SimpleMDE({
 //   console.log(data);
 // });
 
-Mousetrap.bind(['command+s', 'ctrl+s'], function () {
+ipcRenderer.on('client.save.file', () => {
   ipcRenderer.send('phodit.save.file', simplemde.value());
 });
 
 ipcRenderer.on('phodit.open.path', (event: any, arg: any) => {
-  console.log(arg);
   createEvent('phodit.tree.open', arg);
 });
 

@@ -100,6 +100,10 @@ function open() {
   });
 }
 
+function saveFileSignal() {
+  mainWindow.webContents.send('client.save.file');
+}
+
 function saveFile(data: any) {
   if (currentFile) {
     fs.writeFileSync(currentFile, data);
@@ -172,7 +176,7 @@ function createWindow() {
 
   const menu = Menu.buildFromTemplate(buildMenu(app, {
     open: open,
-    saveFile: saveFile,
+    saveFileSignal: saveFileSignal,
     debug: debug,
     reload: reload
   }));
