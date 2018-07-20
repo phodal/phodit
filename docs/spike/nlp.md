@@ -42,4 +42,14 @@ Search Engine
 
 https://github.com/olivernn/lunr.js/
 
+lunr.js 不支持中文
+
 https://github.com/weixsong/elasticlunr.js
+
+
+数据库
+---
+
+https://github.com/louischatriot/nedb
+
+https://github.com/techfort/LokiJS
