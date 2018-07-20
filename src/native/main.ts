@@ -239,3 +239,10 @@ ipcMain.on('phodit.unfullscreen', (event: any, arg: any) => {
   mainWindow.setFullScreen(false);
   mainWindow.unmaximize();
 });
+
+ipcMain.on('phodit.suggest.get', (event: any, arg: any) => {
+  mainWindow.webContents.send('phodit.suggest.send', [{
+    text: 'phodal',
+    displayText: 'phodal.com'
+  }]);
+});

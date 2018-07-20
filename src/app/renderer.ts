@@ -28,6 +28,14 @@ window.document.addEventListener('phodit.editor.unfullscreen', (data) => {
   ipcRenderer.send('phodit.unfullscreen');
 });
 
+window.document.addEventListener('phodit.editor.suggest.get', (data) => {
+  ipcRenderer.send('phodit.suggest.get', data);
+});
+
+ipcRenderer.on('phodit.suggest.send', (event: any, arg: any) => {
+  createEvent("phodit.editor.suggest.receive", arg);
+});
+
 ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
   simplemde.value(arg);
 });
