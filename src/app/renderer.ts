@@ -28,8 +28,8 @@ window.document.addEventListener('phodit.editor.unfullscreen', (data) => {
   ipcRenderer.send('phodit.unfullscreen');
 });
 
-window.document.addEventListener('phodit.editor.suggest.get', (data) => {
-  ipcRenderer.send('phodit.suggest.get', data);
+window.document.addEventListener('phodit.editor.suggest.get', (data: any) => {
+  ipcRenderer.send('phodit.suggest.get', data.detail);
 });
 
 ipcRenderer.on('phodit.suggest.send', (event: any, arg: any) => {

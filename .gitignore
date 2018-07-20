@@ -30,3 +30,4 @@ build/Release
 node_modules
 Phodit-darwin-x64/
 componets/**/dist
+assets/data

@@ -9,6 +9,11 @@ import {buildAboutPage} from "./pages/about.page";
 const windowStateKeeper = require('electron-window-state');
 const storage = require('electron-json-storage');
 const defaultDataPath = storage.getDefaultDataPath();
+const blogpostData = require('../../assets/data/output.json');
+
+let lunr = require('lunr');
+let dataWithIndex: any[] = [];
+let lunrIdx: any;
 let currentFile: string;
 
 console.log(`storage path: ${defaultDataPath}`);
@@ -198,6 +203,16 @@ function createWindow() {
     openAboutPage: openAboutPage
   }));
   Menu.setApplicationMenu(menu);
+
+  lunrIdx = lunr(function () {
+    this.field('title', { boost: 10 });
+    // this.field('content');
+
+    for (let item of blogpostData) {
+      this.add(item);
+      dataWithIndex[item.id] = item;
+    }
+  });
 }
 
 app.on("ready", createWindow);
@@ -241,14 +256,17 @@ ipcMain.on('phodit.unfullscreen', (event: any, arg: any) => {
 });
 
 ipcMain.on('phodit.suggest.get', (event: any, arg: any) => {
-  mainWindow.webContents.send('phodit.suggest.send', [{
-    text: 'p',
-    displayText: 'p'
-  },{
-    text: 'phodal.com',
-    displayText: 'phodal.com'
-  }, {
-    text: 'phodal.com 2',
-    displayText: 'phodal.com'
-  }]);
+  console.log(arg);
+  let searchResults = lunrIdx.search(arg);
+  let response = [];
+
+  for (let result of searchResults) {
+    let blogpost = dataWithIndex[result.ref];
+    response.push({
+      text: `[${blogpost.title}](https://www.phodal.com/blog/${blogpost.slug})`,
+      displayText: blogpost.title
+    })
+  }
+
+  mainWindow.webContents.send('phodit.suggest.send', response);
 });
