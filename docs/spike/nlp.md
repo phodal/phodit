@@ -62,3 +62,8 @@ https://github.com/techfort/LokiJS
 ---
 
 https://blog.csdn.net/wendingzhulu/article/details/38168039
+
+同义词
+---
+
+https://github.com/codemirror/CodeMirror/blob/master/demo/complete.html

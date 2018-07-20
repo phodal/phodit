@@ -242,7 +242,13 @@ ipcMain.on('phodit.unfullscreen', (event: any, arg: any) => {
 
 ipcMain.on('phodit.suggest.get', (event: any, arg: any) => {
   mainWindow.webContents.send('phodit.suggest.send', [{
-    text: 'phodal',
+    text: 'p',
+    displayText: 'p'
+  },{
+    text: 'phodal.com',
+    displayText: 'phodal.com'
+  }, {
+    text: 'phodal.com 2',
     displayText: 'phodal.com'
   }]);
 });
