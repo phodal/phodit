@@ -4,7 +4,7 @@ import {createEvent} from "./utils/event.util";
 require('devtron').install();
 
 const {ipcRenderer,} = require('electron');
-
+const showdown  = require('showdown');
 
 let simplemde = new (window as any).SimpleMDE({
   spellChecker: false,
@@ -50,4 +50,11 @@ ipcRenderer.on('phodit.open.path', (event: any, arg: any) => {
 
 window.document.addEventListener('tree.pub.open', (event: any) => {
   ipcRenderer.send('phodit.open.file', JSON.parse(event.detail).filename);
+});
+
+window.document.addEventListener('phodit.editor.send.result', (event: any) => {
+  let converter = new showdown.Converter();
+  let html = converter.makeHtml(event.detail);
+
+  createEvent("phodit.editor.get.result", html);
 });
