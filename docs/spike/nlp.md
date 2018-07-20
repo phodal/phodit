@@ -44,6 +44,10 @@ https://github.com/olivernn/lunr.js/
 
 lunr.js 不支持中文
 
+修改版本：
+
+https://github.com/codepiano/lunr.js
+
 https://github.com/weixsong/elasticlunr.js
 
 
