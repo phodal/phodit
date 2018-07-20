@@ -31,6 +31,6 @@
     "electron-json-storage": "^4.1.1",
     "electron-window-state": "^4.1.1",
     "lunr": "https://github.com/codepiano/lunr.js",
-    "showdown": "^1.8.6"
+    "marked": "^0.4.0"
   }
 }

@@ -1,10 +1,10 @@
 import './menu';
 import {createEvent} from "./utils/event.util";
+import {markdownRender} from "./utils/utils";
 
 require('devtron').install();
 
 const {ipcRenderer,} = require('electron');
-const showdown  = require('showdown');
 
 let simplemde = new (window as any).SimpleMDE({
   spellChecker: false,
@@ -53,8 +53,8 @@ window.document.addEventListener('tree.pub.open', (event: any) => {
 });
 
 window.document.addEventListener('phodit.editor.send.result', (event: any) => {
-  let converter = new showdown.Converter();
-  let html = converter.makeHtml(event.detail);
-
-  createEvent("phodit.editor.get.result", html);
+  console.log(event.detail);
+  let data = markdownRender(event.detail);
+  let content = data.replace(/\n/gi, '');
+  createEvent("phodit.editor.get.result", data);
 });
