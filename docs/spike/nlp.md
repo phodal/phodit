@@ -57,3 +57,8 @@ https://github.com/weixsong/elasticlunr.js
 https://github.com/louischatriot/nedb
 
 https://github.com/techfort/LokiJS
+
+自动联想
+---
+
+https://blog.csdn.net/wendingzhulu/article/details/38168039
