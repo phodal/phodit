@@ -62,7 +62,10 @@ function openFile(willLoadFile: string) {
 
     app.addRecentDocument(willLoadFile);
 
-    mainWindow.webContents.send('phodit.open.one-file', data);
+    mainWindow.webContents.send('phodit.open.one-file', {
+      data: data,
+      file: willLoadFile
+    });
   });
 }
 

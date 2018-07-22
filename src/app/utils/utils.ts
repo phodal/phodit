@@ -1,6 +1,19 @@
 const marked = require("marked");
 
-export function markdownRender(text: string) {
+class MarkdownImprove {
+  private file: string;
+
+  constructor(file: string) {
+    this.file = file;
+  }
+
+  public fixedImagePath (text: any) {
+    console.log(this.file);
+    return text;
+  };
+}
+
+export function markdownRender(text: string, file: string) {
   let markedOptions;
   if (this.options && this.options.renderingConfig && this.options.renderingConfig.markedOptions) {
     markedOptions = this.options.renderingConfig.markedOptions;
@@ -25,5 +38,7 @@ export function markdownRender(text: string) {
 
   marked.setOptions(markedOptions);
 
+  const markdownImprove = new MarkdownImprove(file);
+  text = markdownImprove.fixedImagePath(text);
   return marked(text);
 }

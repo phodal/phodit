@@ -6,6 +6,7 @@ require('devtron').install();
 
 const {ipcRenderer,} = require('electron');
 
+let currentFile: string;
 let simplemde = new (window as any).SimpleMDE({
   spellChecker: false,
   autosave: {
@@ -37,7 +38,8 @@ ipcRenderer.on('phodit.suggest.send', (event: any, arg: any) => {
 });
 
 ipcRenderer.on('phodit.open.one-file', (event: any, arg: any) => {
-  simplemde.value(arg);
+  currentFile = arg.file;
+  simplemde.value(arg.data);
 });
 
 ipcRenderer.on('client.save.file', () => {
@@ -53,6 +55,6 @@ window.document.addEventListener('tree.pub.open', (event: any) => {
 });
 
 window.document.addEventListener('phodit.editor.send.result', (event: any) => {
-  let data = markdownRender(event.detail);
+  let data = markdownRender(event.detail, currentFile);
   createEvent("phodit.editor.get.result", data);
 });
