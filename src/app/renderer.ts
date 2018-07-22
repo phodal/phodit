@@ -53,8 +53,6 @@ window.document.addEventListener('tree.pub.open', (event: any) => {
 });
 
 window.document.addEventListener('phodit.editor.send.result', (event: any) => {
-  console.log(event.detail);
   let data = markdownRender(event.detail);
-  let content = data.replace(/\n/gi, '');
   createEvent("phodit.editor.get.result", data);
 });
