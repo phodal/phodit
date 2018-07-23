@@ -51,6 +51,8 @@ function openFile(willLoadFile: string) {
     mainWindow.setRepresentedFilename(willLoadFile)
   }
 
+  checkWindow();
+
   storage.set('storage.last.file', {file: willLoadFile});
   storage.remove('storage.last.path');
   currentFile = willLoadFile;
@@ -70,6 +72,8 @@ function openFile(willLoadFile: string) {
 }
 
 function openPath(pathName: any) {
+  checkWindow();
+
   storage.set('storage.last.path', {file: pathName});
   storage.remove('storage.last.file');
 
@@ -106,6 +110,15 @@ function open() {
       openPath(fileNames[0]);
     }
   });
+}
+
+function checkWindow() {
+  if (!mainWindow) {
+    return createWindow();
+  }
+  if (mainWindow && !mainWindow.webContents) {
+    return createWindow();
+  }
 }
 
 function saveFileSignal() {
@@ -208,7 +221,7 @@ function createWindow() {
   Menu.setApplicationMenu(menu);
 
   lunrIdx = lunr(function () {
-    this.field('title', { boost: 10 });
+    this.field('title', {boost: 10});
     // this.field('content');
 
     for (let item of blogpostData) {
