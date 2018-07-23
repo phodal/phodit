@@ -11,6 +11,13 @@ export function buildMenu(app: any, funcs: any) {
           },
         },
         {
+          label: "New...",
+          accelerator: "CmdOrCtrl+N",
+          click() {
+            funcs.newFile();
+          },
+        },
+        {
           label: "Save...",
           accelerator: "CmdOrCtrl+S",
           click() {

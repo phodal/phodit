@@ -1,12 +1,15 @@
 import "./menu.right";
 import {createEvent} from "./utils/event.util";
 import {markdownRender} from "./utils/utils";
+import {IFileOpen} from "../common/interface/IFileOpen";
 
 require("devtron").install();
 
 const {ipcRenderer} = require("electron");
 
 let currentFile: string;
+let isCurrentFileTemp = false;
+
 const simplemde = new (window as any).SimpleMDE({
   spellChecker: false,
   autosave: {
@@ -41,13 +44,17 @@ ipcRenderer.on("phodit.suggest.send", (event: any, arg: any) => {
   createEvent("phodit.editor.suggest.receive", arg);
 });
 
-ipcRenderer.on("phodit.open.one-file", (event: any, arg: any) => {
+ipcRenderer.on("phodit.open.one-file", (event: any, arg: IFileOpen) => {
   currentFile = arg.file;
+  isCurrentFileTemp = arg.isTempFile;
   simplemde.value(arg.data);
 });
 
 ipcRenderer.on("client.save.file", () => {
-  ipcRenderer.send("phodit.save.file", simplemde.value());
+  ipcRenderer.send("phodit.save.file", {
+    isTempFile: isCurrentFileTemp,
+    data: simplemde.value()
+  });
 });
 
 ipcRenderer.on("phodit.open.path", (event: any, arg: any) => {

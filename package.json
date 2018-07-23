@@ -32,6 +32,7 @@
     "electron-json-storage": "^4.1.1",
     "electron-window-state": "^4.1.1",
     "lunr": "https://github.com/codepiano/lunr.js",
-    "marked": "^0.4.0"
+    "marked": "^0.4.0",
+    "tmp": "^0.0.33"
   }
 }
