@@ -61,7 +61,7 @@ function openFile(willLoadFile: string) {
   checkWindow();
 
   storage.set("storage.last.file", {file: willLoadFile});
-  storage.remove("storage.last.path");
+  // storage.remove("storage.last.path");
   currentFile = willLoadFile;
   fs.readFile(willLoadFile, "utf-8", (err, data) => {
     if (err) {
