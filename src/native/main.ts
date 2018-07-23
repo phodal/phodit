@@ -1,4 +1,4 @@
-import {app, BrowserWindow, dialog, ipcMain, Menu} from "electron";
+import {app, BrowserWindow, dialog, shell, ipcMain, Menu} from "electron";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -47,6 +47,8 @@ function dirTree(filename: string) {
 
 function openFile(willLoadFile: string) {
   if ( /\.(jpe?g|png|gif|bmp|ico)$/i.test(willLoadFile) ) {
+    shell.openExternal(willLoadFile);
+    dialog.showErrorBox('Error', 'not support format');
     return ;
   }
 
