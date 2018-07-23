@@ -165,7 +165,10 @@ function createWindow() {
     'width': mainWindowState.width,
     'height': mainWindowState.height,
     // frame: false,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    webPreferences: {
+      nodeIntegrationInWorker: true
+    }
   });
 
   mainWindowState.manage(mainWindow);
@@ -224,7 +227,7 @@ function createWindow() {
   // if (!cluster.isMaster) {
     lunrIdx = lunr(function () {
       this.field('title', {boost: 10});
-      this.field('content');
+      // this.field('content');
 
       for (let item of blogpostData) {
         this.add(item);

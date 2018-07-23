@@ -9,3 +9,10 @@ http://nodejs.cn/api/cluster.html
 
 https://github.com/frankhale/electron-with-express
 
+## MultiThreading
+
+方式 -> 使用 WebWorkers：
+
+https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
+
+
