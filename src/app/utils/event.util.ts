@@ -1,12 +1,12 @@
 export function createEvent(name: string, data: any) {
   let event: CustomEvent;
-  if (typeof data === 'string') {
+  if (typeof data === "string") {
     event = new CustomEvent(name, {
-      detail: data
+      detail: data,
     });
   } else {
     event = new CustomEvent(name, {
-      detail: JSON.stringify(data)
+      detail: JSON.stringify(data),
     });
   }
 

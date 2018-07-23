@@ -13,16 +13,16 @@ export function buildAboutPage(BrowserWindow: any) {
       height: 800,
       width: 600,
       title: "帮助",
-      backgroundColor: '#ddd'
+      backgroundColor: "#ddd",
     });
 
-    aboutWindow.on('closed', function () {
+    aboutWindow.on("closed", function() {
       aboutWindow = null;
     });
 
     aboutWindow.loadFile(path.join(__dirname, "../../../views/about.html"));
 
-    aboutWindow.once('ready-to-show', () => aboutWindow.show());
+    aboutWindow.once("ready-to-show", () => aboutWindow.show());
 
     // aboutWindow.webContents.openDevTools();
   }

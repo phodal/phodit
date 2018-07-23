@@ -1,5 +1,5 @@
-import gitStatus from './status';
+import gitStatus from "./status";
 
 export const git = {
-  status: gitStatus
+  status: gitStatus,
 };

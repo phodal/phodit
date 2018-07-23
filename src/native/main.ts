@@ -1,19 +1,19 @@
 import {app, BrowserWindow, dialog, ipcMain, Menu} from "electron";
-import * as path from "path";
 import * as fs from "fs";
+import * as path from "path";
 
-import {buildMenu} from "./i18n/menu/menu";
 import {git} from "./features/git";
+import {buildMenu} from "./i18n/menu/menu";
 import {buildAboutPage} from "./pages/about.page";
-const cluster = require('cluster');
+const cluster = require("cluster");
 
-const windowStateKeeper = require('electron-window-state');
-const storage = require('electron-json-storage');
+const windowStateKeeper = require("electron-window-state");
+const storage = require("electron-json-storage");
 const defaultDataPath = storage.getDefaultDataPath();
-const blogpostData = require('../../assets/data/output.json');
+const blogpostData = require("../../assets/data/output.json");
 
-let lunr = require('lunr');
-let dataWithIndex: any[] = [];
+const lunr = require("lunr");
+const dataWithIndex: any[] = [];
 let lunrIdx: any;
 let currentFile: string;
 
@@ -23,19 +23,19 @@ let mainWindow: Electron.BrowserWindow;
 let dir;
 
 function dirTree(filename: string) {
-  let stats = fs.lstatSync(filename);
-  let info: any = {
-    filename: filename,
-    module: path.basename(filename)
+  const stats = fs.lstatSync(filename);
+  const info: any = {
+    filename,
+    module: path.basename(filename),
   };
 
   if (stats.isDirectory()) {
     // info.type = "folder";
     info.collapsed = true;
     info.children = fs.readdirSync(filename).filter((child: string) => {
-      return child !== '.git' && child !== '.DS_Store';
-    }).map(function (child) {
-      return dirTree(filename + '/' + child);
+      return child !== ".git" && child !== ".DS_Store";
+    }).map(function(child) {
+      return dirTree(filename + "/" + child);
     });
   } else {
     info.leaf = true;
@@ -47,17 +47,17 @@ function dirTree(filename: string) {
 
 function openFile(willLoadFile: string) {
   if (mainWindow) {
-    let fileName = path.basename(willLoadFile);
+    const fileName = path.basename(willLoadFile);
     mainWindow.setTitle(fileName);
-    mainWindow.setRepresentedFilename(willLoadFile)
+    mainWindow.setRepresentedFilename(willLoadFile);
   }
 
   checkWindow();
 
-  storage.set('storage.last.file', {file: willLoadFile});
-  storage.remove('storage.last.path');
+  storage.set("storage.last.file", {file: willLoadFile});
+  storage.remove("storage.last.path");
   currentFile = willLoadFile;
-  fs.readFile(willLoadFile, 'utf-8', (err, data) => {
+  fs.readFile(willLoadFile, "utf-8", (err, data) => {
     if (err) {
       console.log("An error ocurred reading the file :" + err.message);
       return;
@@ -65,9 +65,9 @@ function openFile(willLoadFile: string) {
 
     app.addRecentDocument(willLoadFile);
 
-    mainWindow.webContents.send('phodit.open.one-file', {
-      data: data,
-      file: willLoadFile
+    mainWindow.webContents.send("phodit.open.one-file", {
+      data,
+      file: willLoadFile,
     });
   });
 }
@@ -75,17 +75,17 @@ function openFile(willLoadFile: string) {
 function openPath(pathName: any) {
   checkWindow();
 
-  storage.set('storage.last.path', {file: pathName});
-  storage.remove('storage.last.file');
+  storage.set("storage.last.path", {file: pathName});
+  storage.remove("storage.last.file");
 
   let dirFiles: any[] = [];
   fs.readdir(pathName, (err, files) => {
     dirFiles = dirTree(pathName);
 
-    mainWindow.webContents.send('phodit.git.status', git.status(pathName));
-    mainWindow.webContents.send('phodit.open.path', {
-      module: 'Folders',
-      children: [dirFiles]
+    mainWindow.webContents.send("phodit.git.status", git.status(pathName));
+    mainWindow.webContents.send("phodit.open.path", {
+      module: "Folders",
+      children: [dirFiles],
     });
   });
 }
@@ -93,10 +93,10 @@ function openPath(pathName: any) {
 function open() {
   dir = dialog.showOpenDialog(mainWindow, {
     filters: [
-      {name: 'Markdown ', extensions: ['markdown', 'md', 'txt']},
-      {name: 'All Files', extensions: ['*']}
+      {name: "Markdown ", extensions: ["markdown", "md", "txt"]},
+      {name: "All Files", extensions: ["*"]},
     ],
-    properties: ['openFile', 'openDirectory', 'multiSelections']
+    properties: ["openFile", "openDirectory", "multiSelections"],
   }, (fileNames: any) => {
     console.log(fileNames);
     if (!fileNames) {
@@ -124,9 +124,9 @@ function checkWindow() {
 
 function saveFileSignal() {
   if (mainWindow.webContents) {
-    mainWindow.webContents.send('client.save.file');
+    mainWindow.webContents.send("client.save.file");
   } else {
-    dialog.showErrorBox('error', 'not open file')
+    dialog.showErrorBox("error", "not open file");
   }
 }
 
@@ -134,10 +134,10 @@ function saveFile(data: any) {
   if (currentFile) {
     fs.writeFileSync(currentFile, data);
   } else {
-    dialog.showOpenDialog(mainWindow, {}, function (filename) {
+    dialog.showOpenDialog(mainWindow, {}, function(filename) {
       console.log(filename);
       fs.writeFileSync(currentFile, data);
-    })
+    });
   }
 }
 
@@ -154,21 +154,21 @@ function openAboutPage() {
 }
 
 function createWindow() {
-  let mainWindowState = windowStateKeeper({
+  const mainWindowState = windowStateKeeper({
     defaultWidth: 1000,
-    defaultHeight: 800
+    defaultHeight: 800,
   });
 
   mainWindow = new BrowserWindow({
-    'x': mainWindowState.x,
-    'y': mainWindowState.y,
-    'width': mainWindowState.width,
-    'height': mainWindowState.height,
+    x: mainWindowState.x,
+    y: mainWindowState.y,
+    width: mainWindowState.width,
+    height: mainWindowState.height,
     // frame: false,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     webPreferences: {
-      nodeIntegrationInWorker: true
-    }
+      nodeIntegrationInWorker: true,
+    },
   });
 
   mainWindowState.manage(mainWindow);
@@ -180,17 +180,17 @@ function createWindow() {
   });
 
   mainWindow.setDocumentEdited(true);
-  mainWindow.webContents.on('did-finish-load', function () {
-    storage.get('storage.last.file', function (error: any, data: any) {
-      if (error) throw error;
+  mainWindow.webContents.on("did-finish-load", function() {
+    storage.get("storage.last.file", function(error: any, data: any) {
+      if (error) { throw error; }
 
       if (data && data.file) {
         console.log(data);
         openFile(data.file);
       }
     });
-    storage.get('storage.last.path', function (error: any, data: any) {
-      if (error) throw error;
+    storage.get("storage.last.path", function(error: any, data: any) {
+      if (error) { throw error; }
 
       if (data && data.file) {
         console.log(data);
@@ -204,32 +204,32 @@ function createWindow() {
   //   require('electron').shell.openExternal(url);
   // });
 
-  mainWindow.webContents.on('will-navigate', function (event: any, url) {
-    console.log('will-navigate');
+  mainWindow.webContents.on("will-navigate", function(event: any, url) {
+    console.log("will-navigate");
     if (url != mainWindow.webContents.getURL()) {
       event.preventDefault();
       const win = new BrowserWindow({show: false});
       win.loadURL(url);
       win.show();
-      event.newGuest = win
+      event.newGuest = win;
     }
   });
 
   const menu = Menu.buildFromTemplate(buildMenu(app, {
-    open: open,
-    saveFileSignal: saveFileSignal,
-    debug: debug,
-    reload: reload,
-    openAboutPage: openAboutPage
+    open,
+    saveFileSignal,
+    debug,
+    reload,
+    openAboutPage,
   }));
   Menu.setApplicationMenu(menu);
 
   // if (!cluster.isMaster) {
-    lunrIdx = lunr(function () {
-      this.field('title', {boost: 10});
+  lunrIdx = lunr(function() {
+      this.field("title", {boost: 10});
       // this.field('content');
 
-      for (let item of blogpostData) {
+      for (const item of blogpostData) {
         this.add(item);
         dataWithIndex[item.id] = item;
       }
@@ -255,43 +255,43 @@ app.on("open-file", (event, arg) => {
   openFile(arg);
 });
 
-ipcMain.on('phodit.open.file', (event: any, arg: any) => {
+ipcMain.on("phodit.open.file", (event: any, arg: any) => {
   openFile(arg);
 });
 
-ipcMain.on('phodit.save.file', (event: any, arg: any) => {
+ipcMain.on("phodit.save.file", (event: any, arg: any) => {
   saveFile(arg);
 });
 
-ipcMain.on('phodit.open.guide', (event: any, arg: any) => {
+ipcMain.on("phodit.open.guide", (event: any, arg: any) => {
   openAboutPage();
 });
 
-ipcMain.on('phodit.fullscreen', (event: any, arg: any) => {
+ipcMain.on("phodit.fullscreen", (event: any, arg: any) => {
   mainWindow.setFullScreen(true);
   mainWindow.maximize();
 });
 
-ipcMain.on('phodit.unfullscreen', (event: any, arg: any) => {
+ipcMain.on("phodit.unfullscreen", (event: any, arg: any) => {
   mainWindow.setFullScreen(false);
   mainWindow.unmaximize();
 });
 
-ipcMain.on('phodit.suggest.get', (event: any, arg: any) => {
+ipcMain.on("phodit.suggest.get", (event: any, arg: any) => {
   if (arg.length < 2) {
-    mainWindow.webContents.send('phodit.suggest.send', []);
+    mainWindow.webContents.send("phodit.suggest.send", []);
   }
 
-  let searchResults = lunrIdx.search(arg);
-  let response = [];
+  const searchResults = lunrIdx.search(arg);
+  const response = [];
 
-  for (let result of searchResults) {
-    let blogpost = dataWithIndex[result.ref];
+  for (const result of searchResults) {
+    const blogpost = dataWithIndex[result.ref];
     response.push({
       text: `[${blogpost.title}](https://www.phodal.com/blog/${blogpost.slug})`,
-      displayText: blogpost.title
-    })
+      displayText: blogpost.title,
+    });
   }
 
-  mainWindow.webContents.send('phodit.suggest.send', response);
+  mainWindow.webContents.send("phodit.suggest.send", response);
 });

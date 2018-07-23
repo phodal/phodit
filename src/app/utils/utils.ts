@@ -13,22 +13,22 @@ class MarkdownImprove {
     const imgRegex = /!\[[^\]]+\]\(([^)]+)\)/;
     const imgRegexGlobal = /!\[[^\]]+\]\(([^)]+)\)/gi;
     const that = this;
-    let matches = text.match(imgRegexGlobal);
+    const matches = text.match(imgRegexGlobal);
     if (matches && matches.length > 0) {
-      matches.forEach(function (image: any) {
+      matches.forEach(function(image: any) {
         const originImage = image;
         if (imgRegex.test(image)) {
-          let result = imgRegex.exec(image);
-          let newFilePath = getFileRelativePath(that.file, result[1]);
-          image = image.replace(/\(([^)]+)\)/, '(' + newFilePath + ')');
+          const result = imgRegex.exec(image);
+          const newFilePath = getFileRelativePath(that.file, result[1]);
+          image = image.replace(/\(([^)]+)\)/, "(" + newFilePath + ")");
           text = text.replace(originImage, image);
         }
       });
     }
     return text;
-  };
+  }
 
-  codeHighlight(text: string) {
+  public codeHighlight(text: string) {
     if (!this.marked) {
       return text;
     }
@@ -54,9 +54,9 @@ export function markdownRender(text: string, file: string) {
   }
 
   if (this.options && this.options.renderingConfig && this.options.renderingConfig.codeSyntaxHighlighting === true) {
-    let hljs = this.options.renderingConfig.hljs || (window as any).hljs;
+    const hljs = this.options.renderingConfig.hljs || (window as any).hljs;
     if (hljs) {
-      markedOptions.highlight = function (code: string) {
+      markedOptions.highlight = function(code: string) {
         return hljs.highlightAuto(code).value;
       };
     }
@@ -72,12 +72,12 @@ export function markdownRender(text: string, file: string) {
 }
 
 function removeLastDirectoryPartOf(path: string) {
-  let splitArray = path.split('/');
+  const splitArray = path.split("/");
   if (!path) {
     return path;
   }
   splitArray.pop();
-  return (splitArray.join('/'));
+  return (splitArray.join("/"));
 }
 
 function getFileRelativePath(path: string, imgFilePath: string) {
