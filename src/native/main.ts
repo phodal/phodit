@@ -46,6 +46,10 @@ function dirTree(filename: string) {
 }
 
 function openFile(willLoadFile: string) {
+  if ( /\.(jpe?g|png|gif|bmp)$/i.test(currentFile) ) {
+    return ;
+  }
+
   if (mainWindow) {
     const fileName = path.basename(willLoadFile);
     mainWindow.setTitle(fileName);

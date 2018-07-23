@@ -34,7 +34,6 @@ window.document.addEventListener("phodit.editor.suggest.get", (data: any) => {
 });
 
 window.document.addEventListener("phodit.editor.save.file", () => {
-  console.log("phodit.editor.save.file")
   ipcRenderer.send("phodit.save.file", simplemde.value());
 });
 
