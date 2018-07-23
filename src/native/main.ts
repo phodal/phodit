@@ -46,7 +46,7 @@ function dirTree(filename: string) {
 }
 
 function openFile(willLoadFile: string) {
-  if ( /\.(jpe?g|png|gif|bmp)$/i.test(currentFile) ) {
+  if ( /\.(jpe?g|png|gif|bmp|ico)$/i.test(willLoadFile) ) {
     return ;
   }
 
