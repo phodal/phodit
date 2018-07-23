@@ -5,6 +5,7 @@ import * as fs from "fs";
 import {buildMenu} from "./i18n/menu/menu";
 import {git} from "./features/git";
 import {buildAboutPage} from "./pages/about.page";
+const cluster = require('cluster');
 
 const windowStateKeeper = require('electron-window-state');
 const storage = require('electron-json-storage');
@@ -220,15 +221,17 @@ function createWindow() {
   }));
   Menu.setApplicationMenu(menu);
 
-  lunrIdx = lunr(function () {
-    this.field('title', {boost: 10});
-    // this.field('content');
+  // if (!cluster.isMaster) {
+    lunrIdx = lunr(function () {
+      this.field('title', {boost: 10});
+      this.field('content');
 
-    for (let item of blogpostData) {
-      this.add(item);
-      dataWithIndex[item.id] = item;
-    }
-  });
+      for (let item of blogpostData) {
+        this.add(item);
+        dataWithIndex[item.id] = item;
+      }
+    });
+  // }
 }
 
 app.on("ready", createWindow);
