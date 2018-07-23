@@ -2,12 +2,12 @@ import {app, BrowserWindow, dialog, ipcMain, Menu, shell} from "electron";
 import * as fs from "fs";
 import * as path from "path";
 
+import {IFileSave} from "../common/interface/IFileSave";
 import {git} from "./features/git";
 import {buildMenu} from "./i18n/menu/menu";
 import {buildAboutPage} from "./pages/about.page";
-import {IFileSave} from "../common/interface/IFileSave";
 
-const tmp = require('tmp');
+const tmp = require("tmp");
 const cluster = require("cluster");
 
 const windowStateKeeper = require("electron-window-state");
@@ -37,7 +37,7 @@ function dirTree(filename: string) {
     info.collapsed = true;
     info.children = fs.readdirSync(filename).filter((child: string) => {
       return child !== ".git" && child !== ".DS_Store";
-    }).map(function (child) {
+    }).map(function(child) {
       return dirTree(filename + "/" + child);
     });
   } else {
@@ -51,7 +51,7 @@ function dirTree(filename: string) {
 function openFile(willLoadFile: string, isTempFile: boolean = false) {
   if (/\.(jpe?g|png|gif|bmp|ico)$/i.test(willLoadFile)) {
     shell.openExternal(willLoadFile);
-    dialog.showErrorBox('Error', 'not support format');
+    dialog.showErrorBox("Error", "not support format");
     return;
   }
 
@@ -60,7 +60,7 @@ function openFile(willLoadFile: string, isTempFile: boolean = false) {
     mainWindow.setTitle(fileName);
     mainWindow.setRepresentedFilename(willLoadFile);
   } else {
-    mainWindow.setTitle('Untitled');
+    mainWindow.setTitle("Untitled");
   }
 
   checkWindow();
@@ -144,14 +144,14 @@ function saveFileSignal() {
 
 function saveFile(data: any, isTempFile: boolean) {
   console.log(currentFile);
-  if (!isTempFile && !currentFile.endsWith('.tmp')) {
+  if (!isTempFile && !currentFile.endsWith(".tmp")) {
     fs.writeFileSync(currentFile, data);
   } else {
-    dialog.showSaveDialog(mainWindow, {}, filename => {
+    dialog.showSaveDialog(mainWindow, {}, (filename) => {
       isTempFile = false;
 
-      mainWindow.webContents.send('phodit.temp.file.status', {
-        isTempFile: false
+      mainWindow.webContents.send("phodit.temp.file.status", {
+        isTempFile: false,
       });
       currentFile = filename;
       mainWindow.setTitle(filename);
@@ -162,7 +162,7 @@ function saveFile(data: any, isTempFile: boolean) {
 
 function newFile() {
   tmp.file(function _tempFileCreated(err: any, path: any, fd: any, cleanupCallback: any) {
-    if (err) throw err;
+    if (err) { throw err; }
 
     checkWindow();
 
@@ -210,8 +210,8 @@ function createWindow() {
   });
 
   mainWindow.setDocumentEdited(true);
-  mainWindow.webContents.on("did-finish-load", function () {
-    storage.get("storage.last.file", function (error: any, data: any) {
+  mainWindow.webContents.on("did-finish-load", function() {
+    storage.get("storage.last.file", function(error: any, data: any) {
       if (error) {
         throw error;
       }
@@ -221,7 +221,7 @@ function createWindow() {
         openFile(data.file);
       }
     });
-    storage.get("storage.last.path", function (error: any, data: any) {
+    storage.get("storage.last.path", function(error: any, data: any) {
       if (error) {
         throw error;
       }
@@ -238,7 +238,7 @@ function createWindow() {
   //   require('electron').shell.openExternal(url);
   // });
 
-  mainWindow.webContents.on("will-navigate", function (event: any, url) {
+  mainWindow.webContents.on("will-navigate", function(event: any, url) {
     console.log("will-navigate");
     if (url != mainWindow.webContents.getURL()) {
       event.preventDefault();
@@ -260,7 +260,7 @@ function createWindow() {
   Menu.setApplicationMenu(menu);
 
   // if (!cluster.isMaster) {
-  lunrIdx = lunr(function () {
+  lunrIdx = lunr(function() {
     this.field("title", {boost: 10});
     // this.field('content');
 

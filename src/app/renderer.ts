@@ -1,7 +1,7 @@
+import {IFileOpen} from "../common/interface/IFileOpen";
 import "./menu.right";
 import {createEvent} from "./utils/event.util";
 import {markdownRender} from "./utils/utils";
-import {IFileOpen} from "../common/interface/IFileOpen";
 
 require("devtron").install();
 
@@ -53,7 +53,7 @@ ipcRenderer.on("phodit.open.one-file", (event: any, arg: IFileOpen) => {
 ipcRenderer.on("client.save.file", () => {
   ipcRenderer.send("phodit.save.file", {
     isTempFile: isCurrentFileTemp,
-    data: simplemde.value()
+    data: simplemde.value(),
   });
 });
 
