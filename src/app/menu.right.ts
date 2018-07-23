@@ -1,7 +1,7 @@
 const {remote, clipboard} = require("electron");
-const {Menu, MenuItem} = remote;
+const {Menu: MenuRight, MenuItem} = remote;
 
-const menu = new Menu();
+const menu = new MenuRight();
 menu.append(new MenuItem({
   label: "Wechat", click() {
     clipboard.writeText("Example String", "selection");

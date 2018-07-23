@@ -1,4 +1,4 @@
-import "./menu";
+import "./menu.right";
 import {createEvent} from "./utils/event.util";
 import {markdownRender} from "./utils/utils";
 
