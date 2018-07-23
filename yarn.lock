@@ -213,6 +213,10 @@ combined-stream@1.0.6, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
+comlinkjs@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/comlinkjs/-/comlinkjs-3.0.3.tgz#a976952d9368e5e8c1d6c0ba78f3a9a70df797ed"
+
 commander@^2.12.1, commander@^2.9.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.16.0.tgz#f16390593996ceb4f3eeb020b31d78528f7f8a50"

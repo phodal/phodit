@@ -15,4 +15,8 @@ https://github.com/frankhale/electron-with-express
 
 https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
 
+WebWorker 相关库：
+
+https://github.com/GoogleChromeLabs/comlink
+
 
