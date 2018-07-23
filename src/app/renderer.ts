@@ -61,6 +61,10 @@ ipcRenderer.on("phodit.open.path", (event: any, arg: any) => {
   createEvent("phodit.tree.open", arg);
 });
 
+ipcRenderer.on("phodit.temp.file.status", (event: any, arg: any) => {
+  isCurrentFileTemp = arg.isTempFile;
+});
+
 window.document.addEventListener("tree.pub.open", (event: any) => {
   ipcRenderer.send("phodit.open.file", JSON.parse(event.detail).filename);
 });

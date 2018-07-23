@@ -143,12 +143,19 @@ function saveFileSignal() {
 }
 
 function saveFile(data: any, isTempFile: boolean) {
-  if (!isTempFile) {
+  console.log(currentFile);
+  if (!isTempFile && !currentFile.endsWith('.tmp')) {
     fs.writeFileSync(currentFile, data);
   } else {
     dialog.showSaveDialog(mainWindow, {}, filename => {
       isTempFile = false;
-      fs.writeFileSync(currentFile, data);
+
+      mainWindow.webContents.send('phodit.temp.file.status', {
+        isTempFile: false
+      });
+      currentFile = filename;
+      mainWindow.setTitle(filename);
+      fs.writeFileSync(filename, data);
     });
   }
 }
