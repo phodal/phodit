@@ -69,6 +69,7 @@ textarea#input {
   background: #fdfdfd;
   z-index: 2;
   width: 100%;
+  border: none;
   border-radius: 0;
   border-bottom: 1px solid #ddd;
   padding: 0 5px;
