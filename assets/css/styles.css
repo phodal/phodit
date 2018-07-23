@@ -107,6 +107,14 @@ textarea#input {
   height: 22px;
 }
 
+#input .editor-preview-side {
+  top: 33px;
+}
+
+#input .editor-preview-side.editor-preview-active-side {
+  top: 50px;
+}
+
 p {
   font-size: 14px;
   margin-bottom: 15px;

@@ -275,7 +275,10 @@ ipcMain.on('phodit.unfullscreen', (event: any, arg: any) => {
 });
 
 ipcMain.on('phodit.suggest.get', (event: any, arg: any) => {
-  console.log(arg);
+  if (arg.length < 2) {
+    mainWindow.webContents.send('phodit.suggest.send', []);
+  }
+
   let searchResults = lunrIdx.search(arg);
   let response = [];
 
