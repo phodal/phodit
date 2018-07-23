@@ -2,9 +2,11 @@ const marked = require("marked");
 
 class MarkdownImprove {
   private file: string;
+  private marked: any;
 
-  constructor(file: string) {
+  constructor(file: string, marked?: any) {
     this.file = file;
+    this.marked = marked;
   }
 
   public fixedImagePath(text: any) {
@@ -25,6 +27,16 @@ class MarkdownImprove {
     }
     return text;
   };
+
+  codeHighlight(text: string) {
+    if (!this.marked) {
+      return text;
+    }
+    const tok = this.marked.lexer(text);
+    text = this.marked.parser(tok);
+    text = text.replace(/<pre><code>(.*)<\/code><\/pre>/ig, '<pre class="prettyprint">$1</pre>');
+    return text;
+  }
 }
 
 export function markdownRender(text: string, file: string) {
@@ -54,7 +66,9 @@ export function markdownRender(text: string, file: string) {
 
   const markdownImprove = new MarkdownImprove(file);
   text = markdownImprove.fixedImagePath(text);
-  return marked(text);
+  let results =  marked(text);
+  results = markdownImprove.codeHighlight(results);
+  return results;
 }
 
 function removeLastDirectoryPartOf(path: string) {
