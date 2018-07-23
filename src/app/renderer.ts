@@ -33,6 +33,11 @@ window.document.addEventListener("phodit.editor.suggest.get", (data: any) => {
   ipcRenderer.send("phodit.suggest.get", data.detail);
 });
 
+window.document.addEventListener("phodit.editor.save.file", () => {
+  console.log("phodit.editor.save.file")
+  ipcRenderer.send("phodit.save.file", simplemde.value());
+});
+
 ipcRenderer.on("phodit.suggest.send", (event: any, arg: any) => {
   createEvent("phodit.editor.suggest.receive", arg);
 });
