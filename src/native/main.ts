@@ -83,7 +83,7 @@ function openPath(pathName: any) {
 
     mainWindow.webContents.send('phodit.git.status', git.status(pathName));
     mainWindow.webContents.send('phodit.open.path', {
-      module: 'react-ui-tree',
+      module: 'Folders',
       children: [dirFiles]
     });
   });
