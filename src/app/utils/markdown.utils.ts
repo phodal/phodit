@@ -48,8 +48,10 @@ export function markdownRender(text: string, file: string) {
     xhtml: false
   });
 
-  const markdownImprove = new MarkdownImprove(file);
-  text = markdownImprove.fixedImagePath(text);
+  if (file) {
+    const markdownImprove = new MarkdownImprove(file);
+    text = markdownImprove.fixedImagePath(text);
+  }
   return marked(text);
 }
 

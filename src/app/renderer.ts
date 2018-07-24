@@ -23,6 +23,9 @@ const simplemde = new (window as any).SimpleMDE({
     link: 'link',
     image: 'image'
   },
+  renderingConfig: {
+    codeSyntaxHighlighting: true
+  },
   element: document.getElementById("input-section"),
 });
 
@@ -81,7 +84,9 @@ ipcRenderer.on(EventConstants.TEMP_FILE_STATUS, (event: any, arg: any) => {
 
 // 打开左侧树型文件
 window.document.addEventListener(EventConstants.CLIENT.TREE_OPEN, (event: any) => {
-  ipcRenderer.send(EventConstants.PHODIT.OPEN_FILE, JSON.parse(event.detail).filename);
+  let file = JSON.parse(event.detail).filename;
+  currentFile = file;
+  ipcRenderer.send(EventConstants.PHODIT.OPEN_FILE, file);
 });
 
 // 返回 Markdown 渲染结果
