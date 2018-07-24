@@ -24,3 +24,8 @@ https://github.com/yanyiwu/nodejieba
 敏感词：
 
 https://github.com/aojiaotage/text-censor
+
+Language Tool
+---
+
+https://www.languagetool.org/download/
