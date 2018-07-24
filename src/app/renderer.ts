@@ -1,7 +1,7 @@
 import {IFileOpen} from "../common/interface/IFileOpen";
 import "./menu.right";
 import {createEvent} from "./utils/event.util";
-import {markdownRender} from "./utils/utils";
+import {markdownRender} from "./utils/markdown.utils";
 
 require("devtron").install();
 
