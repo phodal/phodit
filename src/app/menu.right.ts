@@ -1,5 +1,3 @@
-import spawnPandoc from "../native/features/pandoc/spawn-pandoc";
-
 const {remote, clipboard} = require("electron");
 const {Menu: MenuRight, MenuItem} = remote;
 
