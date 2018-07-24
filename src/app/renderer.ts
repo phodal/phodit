@@ -36,11 +36,13 @@ window.document.addEventListener(EventConstants.CLIENT.OPEN_GUIDE, (data) => {
 
 // 全屏
 window.document.addEventListener(EventConstants.CLIENT.FULL_SCREEN, (data) => {
+  document.getElementById('input').classList.add('full-screen');
   ipcRenderer.send(EventConstants.PHODIT.FULL_SCREEN);
 });
 
 // 取消全屏
 window.document.addEventListener(EventConstants.CLIENT.UN_FULL_SCREEN, (data) => {
+  document.getElementById('input').classList.remove('full-screen');
   ipcRenderer.send(EventConstants.PHODIT.UN_FULL_SCREEN);
 });
 
