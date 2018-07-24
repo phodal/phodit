@@ -50,7 +50,7 @@ export function markdownRender(text: string, file: string) {
 
   const markdownImprove = new MarkdownImprove(file);
   text = markdownImprove.fixedImagePath(text);
-  return text;
+  return marked(text);
 }
 
 function removeLastDirectoryPartOf(path: string) {
