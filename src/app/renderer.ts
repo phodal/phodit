@@ -18,6 +18,10 @@ const simplemde = new (window as any).SimpleMDE({
     uniqueId: "phodit",
     delay: 1000,
   },
+  promptTexts: {
+    link: 'link',
+    image: 'image'
+  },
   element: document.getElementById("input-section"),
 });
 
