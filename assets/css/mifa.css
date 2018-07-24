@@ -263,7 +263,6 @@ input[type='tel'],
 input[type='text'],
 input[type='url'],
 input:not([type]),
-textarea,
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -286,7 +285,6 @@ input[type='tel']:focus,
 input[type='text']:focus,
 input[type='url']:focus,
 input:not([type]):focus,
-textarea:focus,
 select:focus {
   border-color: #1abc9c;
   outline: 0;
@@ -299,10 +297,6 @@ select {
 
 select:focus {
   background-image: url('data:image/svg+xml;utf8,<svg width="28" height="15" viewBox="0 0 28 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><polygon fill="%231abc9c" id="Shape" points="14.3216327 0 7.99510204 5.87878267 1.67836735 0.00773727648 0 1.56757221 7.99510204 9 16 1.55983494"></polygon></svg>');
-}
-
-textarea {
-  min-height: 6.5rem;
 }
 
 label,
@@ -556,8 +550,7 @@ li {
 
 fieldset,
 input,
-select,
-textarea {
+select {
   margin-bottom: 1.5rem;
 }
 
@@ -567,7 +560,6 @@ figure,
 form,
 ol,
 p,
-pre,
 table,
 ul {
   margin-bottom: 2.5rem;
