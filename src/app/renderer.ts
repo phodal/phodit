@@ -3,6 +3,7 @@ import "./menu.right";
 import {createEvent} from "./utils/event.util";
 import {markdownRender} from "./utils/markdown.utils";
 import {getCodeMirrorMode} from "./utils/file.utils";
+import {EventConstants} from "../common/constants/event.constants";
 
 require("devtron").install();
 
@@ -25,57 +26,53 @@ const simplemde = new (window as any).SimpleMDE({
   element: document.getElementById("input-section"),
 });
 
-window.document.addEventListener("phodit.editor.open.guide", (data) => {
-  ipcRenderer.send("phodit.open.guide", simplemde.value());
+window.document.addEventListener(EventConstants.CLIENT.OPEN_GUIDE, (data) => {
+  ipcRenderer.send(EventConstants.PHODIT.OPEN_GUIDE, simplemde.value());
 });
 
-window.document.addEventListener("phodit.editor.fullscreen", (data) => {
-  ipcRenderer.send("phodit.fullscreen");
+window.document.addEventListener(EventConstants.CLIENT.FULL_SCREEN, (data) => {
+  ipcRenderer.send(EventConstants.PHODIT.FULL_SCREEN);
 });
 
-window.document.addEventListener("phodit.editor.unfullscreen", (data) => {
-  ipcRenderer.send("phodit.unfullscreen");
+window.document.addEventListener(EventConstants.CLIENT.UN_FULL_SCREEN, (data) => {
+  ipcRenderer.send(EventConstants.PHODIT.UN_FULL_SCREEN);
 });
 
-window.document.addEventListener("phodit.editor.suggest.get", (data: any) => {
-  ipcRenderer.send("phodit.suggest.get", data.detail);
+window.document.addEventListener(EventConstants.CLIENT.GET_SUGGEST, (data: any) => {
+  ipcRenderer.send(EventConstants.PHODIT.GET_SUGGEST, data.detail);
 });
 
-window.document.addEventListener("phodit.editor.save.file", () => {
-  ipcRenderer.send("phodit.save.file", simplemde.value());
+ipcRenderer.on(EventConstants.PHODIT.SUGGEST_SEND, (event: any, arg: any) => {
+  createEvent(EventConstants.PHODIT.SUGGEST_TO_EDITOR, arg);
 });
 
-ipcRenderer.on("phodit.suggest.send", (event: any, arg: any) => {
-  createEvent("phodit.editor.suggest.receive", arg);
-});
-
-ipcRenderer.on("phodit.open.one-file", (event: any, arg: IFileOpen) => {
+ipcRenderer.on(EventConstants.PHODIT.OPEN_ONE_FILE, (event: any, arg: IFileOpen) => {
   currentFile = arg.file;
   simplemde.codemirror.setOption("mode", getCodeMirrorMode(currentFile));
   isCurrentFileTemp = arg.isTempFile;
   simplemde.value(arg.data);
 });
 
-ipcRenderer.on("client.save.file", () => {
-  ipcRenderer.send("phodit.save.file", {
+ipcRenderer.on(EventConstants.CLIENT.SAVE_FILE, () => {
+  ipcRenderer.send(EventConstants.PHODIT.SAVE_FILE, {
     isTempFile: isCurrentFileTemp,
     data: simplemde.value(),
   });
 });
 
-ipcRenderer.on("phodit.open.path", (event: any, arg: any) => {
+ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
   createEvent("phodit.tree.open", arg);
 });
 
-ipcRenderer.on("phodit.temp.file.status", (event: any, arg: any) => {
+ipcRenderer.on(EventConstants.TEMP_FILE_STATUS, (event: any, arg: any) => {
   isCurrentFileTemp = arg.isTempFile;
 });
 
-window.document.addEventListener("tree.pub.open", (event: any) => {
-  ipcRenderer.send("phodit.open.file", JSON.parse(event.detail).filename);
+window.document.addEventListener(EventConstants.CLIENT.TREE_OPEN, (event: any) => {
+  ipcRenderer.send(EventConstants.PHODIT.OPEN_FILE, JSON.parse(event.detail).filename);
 });
 
-window.document.addEventListener("phodit.editor.send.result", (event: any) => {
+window.document.addEventListener(EventConstants.CLIENT.SEND_MARKDOWN, (event: any) => {
   const data = markdownRender(event.detail, currentFile);
-  createEvent("phodit.editor.get.result", data);
+  createEvent(EventConstants.CLIENT.GET_RENDERER_MARKDOWN, data);
 });
