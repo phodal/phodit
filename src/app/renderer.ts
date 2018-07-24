@@ -26,26 +26,32 @@ const simplemde = new (window as any).SimpleMDE({
   element: document.getElementById("input-section"),
 });
 
+// 打开帮助
 window.document.addEventListener(EventConstants.CLIENT.OPEN_GUIDE, (data) => {
   ipcRenderer.send(EventConstants.PHODIT.OPEN_GUIDE, simplemde.value());
 });
 
+// 全屏
 window.document.addEventListener(EventConstants.CLIENT.FULL_SCREEN, (data) => {
   ipcRenderer.send(EventConstants.PHODIT.FULL_SCREEN);
 });
 
+// 取消全屏
 window.document.addEventListener(EventConstants.CLIENT.UN_FULL_SCREEN, (data) => {
   ipcRenderer.send(EventConstants.PHODIT.UN_FULL_SCREEN);
 });
 
+// 发起获取自动完成请求
 window.document.addEventListener(EventConstants.CLIENT.GET_SUGGEST, (data: any) => {
   ipcRenderer.send(EventConstants.PHODIT.GET_SUGGEST, data.detail);
 });
 
+// 返回获取自动完成请求
 ipcRenderer.on(EventConstants.PHODIT.SUGGEST_SEND, (event: any, arg: any) => {
   createEvent(EventConstants.PHODIT.SUGGEST_TO_EDITOR, arg);
 });
 
+// 打开文件
 ipcRenderer.on(EventConstants.PHODIT.OPEN_ONE_FILE, (event: any, arg: IFileOpen) => {
   currentFile = arg.file;
   simplemde.codemirror.setOption("mode", getCodeMirrorMode(currentFile));
@@ -53,6 +59,7 @@ ipcRenderer.on(EventConstants.PHODIT.OPEN_ONE_FILE, (event: any, arg: IFileOpen)
   simplemde.value(arg.data);
 });
 
+// 保存文件
 ipcRenderer.on(EventConstants.CLIENT.SAVE_FILE, () => {
   ipcRenderer.send(EventConstants.PHODIT.SAVE_FILE, {
     isTempFile: isCurrentFileTemp,
@@ -60,18 +67,22 @@ ipcRenderer.on(EventConstants.CLIENT.SAVE_FILE, () => {
   });
 });
 
+// 打开某一目录
 ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
   createEvent("phodit.tree.open", arg);
 });
 
+// 改变临时文件的状态
 ipcRenderer.on(EventConstants.TEMP_FILE_STATUS, (event: any, arg: any) => {
   isCurrentFileTemp = arg.isTempFile;
 });
 
+// 打开左侧树型文件
 window.document.addEventListener(EventConstants.CLIENT.TREE_OPEN, (event: any) => {
   ipcRenderer.send(EventConstants.PHODIT.OPEN_FILE, JSON.parse(event.detail).filename);
 });
 
+// 返回 Markdown 渲染结果
 window.document.addEventListener(EventConstants.CLIENT.SEND_MARKDOWN, (event: any) => {
   const data = markdownRender(event.detail, currentFile);
   createEvent(EventConstants.CLIENT.GET_RENDERER_MARKDOWN, data);
