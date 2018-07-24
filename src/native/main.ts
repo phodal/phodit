@@ -8,7 +8,6 @@ import {buildMenu} from "./i18n/menu/menu";
 import {buildAboutPage} from "./pages/about.page";
 
 const tmp = require("tmp");
-const cluster = require("cluster");
 
 const windowStateKeeper = require("electron-window-state");
 const storage = require("electron-json-storage");
@@ -323,7 +322,7 @@ ipcMain.on("phodit.suggest.get", (event: any, arg: any) => {
   for (const result of searchResults) {
     const blogpost = dataWithIndex[result.ref];
     response.push({
-      text: `[${blogpost.title}](https://www.phodal.com/blog/${blogpost.slug})`,
+      text: `[${blogpost.title}](https://www.phodal.com/blog/${blogpost.slug})》`,
       displayText: blogpost.title,
     });
   }
