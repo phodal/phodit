@@ -27,48 +27,30 @@ class MarkdownImprove {
     }
     return text;
   }
-
-  public codeHighlight(text: string) {
-    if (!this.marked) {
-      return text;
-    }
-    const tok = this.marked.lexer(text);
-    text = this.marked.parser(tok);
-    text = text.replace(/<pre><code>(.*)<\/code><\/pre>/ig, '<pre class="prettyprint">$1</pre>');
-    return text;
-  }
 }
 
 export function markdownRender(text: string, file: string) {
-  let markedOptions;
-  if (this.options && this.options.renderingConfig && this.options.renderingConfig.markedOptions) {
-    markedOptions = this.options.renderingConfig.markedOptions;
-  } else {
-    markedOptions = {};
-  }
-
-  if (this.options && this.options.renderingConfig && this.options.renderingConfig.singleLineBreaks === false) {
-    markedOptions.breaks = false;
-  } else {
-    markedOptions.breaks = true;
-  }
-
-  if (this.options && this.options.renderingConfig && this.options.renderingConfig.codeSyntaxHighlighting === true) {
-    const hljs = this.options.renderingConfig.hljs || (window as any).hljs;
-    if (hljs) {
-      markedOptions.highlight = function(code: string) {
-        return hljs.highlightAuto(code).value;
-      };
-    }
-  }
-
-  marked.setOptions(markedOptions);
+  // Options list
+  // https://marked.js.org/#/USING_ADVANCED.md
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    highlight: function(code: string) {
+      return require('highlight.js').highlightAuto(code).value;
+    },
+    footnote: true,
+    pedantic: false,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false,
+    xhtml: false
+  });
 
   const markdownImprove = new MarkdownImprove(file);
   text = markdownImprove.fixedImagePath(text);
-  let results =  marked(text);
-  results = markdownImprove.codeHighlight(results);
-  return results;
+  return text;
 }
 
 function removeLastDirectoryPartOf(path: string) {
