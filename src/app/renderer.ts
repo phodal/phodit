@@ -2,6 +2,7 @@ import {IFileOpen} from "../common/interface/IFileOpen";
 import "./menu.right";
 import {createEvent} from "./utils/event.util";
 import {markdownRender} from "./utils/markdown.utils";
+import {getCodeMirrorMode} from "./utils/file.utils";
 
 require("devtron").install();
 
@@ -46,6 +47,7 @@ ipcRenderer.on("phodit.suggest.send", (event: any, arg: any) => {
 
 ipcRenderer.on("phodit.open.one-file", (event: any, arg: IFileOpen) => {
   currentFile = arg.file;
+  simplemde.codemirror.setOption("mode", getCodeMirrorMode(currentFile));
   isCurrentFileTemp = arg.isTempFile;
   simplemde.value(arg.data);
 });
