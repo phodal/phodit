@@ -94,10 +94,7 @@ function openPath(pathName: any) {
     dirFiles = dirTree(pathName);
 
     mainWindow.webContents.send("phodit.git.status", git.status(pathName));
-    mainWindow.webContents.send("phodit.open.path", {
-      module: "Folders",
-      children: [dirFiles],
-    });
+    mainWindow.webContents.send("phodit.open.path", dirFiles);
   });
 }
 
