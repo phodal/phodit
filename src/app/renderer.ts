@@ -44,6 +44,16 @@ window.document.addEventListener(EventConstants.CLIENT.UN_FULL_SCREEN, (data) =>
   ipcRenderer.send(EventConstants.PHODIT.UN_FULL_SCREEN);
 });
 
+// 展示 SIDE
+window.document.addEventListener(EventConstants.CLIENT.HIDDEN_SIDE, () => {
+  document.getElementById('tree-view').setAttribute('style', "display: none;");
+});
+
+// 隐藏 SIDE
+window.document.addEventListener(EventConstants.CLIENT.SHOW_SIDE, () => {
+  document.getElementById('tree-view').setAttribute('style', "display: block;");
+});
+
 // 发起获取自动完成请求
 window.document.addEventListener(EventConstants.CLIENT.GET_SUGGEST, (data: any) => {
   ipcRenderer.send(EventConstants.PHODIT.GET_SUGGEST, data.detail);

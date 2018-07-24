@@ -20,6 +20,8 @@ export const EventConstants = {
     OPEN_GUIDE: "phodit.editor.open.guide",
     TREE_OPEN: "tree.pub.open",
     SEND_MARKDOWN: "phodit.editor.send.result",
-    GET_RENDERER_MARKDOWN: "phodit.editor.get.result"
+    GET_RENDERER_MARKDOWN: "phodit.editor.get.result",
+    SHOW_SIDE: "phodit.editor.showside",
+    HIDDEN_SIDE: "phodit.editor.hiddenside",
   },
 };
