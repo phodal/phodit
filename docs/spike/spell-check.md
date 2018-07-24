@@ -29,3 +29,7 @@ Language Tool
 ---
 
 https://www.languagetool.org/download/
+
+在线 API：
+
+http://wiki.languagetool.org/public-http-api
