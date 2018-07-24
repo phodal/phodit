@@ -106,6 +106,7 @@ textarea#input {
   background: #fdfdfd;
   border-top: 1px solid #ddd;
   height: 22px;
+  z-index: 9;
 }
 
 #input .editor-preview-side {
