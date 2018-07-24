@@ -3,7 +3,7 @@ const {Menu: MenuRight, MenuItem} = remote;
 const menu = new MenuRight();
 
 const globalStore = {
-  eventTarget: ''
+  eventTarget: {}
 };
 
 menu.append(new MenuItem({
@@ -32,7 +32,7 @@ menu.append(new MenuItem({
   },
 }));
 
-window.addEventListener("contextmenu", (event: any) => {
+window.addEventListener("contextmenu", (event: MouseEvent) => {
   event.preventDefault();
   console.log(event);
   globalStore.eventTarget = event.target;
