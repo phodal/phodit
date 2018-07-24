@@ -59,13 +59,12 @@ function openFile(willLoadFile: string, isTempFile: boolean = false) {
     mainWindow.setTitle(fileName);
     mainWindow.setRepresentedFilename(willLoadFile);
   } else {
+    checkWindow();
+    storage.remove("storage.last.path");
     mainWindow.setTitle("Untitled");
   }
 
-  checkWindow();
-
   storage.set("storage.last.file", {file: willLoadFile});
-  // storage.remove("storage.last.path");
   currentFile = willLoadFile;
   fs.readFile(willLoadFile, "utf-8", (err, data) => {
     if (err) {

@@ -69,6 +69,8 @@ ipcRenderer.on(EventConstants.CLIENT.SAVE_FILE, () => {
 
 // 打开某一目录
 ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
+  document.getElementById('tree-view').setAttribute('style', "display: block");
+
   createEvent("phodit.tree.open", arg);
 });
 
