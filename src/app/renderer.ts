@@ -9,8 +9,11 @@ import {EventConstants} from "../common/constants/event.constants";
 
 const {ipcRenderer} = require("electron");
 
-let currentFile: string;
-let isCurrentFileTemp = false;
+let state = {
+  currentFile: '',
+  isCurrentFileTemp: false,
+  isOneFile: false
+};
 
 const simplemde = new (window as any).SimpleMDE({
   spellChecker: false,
@@ -54,6 +57,9 @@ window.document.addEventListener(EventConstants.CLIENT.HIDDEN_SIDE, () => {
 
 // 隐藏 SIDE
 window.document.addEventListener(EventConstants.CLIENT.SHOW_SIDE, () => {
+  if (state.isOneFile) {
+    return;
+  }
   document.getElementById('tree-view').setAttribute('style', "display: block;");
 });
 
@@ -69,22 +75,24 @@ ipcRenderer.on(EventConstants.PHODIT.SUGGEST_SEND, (event: any, arg: any) => {
 
 // 打开文件
 ipcRenderer.on(EventConstants.PHODIT.OPEN_ONE_FILE, (event: any, arg: IFileOpen) => {
-  currentFile = arg.file;
-  simplemde.codemirror.setOption("mode", getCodeMirrorMode(currentFile));
-  isCurrentFileTemp = arg.isTempFile;
+  state.currentFile = arg.file;
+  state.isOneFile = true;
+  simplemde.codemirror.setOption("mode", getCodeMirrorMode(state.currentFile));
+  state.isCurrentFileTemp = arg.isTempFile;
   simplemde.value(arg.data);
 });
 
 // 保存文件
 ipcRenderer.on(EventConstants.CLIENT.SAVE_FILE, () => {
   ipcRenderer.send(EventConstants.PHODIT.SAVE_FILE, {
-    isTempFile: isCurrentFileTemp,
+    isTempFile: state.isCurrentFileTemp,
     data: simplemde.value(),
   });
 });
 
 // 打开某一目录
 ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
+  state.isOneFile = false;
   document.getElementById('tree-view').setAttribute('style', "display: block");
 
   createEvent("phodit.tree.open", arg);
@@ -92,18 +100,19 @@ ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
 
 // 改变临时文件的状态
 ipcRenderer.on(EventConstants.TEMP_FILE_STATUS, (event: any, arg: any) => {
-  isCurrentFileTemp = arg.isTempFile;
+  state.isCurrentFileTemp = arg.isTempFile;
 });
 
 // 打开左侧树型文件
 window.document.addEventListener(EventConstants.CLIENT.TREE_OPEN, (event: any) => {
   let file = JSON.parse(event.detail).filename;
-  currentFile = file;
+  state.currentFile = file;
+  state.isOneFile = true;
   ipcRenderer.send(EventConstants.PHODIT.OPEN_FILE, file);
 });
 
 // 返回 Markdown 渲染结果
 window.document.addEventListener(EventConstants.CLIENT.SEND_MARKDOWN, (event: any) => {
-  const data = markdownRender(event.detail, currentFile);
+  const data = markdownRender(event.detail, state.currentFile);
   createEvent(EventConstants.CLIENT.GET_RENDERER_MARKDOWN, data);
 });
