@@ -114,7 +114,7 @@ textarea#input {
 }
 
 #input.full-screen .editor-preview-side.editor-preview-active-side {
-  top: 50px;
+  top: 49px;
   border-left: 1px solid #ddd;
 }
 
