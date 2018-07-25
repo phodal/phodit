@@ -23,6 +23,7 @@ const simplemde = new (window as any).SimpleMDE({
     link: 'link',
     image: 'image'
   },
+  autoDownloadFontAwesome: false,
   renderingConfig: {
     codeSyntaxHighlighting: true
   },
