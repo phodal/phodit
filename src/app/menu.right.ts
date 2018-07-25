@@ -1,3 +1,6 @@
+import {createEvent} from "./utils/event.util";
+import {EventConstants} from "../common/constants/event.constants";
+
 const {remote, clipboard} = require("electron");
 const {Menu: MenuRight, MenuItem} = remote;
 const menu = new MenuRight();
