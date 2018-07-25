@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="310px" height="310px" viewBox="0 0 310 310" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="316px" height="316px" viewBox="0 0 316 316" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
     <title>logo</title>
     <desc>Created with Sketch.</desc>
@@ -11,13 +11,13 @@
         <circle id="path-2" cx="154" cy="154" r="154"></circle>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="logo" transform="translate(1.000000, 1.000000)">
-            <circle id="Oval" stroke="url(#linearGradient-1)" stroke-width="2" fill="#5E6772" fill-rule="nonzero" cx="154" cy="154" r="154"></circle>
+        <g id="logo" transform="translate(4.000000, 4.000000)">
+            <circle id="Oval" stroke="url(#linearGradient-1)" stroke-width="8" fill-rule="nonzero" cx="154" cy="154" r="154"></circle>
             <mask id="mask-3" fill="white">
                 <use xlink:href="#path-2"></use>
             </mask>
-            <use id="Oval" stroke="url(#linearGradient-1)" stroke-width="2" fill="#5E6772" fill-rule="nonzero" xlink:href="#path-2"></use>
-            <g id="1010101010" mask="url(#mask-3)" fill="#929292" font-family="Helvetica" font-size="12" font-weight="normal" opacity="0.3">
+            <use id="Oval" stroke="url(#linearGradient-1)" stroke-width="2" fill="#384452" fill-rule="nonzero" xlink:href="#path-2"></use>
+            <g id="1010101010" mask="url(#mask-3)" fill="#5E6360" font-family="Helvetica" font-size="12" font-weight="normal" opacity="0.3">
                 <g transform="translate(-129.000000, -68.000000)">
                     <text id="011010100100110110110001010010110011001101000111010110000011101000000010111110101110000011001110011" transform="translate(440.000000, 102.000000) rotate(15.000000) translate(-440.000000, -102.000000) ">
                         <tspan x="75" y="106">011010100100110110110001010010110011001101000111010110000011101000000010111110101110000011001110011</tspan>
