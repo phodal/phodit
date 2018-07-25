@@ -113,7 +113,7 @@ textarea#input {
   top: 33px;
 }
 
-#input.fullscreen .editor-preview-side.editor-preview-active-side {
+#input.full-screen .editor-preview-side.editor-preview-active-side {
   top: 50px;
   border-left: 1px solid #ddd;
 }
