@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build --watch && mkdir -p ../../dist/components/tree-view && cp build/static/js/*.js ../../dist/components/tree-view/tree-view.js && cp build/static/css/*.css ../../dist/components/tree-view/tree-view.css",
+    "build": "react-scripts build --watch && mkdir -p ../../dist/component/tree-view && cp build/static/js/*.js ../../dist/component/tree-view/tree-view.js && cp build/static/css/*.css ../../dist/component/tree-view/tree-view.css",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
