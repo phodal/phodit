@@ -7,21 +7,16 @@ const globalStore = {
 };
 
 menu.append(new MenuItem({
-  label: "Wechat", click() {
-    clipboard.writeText("Example String", "selection");
-  },
-}));
-
-menu.append(new MenuItem({
-  label: "html", click() {
-
-  },
-}));
-
-menu.append(new MenuItem({
-  label: "Google It", click() {
+  label: "Google", click() {
     let text = (globalStore.eventTarget as any).innerText;
     require('electron').shell.openExternal(`https://www.google.com/search?q=${text}`);
+  },
+}));
+
+menu.append(new MenuItem({
+  label: "Baidu", click() {
+    let text = (globalStore.eventTarget as any).innerText;
+    require('electron').shell.openExternal(`https://www.baidu.com/s?wd=${text}`);
   },
 }));
 
