@@ -21,6 +21,13 @@ menu.append(new MenuItem({
 }));
 
 menu.append(new MenuItem({
+  label: "GitHub", click() {
+    let text = (globalStore.eventTarget as any).innerText;
+    require('electron').shell.openExternal(`https://github.com/search?q=${text}&ref=opensearch`);
+  },
+}));
+
+menu.append(new MenuItem({
   label: "Wiki", click() {
     let text = (globalStore.eventTarget as any).innerText;
     require('electron').shell.openExternal(`https://zh.wikipedia.org/wiki/Special:Search?search=${text}`);
