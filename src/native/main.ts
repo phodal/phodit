@@ -190,12 +190,13 @@ function createWindow() {
     width: mainWindowState.width,
     height: mainWindowState.height,
     // frame: false,
-    icon: __dirname + '../../assets/imgs/icons/png/1024x1024.png',
+    icon: path.join(__dirname,'../../assets/imgs/icons/mac/icon.icns'),
     backgroundColor: "#fff",
     webPreferences: {
       nodeIntegrationInWorker: true,
     },
   });
+  console.log(path.join(__dirname,'../../assets/imgs/icons/mac/icon.icns'));
 
   mainWindowState.manage(mainWindow);
 
