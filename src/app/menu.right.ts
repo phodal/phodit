@@ -34,9 +34,14 @@ menu.append(new MenuItem({
   },
 }));
 
+menu.append(new MenuItem({
+  label: "Clipboard", click() {
+
+  },
+}));
+
 window.addEventListener("contextmenu", (event: MouseEvent) => {
   event.preventDefault();
-  console.log(event);
   globalStore.eventTarget = event.target;
   menu.popup({window: remote.getCurrentWindow()});
 }, false);
