@@ -26,7 +26,7 @@ export function buildMenu(app: any, funcs: any) {
         },
         {
           label: "Debug...",
-          accelerator: "CmdOrCtrl+D",
+          accelerator: "CmdOrCtrl+Shift+I",
           click() {
             funcs.debug();
           },
