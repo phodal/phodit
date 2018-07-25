@@ -190,6 +190,7 @@ function createWindow() {
     width: mainWindowState.width,
     height: mainWindowState.height,
     // frame: false,
+    icon: __dirname + '../../assets/imgs/icons/png/1024x1024.png',
     backgroundColor: "#fff",
     webPreferences: {
       nodeIntegrationInWorker: true,
