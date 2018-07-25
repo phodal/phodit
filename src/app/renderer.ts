@@ -5,7 +5,7 @@ import {markdownRender} from "./utils/markdown.utils";
 import {getCodeMirrorMode} from "./utils/file.utils";
 import {EventConstants} from "../common/constants/event.constants";
 
-require("devtron").install();
+// require("devtron").install();
 
 const {ipcRenderer} = require("electron");
 
