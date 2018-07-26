@@ -111,6 +111,11 @@ window.document.addEventListener(EventConstants.CLIENT.TREE_OPEN, (event: any) =
   let file = JSON.parse(event.detail).filename;
   state.currentFile = file;
   state.isOneFile = true;
+
+  ipcRenderer.send(EventConstants.PHODIT.SAVE_FILE, {
+    isTempFile: state.isCurrentFileTemp,
+    data: simplemde.value(),
+  });
   ipcRenderer.send(EventConstants.PHODIT.OPEN_FILE, file);
 });
 
