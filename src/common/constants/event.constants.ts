@@ -21,6 +21,7 @@ export const EventConstants = {
     HIDDEN_TERMINAL: "phodit.editor.hidden.terminal",
     OPEN_GUIDE: "phodit.editor.open.guide",
     TREE_OPEN: "tree.pub.open",
+    FILE_MENU_CLICK: "tree.right.click",
     SEND_MARKDOWN: "phodit.editor.send.result",
     GET_RENDERER_MARKDOWN: "phodit.editor.get.result",
     SHOW_SIDE: "phodit.editor.showside",

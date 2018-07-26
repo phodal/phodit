@@ -48,7 +48,8 @@ class App extends Component {
   renderNode = node => {
     return (
       <span className={cx('node', {'is-active': node === this.state.active})}
-            onClick={this.onClickNode.bind(null, node)}>
+            onClick={this.onClickNode.bind(null, node)}
+            onContextMenu={this.onContextMenuClick.bind(null, node)}>
         {node.module}
       </span>
     );
@@ -64,6 +65,13 @@ class App extends Component {
     }
 
     const event = new CustomEvent('tree.pub.open', {
+      detail: JSON.stringify(node)
+    });
+    window.document.dispatchEvent(event);
+  };
+
+  onContextMenuClick = node => {
+    const event = new CustomEvent('tree.right.click', {
       detail: JSON.stringify(node)
     });
     window.document.dispatchEvent(event);
