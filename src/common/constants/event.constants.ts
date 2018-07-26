@@ -18,6 +18,7 @@ export const EventConstants = {
     FULL_SCREEN: "phodit.editor.fullscreen",
     UN_FULL_SCREEN: "phodit.editor.unfullscreen",
     SHOW_TERMINAL: "phodit.editor.git.commit",
+    HIDDEN_TERMINAL: "phodit.editor.hidden.terminal",
     OPEN_GUIDE: "phodit.editor.open.guide",
     TREE_OPEN: "tree.pub.open",
     SEND_MARKDOWN: "phodit.editor.send.result",

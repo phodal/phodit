@@ -10,7 +10,7 @@
     "dist/"
   ],
   "scripts": {
-    "build": "stencil build && mkdir -p ../../dist/components/header && cp -a dist ../../dist/components/header",
+    "build": "stencil build && mkdir -p ../../dist/component/header && cp -a dist ../../dist/component/header",
     "start": "stencil build --dev --watch --serve",
     "test": "jest",
     "test.watch": "jest --watch"

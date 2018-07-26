@@ -14,13 +14,11 @@
 </head>
 <body>
 	<section class="row" id="phodit-editor">
-    <div id="tree-view" class="column column-20" style="display: none"></div>
+    <div id="tree-view" class="column column-20" style="display: none;"></div>
     <div class="column" id="input">
       <textarea id="input-section"></textarea>
       <div id="terminal-section">
-        <div id="terminal-header">
-          asflkjsdlf
-        </div>
+          <phodit-header id="terminal-header"></phodit-header>
         <div id="terminal"></div>
       </div>
     </div>
@@ -32,6 +30,7 @@
 
 <script type="text/javascript" src="./editor/dist/simplemde.min.js"></script>
 <script type="text/javascript" src="./dist/component/tree-view/tree-view.js"></script>
+<script type="text/javascript" src="./dist/component/header/dist/phodit-header.js"></script>
 
 <script>
   // You can also require other files to run in this process

@@ -69,6 +69,11 @@ window.document.addEventListener(EventConstants.CLIENT.SHOW_TERMINAL, () => {
   }
 });
 
+// Terminal
+window.document.addEventListener(EventConstants.CLIENT.HIDDEN_TERMINAL, () => {
+  document.getElementById('terminal-section').setAttribute('style', "display: none;");
+});
+
 // 展示 SIDE
 window.document.addEventListener(EventConstants.CLIENT.HIDDEN_SIDE, () => {
   document.getElementById('tree-view').setAttribute('style', "display: none;");

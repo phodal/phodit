@@ -30,7 +30,7 @@ declare global {
 
   namespace StencilComponents {
     interface PhoditHeader {
-      'action': string;
+
     }
   }
 
@@ -53,7 +53,7 @@ declare global {
   }
   namespace JSXElements {
     export interface PhoditHeaderAttributes extends HTMLAttributes {
-      'action'?: string;
+
     }
   }
 }
