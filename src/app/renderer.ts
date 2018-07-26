@@ -12,7 +12,8 @@ const {ipcRenderer} = require("electron");
 let state = {
   currentFile: '',
   isCurrentFileTemp: false,
-  isOneFile: false
+  isOneFile: false,
+  isPath: false
 };
 
 const simplemde = new (window as any).SimpleMDE({
@@ -57,10 +58,9 @@ window.document.addEventListener(EventConstants.CLIENT.HIDDEN_SIDE, () => {
 
 // 隐藏 SIDE
 window.document.addEventListener(EventConstants.CLIENT.SHOW_SIDE, () => {
-  if (state.isOneFile) {
-    return;
+  if (state.isPath) {
+    document.getElementById('tree-view').setAttribute('style', "display: block;");
   }
-  document.getElementById('tree-view').setAttribute('style', "display: block;");
 });
 
 // 发起获取自动完成请求
@@ -92,7 +92,7 @@ ipcRenderer.on(EventConstants.CLIENT.SAVE_FILE, () => {
 
 // 打开某一目录
 ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
-  state.isOneFile = false;
+  state.isPath = true;
   document.getElementById('tree-view').setAttribute('style', "display: block");
 
   createEvent("phodit.tree.open", {
