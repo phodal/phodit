@@ -24,4 +24,6 @@ export function createTerminal(path?: string) {
   ptyProcess.on('data', function (data: any) {
     xterm.write(data);
   });
+
+  ptyProcess.write('git status \n');
 }
