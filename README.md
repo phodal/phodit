@@ -1,8 +1,10 @@
 # Phodit
 
 <p align="center">
-  <img width="460" height="300" src="./assets/imgs/icons/png/128x128.png">
+  <img width="128" height="128" src="./assets/imgs/icons/png/128x128.png">
 </p> 
+
+Screenshots
 
 ![Screenshots](./docs/phodit-ss.jpg)
 
