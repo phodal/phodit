@@ -94,7 +94,7 @@ function openPath(pathName: any) {
 
     mainWindow.webContents.send("phodit.git.status", git.status(pathName));
     mainWindow.webContents.send("phodit.open.path", {
-      path: dirFiles,
+      path: pathName,
       tree: dirFiles
     });
   });
