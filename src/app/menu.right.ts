@@ -1,6 +1,6 @@
 const {remote} = require("electron");
 const {Menu: MenuRight, MenuItem} = remote;
-const menu = new MenuRight();
+let menu = new MenuRight();
 
 const globalStore = {
   eventTarget: {}
@@ -40,12 +40,31 @@ function createEditorMenu() {
 
     },
   }));
-
 }
 
-window.addEventListener("contextmenu", (event: MouseEvent) => {
+function createFileMenu() {
+  menu.append(new MenuItem({
+    label: "Rename", click() {
+
+    },
+  }));
+
+  menu.append(new MenuItem({
+    label: "Delete", click() {
+
+    },
+  }));
+}
+
+window.addEventListener("contextmenu", (event: any) => {
   event.preventDefault();
   globalStore.eventTarget = event.target;
-  createEditorMenu();
+  if (event.target.className === "node") {
+    menu = new MenuRight();
+    createFileMenu();
+  } else {
+    menu = new MenuRight();
+    createEditorMenu();
+  }
   menu.popup({window: remote.getCurrentWindow()});
 }, false);
