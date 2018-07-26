@@ -60,7 +60,6 @@ class App extends Component {
 
   getTreeData() {
     const data = localStorage.getItem(this.state.path);
-    console.log(data);
     if (!data) return;
 
     try {
@@ -68,7 +67,6 @@ class App extends Component {
       this.setState({
         tree: parsedData
       });
-      console.log(parsedData);
     } catch (e) {
       console.log(e);
     }
