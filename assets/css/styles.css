@@ -109,6 +109,12 @@ textarea#input {
   z-index: 9;
 }
 
+#input .editor-statusbar span.cursor {
+  float: left;
+  margin-left: 0;
+  min-width: auto;
+}
+
 #input .editor-preview-side {
   top: 33px;
 }
