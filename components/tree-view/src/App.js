@@ -14,7 +14,8 @@ class App extends Component {
       that.setState({
         tree: JSON.parse(data.detail)
       })
-    })
+      console.log(data.detail);
+    });
   }
 
   renderNode = node => {
@@ -30,6 +31,8 @@ class App extends Component {
     this.setState({
       active: node
     });
+
+    console.log(node);
 
     const event = new CustomEvent('tree.pub.open', {
       detail: JSON.stringify(node)
