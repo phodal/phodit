@@ -1,5 +1,6 @@
 import {IFileOpen} from "../common/interface/IFileOpen";
 import "./menu.right";
+import "./plugins/terminal";
 import {createEvent} from "./utils/event.util";
 import {markdownRender} from "./utils/markdown.utils";
 import {getCodeMirrorMode} from "./utils/file.utils";
