@@ -203,7 +203,7 @@ function createWindow() {
 
   mainWindowState.manage(mainWindow);
 
-  mainWindow.loadFile(path.join(__dirname, "../../index.html"));
+  mainWindow.loadFile(path.join(__dirname, "../../views/index.html"));
 
   mainWindow.on("closed", () => {
     mainWindow = null;
