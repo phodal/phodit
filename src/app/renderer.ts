@@ -63,9 +63,9 @@ window.document.addEventListener(EventConstants.CLIENT.SHOW_TERMINAL, () => {
 
   state.isShowTerminal = !state.isShowTerminal;
   if (state.isShowTerminal) {
-    document.getElementById('terminal').setAttribute('style', "display: block;");
+    document.getElementById('terminal-section').setAttribute('style', "display: block;");
   } else {
-    document.getElementById('terminal').setAttribute('style', "display: none;");
+    document.getElementById('terminal-section').setAttribute('style', "display: none;");
   }
 });
 

@@ -134,13 +134,18 @@ textarea#input {
   border-left: none;
 }
 
-#terminal {
+#terminal-section {
   position: absolute;
-  height: 200px;
   width: 100%;
   right: 0;
   bottom: 0;
   z-index: 9;
+}
+
+#terminal-header {
+  background: #fdfdfd;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
 p {
