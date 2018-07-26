@@ -22,6 +22,17 @@ Features
  - search by: Google, Baidu, WIKI, Zhihu, Github
  - **Phodal's blog relative search**
  
+Tech Stack
+---
+
+ - Stencil.js + Web Components -> Terminal Header
+ - SimpleMDE + CodeMirror -> Editor
+ - React.js -> TreeView
+ - xterm -> Terminal
+ - marked -> Markdown Parser
+ - highlight.js -> Code Highlight
+ - lunr -> search engine 
+ 
 Goal
 ---
 
@@ -37,6 +48,7 @@ Goal
  - 国际化支持
  - WebComponents 内建
  - 微前端架构 
+ - Web Worker
 
 License
 ---
