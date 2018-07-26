@@ -9,11 +9,11 @@ class App extends Component {
   };
 
   componentDidMount() {
-    var that = this;
+    let that = this;
     window.document.addEventListener('phodit.tree.open', function(data) {
       that.setState({
         tree: JSON.parse(data.detail)
-      })
+      });
       console.log(data.detail);
     });
   }
