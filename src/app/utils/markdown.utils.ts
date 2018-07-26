@@ -55,7 +55,7 @@ export function markdownRender(text: string, file: string) {
   return marked(text);
 }
 
-function removeLastDirectoryPartOf(path: string) {
+export function removeLastDirectoryPartOf(path: string) {
   const splitArray = path.split("/");
   if (!path) {
     return path;

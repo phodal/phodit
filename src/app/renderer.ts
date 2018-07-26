@@ -1,8 +1,8 @@
 import {IFileOpen} from "../common/interface/IFileOpen";
 import "./menu.right";
-import "./plugins/terminal";
+import {createTerminal} from './plugins/terminal';
 import {createEvent} from "./utils/event.util";
-import {markdownRender} from "./utils/markdown.utils";
+import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
 import {getCodeMirrorMode} from "./utils/file.utils";
 import {EventConstants} from "../common/constants/event.constants";
 
@@ -11,6 +11,8 @@ import {EventConstants} from "../common/constants/event.constants";
 const {ipcRenderer} = require("electron");
 
 let state = {
+  isShowTerminal: false,
+  hasCreateTerminal: false,
   currentFile: '',
   isCurrentFileTemp: false,
   isOneFile: false,
@@ -50,6 +52,21 @@ window.document.addEventListener(EventConstants.CLIENT.FULL_SCREEN, (data) => {
 window.document.addEventListener(EventConstants.CLIENT.UN_FULL_SCREEN, (data) => {
   document.getElementById('input').classList.remove('full-screen');
   ipcRenderer.send(EventConstants.PHODIT.UN_FULL_SCREEN);
+});
+
+// Terminal
+window.document.addEventListener(EventConstants.CLIENT.SHOW_TERMINAL, () => {
+  if (!state.hasCreateTerminal) {
+    createTerminal(removeLastDirectoryPartOf(state.currentFile));
+    state.hasCreateTerminal = true;
+  }
+
+  state.isShowTerminal = !state.isShowTerminal;
+  if (state.isShowTerminal) {
+    document.getElementById('terminal').setAttribute('style', "display: block;");
+  } else {
+    document.getElementById('terminal').setAttribute('style', "display: none;");
+  }
 });
 
 // 展示 SIDE

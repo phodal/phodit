@@ -2,7 +2,7 @@ let os = require('os');
 let pty = require('node-pty');
 let Terminal = require('xterm').Terminal;
 
-function createTerminal(path?: string) {
+export function createTerminal(path?: string) {
 // Initialize node-pty with an appropriate shell
   const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL'];
   const ptyProcess = pty.spawn(shell, [], {
