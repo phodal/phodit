@@ -45,13 +45,13 @@ function createEditorMenu() {
 function createFileMenu() {
   menu.append(new MenuItem({
     label: "Rename", click() {
-
+      console.log("Rename");
     },
   }));
 
   menu.append(new MenuItem({
     label: "Delete", click() {
-
+      console.log("Delete");
     },
   }));
 }
