@@ -40,9 +40,9 @@ class App extends Component {
         path: parsedData.path,
         tree: parsedData.tree
       });
-    });
 
-    that.getTreeData();
+      that.getTreeData();
+    });
   }
 
   renderNode = node => {
