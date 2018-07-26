@@ -95,7 +95,10 @@ ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
   state.isOneFile = false;
   document.getElementById('tree-view').setAttribute('style', "display: block");
 
-  createEvent("phodit.tree.open", arg);
+  createEvent("phodit.tree.open", {
+    path: arg.path,
+    tree: arg.tree
+  });
 });
 
 // 改变临时文件的状态
