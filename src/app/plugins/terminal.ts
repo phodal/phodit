@@ -1,6 +1,25 @@
-import { Terminal } from 'xterm';
+let os = require('os');
+let pty = require('node-pty');
+let Terminal = require('xterm').Terminal;
 
-let term = new Terminal();
+// Initialize node-pty with an appropriate shell
+const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL'];
+const ptyProcess = pty.spawn(shell, [], {
+  name: 'xterm-color',
+  cols: 80,
+  rows: 30,
+  cwd: process.cwd(),
+  env: process.env
+});
 
-term.open(document.getElementById('terminal'));
-term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ');
+// Initialize xterm.js and attach it to the DOM
+const xterm = new Terminal();
+xterm.open(document.getElementById('terminal'));
+
+// Setup communication between xterm.js and node-pty
+xterm.on('data', (data: any) => {
+  ptyProcess.write(data);
+});
+ptyProcess.on('data', function (data: any) {
+  xterm.write(data);
+});

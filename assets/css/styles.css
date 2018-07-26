@@ -134,6 +134,15 @@ textarea#input {
   border-left: none;
 }
 
+#terminal {
+  position: absolute;
+  height: 200px;
+  width: 100%;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+}
+
 p {
   font-size: 14px;
   margin-bottom: 15px;
