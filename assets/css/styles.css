@@ -115,6 +115,11 @@ textarea#input {
   min-width: auto;
 }
 
+#tree-view .tree {
+  width: 100%;
+  padding-left: 10px;
+}
+
 #input .editor-preview-side {
   top: 33px;
 }
