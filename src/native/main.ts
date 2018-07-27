@@ -303,7 +303,7 @@ ipcMain.on("phodit.open.guide", (event: any, arg: any) => {
   openAboutPage();
 });
 
-ipcMain.on("phodit.show.slides", (event: any, arg: any) => {
+ipcMain.on("phodit.show.echoesworks", (event: any, arg: any) => {
   createSlidePage(BrowserWindow, arg);
 });
 

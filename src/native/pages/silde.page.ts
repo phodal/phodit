@@ -21,7 +21,7 @@ export function createSlidePage(BrowserWindow: any, content: any) {
       slideWindow = null;
     });
 
-    slideWindow.loadFile(path.join(__dirname, "../../../views/slides.html"));
+    slideWindow.loadFile(path.join(__dirname, "../../../views/echoesworks.html"));
 
     slideWindow.once("ready-to-show", () => slideWindow.show());
 
