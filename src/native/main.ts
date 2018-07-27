@@ -142,6 +142,9 @@ function saveFileSignal() {
 }
 
 function saveFile(data: any, isTempFile: boolean) {
+  if (!currentFile) {
+    return;
+  }
   console.log(currentFile);
   if (!isTempFile && !currentFile.endsWith(".tmp")) {
     fs.writeFileSync(currentFile, data);
