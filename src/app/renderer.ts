@@ -76,6 +76,7 @@ window.document.addEventListener(EventConstants.CLIENT.HIDDEN_TERMINAL, () => {
 
 // ShowSlides
 window.document.addEventListener(EventConstants.CLIENT.SHOW_SLIDES, () => {
+  console.log("...");
   ipcRenderer.send(EventConstants.PHODIT.SHOW_SLIDES, {
     isTempFile: state.isCurrentFileTemp,
     data: simplemde.value(),

@@ -22,7 +22,9 @@ window.onload = function(){
     if (!data) {
       return;
     }
-    document.querySelector('slide').innerHTML = EchoesWorks.md.parse(data);
+    var innerHTML = EchoesWorks.md.parse(data);
+    console.log(innerHTML);
+    document.querySelector('slide').innerHTML = innerHTML;
     EchoesWorks.imageHandler();
     new EchoesWorks({element: 'slide'});
   });

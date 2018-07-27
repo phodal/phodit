@@ -21,7 +21,7 @@ export function createSlidePage(BrowserWindow: any, content: any) {
       slideWindow = null;
     });
 
-    slideWindow.loadFile(path.join(__dirname, "../../../views/echoesworks.html"));
+    slideWindow.loadFile(path.join(__dirname, "../../../views/slide.html"));
 
     slideWindow.once("ready-to-show", () => slideWindow.show());
 
@@ -33,8 +33,8 @@ export function createSlidePage(BrowserWindow: any, content: any) {
     slideWindow.openDevTools();
 
     ipcMain.on("phodit.slide.ready", (event: any, arg: any) => {
-      console.log('phodit.slide.ready');
-      if (slideWindow.webContents) {
+      console.log(arg);
+      if (slideWindow && slideWindow.webContents) {
         slideWindow.webContents.send("phodit.slide.send.content", content);
       }
       event.sender.send('phodit.slide.send.content', 'content')
