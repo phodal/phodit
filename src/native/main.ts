@@ -304,7 +304,7 @@ ipcMain.on("phodit.open.guide", (event: any, arg: any) => {
 });
 
 ipcMain.on("phodit.show.slides", (event: any, arg: any) => {
-  createSlidePage(BrowserWindow);
+  createSlidePage(BrowserWindow, arg);
 });
 
 ipcMain.on("phodit.fullscreen", (event: any, arg: any) => {
