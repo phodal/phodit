@@ -65,6 +65,26 @@ textarea#input {
   background: #fff;
 }
 
+#input .ace_search_form,
+#input .ace_replace_form {
+  border: none;
+  border-radius: 0;
+}
+
+#input .ace_search_form {
+  padding-right: 2em;
+}
+
+#input .ace_search.right {
+  bottom: 0;
+  top: inherit;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  border: 1px solid #ddd;
+  background-color: #fdfdfd;
+}
+
 #output {
   padding: 1em;
   height: 100%;
