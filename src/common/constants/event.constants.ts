@@ -10,7 +10,8 @@ export const EventConstants = {
     GET_SUGGEST: "phodit.suggest.get",
     FULL_SCREEN: "phodit.fullscreen",
     UN_FULL_SCREEN: "phodit.unfullscreen",
-    OPEN_GUIDE: "phodit.open.guide"
+    OPEN_GUIDE: "phodit.open.guide",
+    SHOW_SLIDES: "phodit.show.slides",
   },
   CLIENT: {
     SAVE_FILE: "client.save.file",
@@ -22,6 +23,7 @@ export const EventConstants = {
     OPEN_GUIDE: "phodit.editor.open.guide",
     TREE_OPEN: "tree.pub.open",
     FILE_MENU_CLICK: "tree.right.click",
+    SHOW_SLIDES: "phodit.editor.show.slides",
     SEND_MARKDOWN: "phodit.editor.send.result",
     GET_RENDERER_MARKDOWN: "phodit.editor.get.result",
     SHOW_SIDE: "phodit.editor.showside",

@@ -6,6 +6,7 @@ import {IFileSave} from "../common/interface/IFileSave";
 import {git} from "./features/git";
 import {buildMenu} from "./i18n/menu/menu";
 import {buildAboutPage} from "./pages/about.page";
+import {createSlidePage} from "./pages/silde.page";
 
 const tmp = require("tmp");
 
@@ -300,6 +301,10 @@ ipcMain.on("phodit.save.file", (event: any, arg: IFileSave) => {
 
 ipcMain.on("phodit.open.guide", (event: any, arg: any) => {
   openAboutPage();
+});
+
+ipcMain.on("phodit.show.slides", (event: any, arg: any) => {
+  createSlidePage(BrowserWindow);
 });
 
 ipcMain.on("phodit.fullscreen", (event: any, arg: any) => {

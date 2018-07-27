@@ -74,6 +74,14 @@ window.document.addEventListener(EventConstants.CLIENT.HIDDEN_TERMINAL, () => {
   document.getElementById('terminal-section').setAttribute('style', "display: none;");
 });
 
+// ShowSlides
+window.document.addEventListener(EventConstants.CLIENT.SHOW_SLIDES, () => {
+  ipcRenderer.send(EventConstants.PHODIT.SHOW_SLIDES, {
+    isTempFile: state.isCurrentFileTemp,
+    data: simplemde.value(),
+  });
+});
+
 // FileMenu Click
 window.document.addEventListener(EventConstants.CLIENT.FILE_MENU_CLICK, (data: any) => {
   let fileName = JSON.parse(data.detail).filename;
