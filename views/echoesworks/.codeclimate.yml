@@ -1,9 +1,0 @@
-languages:
-  JavaScript: true
-exclude_paths:
-  - "demo/*.js"
-  - "docs/**/*.js"
-  - "specs/*.js"
-  - "app/*.js"
-  - "dist/*.js"
-  - "lib/*"
