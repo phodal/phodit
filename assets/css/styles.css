@@ -56,6 +56,15 @@ textarea#input {
   overflow-y: scroll
 }
 
+.CodeMirror-dialog.CodeMirror-dialog-top {
+  z-index: 12;
+  position: absolute;
+  bottom: 30px;
+  width: 100vw;
+  border-top: 1px solid #ddd;
+  background: #fff;
+}
+
 #output {
   padding: 1em;
   height: 100%;
