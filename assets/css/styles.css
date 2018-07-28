@@ -23,6 +23,7 @@
 
 #phodit-editor.row {
   width: 100%;
+  height: 100vh;
 }
 
 .row {
@@ -167,7 +168,7 @@ textarea#input {
   position: absolute;
   width: 100%;
   right: 0;
-  bottom: 0;
+  bottom: 21px;
   z-index: 9;
 }
 
