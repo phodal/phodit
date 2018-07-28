@@ -36,7 +36,7 @@ function dirTree(filename: string) {
     // info.type = "folder";
     info.collapsed = true;
     info.children = fs.readdirSync(filename).filter((child: string) => {
-      return child !== ".git" && child !== ".DS_Store";
+      return child !== ".git" && child !== ".DS_Store" && child !== ".idea";
     }).map(function(child) {
       return dirTree(filename + "/" + child);
     });
