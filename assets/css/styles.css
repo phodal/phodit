@@ -103,6 +103,7 @@ textarea#input {
   border-radius: 0;
   border-bottom: 1px solid #ddd;
   padding: 0 5px;
+  top: -1px;
 }
 
 #input .editor-toolbar.fullscreen {
