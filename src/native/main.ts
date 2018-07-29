@@ -8,6 +8,7 @@ import {buildMenu} from "./i18n/menu/menu";
 import {buildAboutPage} from "./pages/about.page";
 import {createSlidePage} from "./pages/silde.page";
 import {openHtmlPage} from "./pages/html.page";
+import {EventConstants} from "../common/constants/event.constants";
 
 const tmp = require("tmp");
 
@@ -324,6 +325,19 @@ ipcMain.on("phodit.fullscreen", (event: any, arg: any) => {
 ipcMain.on("phodit.unfullscreen", (event: any, arg: any) => {
   mainWindow.setFullScreen(false);
   mainWindow.unmaximize();
+});
+
+ipcMain.on(EventConstants.PHODIT.RELOAD_PATH, (event: any, arg: any) => {
+  storage.get("storage.last.path", function(error: any, data: any) {
+    if (error) {
+      throw error;
+    }
+
+    if (data && data.file) {
+      console.log(data);
+      openPath(data.file);
+    }
+  });
 });
 
 ipcMain.on("phodit.suggest.get", (event: any, arg: any) => {

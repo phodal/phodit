@@ -1,4 +1,7 @@
-const {remote} = require("electron");
+import {EventConstants} from "../common/constants/event.constants";
+
+const {remote, ipcRenderer} = require("electron");
+
 const {Menu: MenuRight, MenuItem} = remote;
 let menu = new MenuRight();
 
@@ -52,6 +55,12 @@ function createFileMenu() {
   menu.append(new MenuItem({
     label: "Delete", click() {
       console.log("Delete");
+    },
+  }));
+
+  menu.append(new MenuItem({
+    label: "Reload", click() {
+      ipcRenderer.send(EventConstants.PHODIT.RELOAD_PATH);
     },
   }));
 }
