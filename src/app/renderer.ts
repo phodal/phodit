@@ -83,12 +83,6 @@ window.document.addEventListener(EventConstants.CLIENT.SHOW_SLIDES, () => {
   });
 });
 
-// FileMenu Click
-window.document.addEventListener(EventConstants.CLIENT.FILE_MENU_CLICK, (data: any) => {
-  let fileName = JSON.parse(data.detail).filename;
-  console.log(fileName);
-});
-
 // 展示 SIDE
 window.document.addEventListener(EventConstants.CLIENT.HIDDEN_SIDE, () => {
   document.getElementById('tree-view').setAttribute('style', "display: none;");

@@ -4,6 +4,7 @@ const {remote, ipcRenderer} = require("electron");
 
 const {Menu: MenuRight, MenuItem} = remote;
 let menu = new MenuRight();
+let fileName = '';
 
 const globalStore = {
   eventTarget: {}
@@ -48,13 +49,13 @@ function createEditorMenu() {
 function createFileMenu() {
   menu.append(new MenuItem({
     label: "Rename", click() {
-      console.log("Rename");
+      console.log("Rename", fileName);
     },
   }));
 
   menu.append(new MenuItem({
     label: "Delete", click() {
-      console.log("Delete");
+      console.log("Delete", fileName);
     },
   }));
 
@@ -64,6 +65,11 @@ function createFileMenu() {
     },
   }));
 }
+
+// FileMenu Click
+window.document.addEventListener(EventConstants.CLIENT.FILE_MENU_CLICK, (data: any) => {
+  fileName = JSON.parse(data.detail).filename;
+});
 
 window.addEventListener("contextmenu", (event: any) => {
   event.preventDefault();
