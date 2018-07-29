@@ -8,8 +8,8 @@ export function openHtmlPage(BrowserWindow: any, filePath: any) {
     }
 
     htmlPage = new BrowserWindow({
-      height: 800,
-      width: 600,
+      height: 768,
+      width: 1024,
       title: "网页",
       backgroundColor: "#fff",
     });
