@@ -7,6 +7,7 @@ import {git} from "./features/git";
 import {buildMenu} from "./i18n/menu/menu";
 import {buildAboutPage} from "./pages/about.page";
 import {createSlidePage} from "./pages/silde.page";
+import {openHtmlPage} from "./pages/html.page";
 
 const tmp = require("tmp");
 
@@ -52,6 +53,11 @@ function openFile(willLoadFile: string, isTempFile: boolean = false) {
   if (/\.(jpe?g|png|gif|bmp|ico)$/i.test(willLoadFile)) {
     shell.openExternal(willLoadFile);
     dialog.showErrorBox("Error", "not support format");
+    return;
+  }
+
+  if (/\.(html)$/i.test(willLoadFile)) {
+    openHtmlPage(BrowserWindow, willLoadFile);
     return;
   }
 
