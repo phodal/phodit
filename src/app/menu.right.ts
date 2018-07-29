@@ -1,4 +1,5 @@
 import {EventConstants} from "../common/constants/event.constants";
+import * as fs from "fs";
 
 const {remote, ipcRenderer} = require("electron");
 
@@ -56,6 +57,10 @@ function createFileMenu() {
   menu.append(new MenuItem({
     label: "Delete", click() {
       console.log("Delete", fileName);
+      fs.unlink(fileName,function(err: any){
+        if(err) return console.log(err);
+        ipcRenderer.send(EventConstants.PHODIT.RELOAD_PATH);
+      });
     },
   }));
 
