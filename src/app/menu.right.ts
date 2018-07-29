@@ -59,7 +59,7 @@ function createFileMenu() {
 window.addEventListener("contextmenu", (event: any) => {
   event.preventDefault();
   globalStore.eventTarget = event.target;
-  if (event.target.className === "node") {
+  if (event.target.className === "node" || event.target.className === "node is-active") {
     menu = new MenuRight();
     createFileMenu();
   } else {
