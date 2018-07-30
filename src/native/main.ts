@@ -354,7 +354,6 @@ ipcMain.on(EventConstants.PHODIT.RELOAD_PATH, (event: any, arg: any) => {
 });
 
 ipcMain.on(EventConstants.PHODIT.SHOW_WORD, (event: any, arg: any) => {
-  console.log(arg);
   pandoc.word(arg);
 });
 
