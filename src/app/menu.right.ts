@@ -1,11 +1,12 @@
 import {EventConstants} from "../common/constants/event.constants";
 import * as fs from "fs";
+import {IFileOpen} from "../common/interface/IFileOpen";
 
 const {remote, ipcRenderer} = require("electron");
 
 const {Menu: MenuRight, MenuItem} = remote;
 let menu = new MenuRight();
-let fileName = '';
+let node: any = null;
 
 const globalStore = {
   eventTarget: {}
@@ -48,18 +49,24 @@ function createEditorMenu() {
 }
 
 function createFileMenu() {
+  if (node.hasOwnProperty('collapsed')) {
+    return;
+  }
   menu.append(new MenuItem({
     label: "Rename", click() {
-      console.log("Rename", fileName);
+      console.log("Rename", node.filename);
+      node = null;
     },
   }));
 
   menu.append(new MenuItem({
     label: "Delete", click() {
-      console.log("Delete", fileName);
-      fs.unlink(fileName,function(err: any){
+      console.log("Delete", node.filename);
+      fs.unlink(node.filename,function(err: any){
         if(err) return console.log(err);
         ipcRenderer.send(EventConstants.PHODIT.RELOAD_PATH);
+
+        node = null;
       });
     },
   }));
@@ -67,7 +74,8 @@ function createFileMenu() {
 
 // FileMenu Click
 window.document.addEventListener(EventConstants.CLIENT.FILE_MENU_CLICK, (data: any) => {
-  fileName = JSON.parse(data.detail).filename;
+  let nodeInfo = JSON.parse(data.detail);
+  node = nodeInfo;
 });
 
 window.addEventListener("contextmenu", (event: any) => {
