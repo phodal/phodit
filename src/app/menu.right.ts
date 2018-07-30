@@ -63,12 +63,6 @@ function createFileMenu() {
       });
     },
   }));
-
-  menu.append(new MenuItem({
-    label: "Reload", click() {
-      ipcRenderer.send(EventConstants.PHODIT.RELOAD_PATH);
-    },
-  }));
 }
 
 // FileMenu Click
