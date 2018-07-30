@@ -1,4 +1,5 @@
 import spawnPandoc from "./spawn-pandoc";
+import {shell} from "electron";
 
 export default function html(path: string) {
   let newPath = path.replace(/\.md/, '.docx');
@@ -6,8 +7,8 @@ export default function html(path: string) {
     if (err) {
       return;
     }
-    console.log(stdout.trim());
 
+    shell.openExternal(newPath);
     return stdout.trim();
   });
 
