@@ -11,6 +11,7 @@ import {openHtmlPage} from "./pages/html.page";
 import {EventConstants} from "../common/constants/event.constants";
 
 const tmp = require("tmp");
+const chokidar = require('chokidar');
 
 const windowStateKeeper = require("electron-window-state");
 const storage = require("electron-json-storage");
@@ -90,13 +91,21 @@ function openFile(willLoadFile: string, isTempFile: boolean = false) {
   });
 }
 
-function openPath(pathName: any) {
+function openPath(pathName: any, isWatch = false) {
   checkWindow();
 
   storage.set("storage.last.path", {file: pathName});
   storage.remove("storage.last.file");
 
   let dirFiles: any[] = [];
+  if (!isWatch) {
+    chokidar.watch(pathName, {ignored: /(^|[\/\\])\../}).on('unlink', (event: any, path: any) => {
+      reloadPath(true);
+    }).on('add', (event: any, path: any) => {
+      reloadPath(true);
+    });
+  }
+
   fs.readdir(pathName, (err, files) => {
     dirFiles = dirTree(pathName);
 
@@ -327,17 +336,20 @@ ipcMain.on("phodit.unfullscreen", (event: any, arg: any) => {
   mainWindow.unmaximize();
 });
 
-ipcMain.on(EventConstants.PHODIT.RELOAD_PATH, (event: any, arg: any) => {
-  storage.get("storage.last.path", function(error: any, data: any) {
+function reloadPath(isWatch = false) {
+  storage.get("storage.last.path", function (error: any, data: any) {
     if (error) {
       throw error;
     }
 
     if (data && data.file) {
-      console.log(data);
-      openPath(data.file);
+      openPath(data.file, isWatch);
     }
   });
+}
+
+ipcMain.on(EventConstants.PHODIT.RELOAD_PATH, (event: any, arg: any) => {
+  reloadPath();
 });
 
 ipcMain.on("phodit.suggest.get", (event: any, arg: any) => {
