@@ -156,3 +156,8 @@ window.document.addEventListener(EventConstants.CLIENT.SEND_MARKDOWN, (event: an
   const data = markdownRender(event.detail, state.currentFile);
   createEvent(EventConstants.CLIENT.GET_RENDERER_MARKDOWN, data);
 });
+
+// Pandoc 转换
+window.document.addEventListener(EventConstants.CLIENT.SHOW_WORD, (event: any) => {
+  ipcRenderer.send(EventConstants.PHODIT.SHOW_WORD, state.currentFile);
+});

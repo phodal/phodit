@@ -9,6 +9,7 @@ import {buildAboutPage} from "./pages/about.page";
 import {createSlidePage} from "./pages/silde.page";
 import {openHtmlPage} from "./pages/html.page";
 import {EventConstants} from "../common/constants/event.constants";
+import {pandoc} from "./features/pandoc";
 
 const tmp = require("tmp");
 const chokidar = require('chokidar');
@@ -351,6 +352,12 @@ function reloadPath(isWatch = false) {
 ipcMain.on(EventConstants.PHODIT.RELOAD_PATH, (event: any, arg: any) => {
   reloadPath();
 });
+
+ipcMain.on(EventConstants.PHODIT.SHOW_WORD, (event: any, arg: any) => {
+  console.log(arg);
+  pandoc.word(arg);
+});
+
 
 ipcMain.on("phodit.suggest.get", (event: any, arg: any) => {
   if (arg.length < 2) {
