@@ -54,8 +54,8 @@ function dirTree(filename: string) {
 
 function openFile(willLoadFile: string, isTempFile: boolean = false) {
   if (/\.(jpe?g|png|gif|bmp|ico)$/i.test(willLoadFile)) {
-    shell.openExternal(willLoadFile);
-    dialog.showErrorBox("Error", "not support format");
+    shell.openItem(willLoadFile);
+    // dialog.showErrorBox("Error", "not support format");
     return;
   }
 
