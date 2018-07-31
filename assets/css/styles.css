@@ -125,7 +125,7 @@ textarea#input {
   font-size: 14px;
   top: 29px;
   position: relative;
-  height: 100%;
+  height: calc(100% - 22px);
   border-radius: 0;
 }
 
