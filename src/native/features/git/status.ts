@@ -5,7 +5,7 @@ export default function gitStatus(path: string) {
     if (err) {
       return;
     }
-    console.log(stdout.trim());
+    // console.log(stdout.trim());
 
     return stdout.trim();
   });
