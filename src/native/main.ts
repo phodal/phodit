@@ -220,7 +220,6 @@ function createWindow() {
       nodeIntegrationInWorker: true,
     },
   });
-  console.log(path.join(__dirname,'../../assets/imgs/icons/mac/icon.icns'));
 
   mainWindowState.manage(mainWindow);
 
