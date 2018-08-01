@@ -42,10 +42,17 @@ function createEditorMenu() {
   }));
 
   menu.append(new MenuItem({
-    label: "Clipboard", click() {
-
+    label: "Phodal.com", click() {
+      let text = (globalStore.eventTarget as any).innerText;
+      require('electron').shell.openExternal(`http://www.phodal.com/search/?q=${text}`);
     },
   }));
+
+  // menu.append(new MenuItem({
+  //   label: "Clipboard", click() {
+  //
+  //   },
+  // }));
 }
 
 function createFileMenu() {
