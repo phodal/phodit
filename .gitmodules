@@ -1,3 +1,6 @@
 [submodule "nlp"]
 	path = nlp
 	url = https://github.com/phodal/phodit-nlp
+[submodule "editor"]
+	path = editor
+	url = https://github.com/phodal/phodit-mde
