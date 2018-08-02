@@ -7,9 +7,7 @@ import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angula
   encapsulation: ViewEncapsulation.Native
 })
 export class InteractBar {
-  @Input() label;
   @Output() action = new EventEmitter<any>();
-  private clicksCt = 0;
   renameModel = {
     name: ''
   };
