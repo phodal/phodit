@@ -233,5 +233,8 @@ li p {
 interact-bar {
   background: #ddd;
   z-index: 999;
-  position: absolute;
+  position: fixed;
+  width: 100%;
+  bottom: 22px;
+  left: 0;
 }
