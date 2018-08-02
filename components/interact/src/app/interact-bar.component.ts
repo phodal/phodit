@@ -8,11 +8,17 @@ import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angula
 })
 export class InteractBar {
   @Input() label;
-  @Output() action = new EventEmitter<number>();
+  @Output() action = new EventEmitter<any>();
   private clicksCt = 0;
+  renameModel = {
+    name: ''
+  };
 
-  handleClick() {
-    this.clicksCt++;
-    this.action.emit(this.clicksCt);
+  onSubmit() {
+    console.log(this.renameModel.name);
+    if (!this.renameModel.name) {
+      return;
+    }
+    this.action.emit(this.renameModel.name);
   }
 }
