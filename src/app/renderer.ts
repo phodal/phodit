@@ -9,6 +9,7 @@ import {EventConstants} from "../common/constants/event.constants";
 // require("devtron").install();
 
 const {ipcRenderer} = require("electron");
+const swal = require("sweetalert");
 
 let state = {
   isShowTerminal: false,
@@ -158,5 +159,30 @@ window.document.addEventListener(EventConstants.CLIENT.SEND_MARKDOWN, (event: an
 
 // Pandoc 转换
 window.document.addEventListener(EventConstants.CLIENT.SHOW_WORD, (event: any) => {
-  ipcRenderer.send(EventConstants.PHODIT.SHOW_WORD, state.currentFile);
+  swal({
+    title: "Open File",
+    text: "Are you want to Open File",
+    icon: "info",
+    dangerMode: true,
+    buttons: {
+      cancel: {
+        text: "Cancel",
+        value: null,
+        visible: true,
+        className: "",
+        closeModal: true,
+      },
+      confirm: {
+        text: "OK",
+        value: true,
+        visible: true,
+        className: "",
+        closeModal: true
+      }
+    }
+  }).then((willDelete: any) => {
+    if (willDelete) {
+      ipcRenderer.send(EventConstants.PHODIT.SHOW_WORD, state.currentFile);
+    }
+  });
 });

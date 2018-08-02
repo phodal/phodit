@@ -35,6 +35,7 @@
     "lunr": "https://github.com/codepiano/lunr.js",
     "marked": "^0.4.0",
     "node-pty": "^0.7.6",
+    "sweetalert": "^2.1.0",
     "tmp": "^0.0.33",
     "xterm": "^3.5.1"
   }
