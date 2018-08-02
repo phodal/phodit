@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'interact-bar',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  @Output() action = new EventEmitter<number>();
+  private clicksCt = 0;
+
+  handleClick() {
+    this.clicksCt++;
+    this.action.emit(this.clicksCt);
+  }
 }
