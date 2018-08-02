@@ -1,5 +1,6 @@
 import {IFileOpen} from "../common/interface/IFileOpen";
 import "./menu.right";
+import "./key.event";
 import {createTerminal} from './plugins/terminal';
 import {createEvent} from "./utils/event.util";
 import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
