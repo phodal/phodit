@@ -5,14 +5,9 @@ import { InteractBar } from './interact-bar.component';
 import {createCustomElement} from "@angular/elements";
 
 @NgModule({
-  declarations: [
-    InteractBar
-  ],
-  imports: [
-    BrowserModule
-  ],
-  providers: [],
-  bootstrap: [InteractBar]
+  declarations: [InteractBar],
+  imports: [BrowserModule],
+  entryComponents: [InteractBar]
 })
 export class AppModule {
   constructor(private injector: Injector) {
