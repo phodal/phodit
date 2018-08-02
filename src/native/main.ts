@@ -110,8 +110,8 @@ function openPath(pathName: any, isWatch = false) {
   fs.readdir(pathName, (err, files) => {
     dirFiles = dirTree(pathName);
 
-    mainWindow.webContents.send("phodit.git.status", git.status(pathName));
-    mainWindow.webContents.send("phodit.open.path", {
+    mainWindow.webContents.send(EventConstants.PHODIT.GIT_STATUS, git.status(pathName));
+    mainWindow.webContents.send(EventConstants.PHODIT.OPEN_PATH, {
       path: pathName,
       tree: dirFiles
     });
@@ -152,7 +152,7 @@ function checkWindow() {
 
 function saveFileSignal() {
   if (mainWindow.webContents) {
-    mainWindow.webContents.send("client.save.file");
+    mainWindow.webContents.send(EventConstants.CLIENT.SAVE_FILE);
   } else {
     dialog.showErrorBox("error", "not open file");
   }
@@ -169,7 +169,7 @@ function saveFile(data: any, isTempFile: boolean) {
     dialog.showSaveDialog(mainWindow, {}, (filename) => {
       isTempFile = false;
 
-      mainWindow.webContents.send("phodit.temp.file.status", {
+      mainWindow.webContents.send(EventConstants.TEMP_FILE_STATUS, {
         isTempFile: false,
       });
       currentFile = filename;
@@ -310,15 +310,15 @@ app.on("open-file", (event, arg) => {
   openFile(arg);
 });
 
-ipcMain.on("phodit.open.file", (event: any, arg: any) => {
+ipcMain.on(EventConstants.PHODIT.OPEN_FILE, (event: any, arg: any) => {
   openFile(arg);
 });
 
-ipcMain.on("phodit.save.file", (event: any, arg: IFileSave) => {
+ipcMain.on(EventConstants.PHODIT.SAVE_FILE, (event: any, arg: IFileSave) => {
   saveFile(arg.data, arg.isTempFile);
 });
 
-ipcMain.on("phodit.open.guide", (event: any, arg: any) => {
+ipcMain.on(EventConstants.PHODIT.OPEN_GUIDE, (event: any, arg: any) => {
   openAboutPage();
 });
 
@@ -326,12 +326,12 @@ ipcMain.on("phodit.show.echoesworks", (event: any, arg: any) => {
   createSlidePage(BrowserWindow, arg);
 });
 
-ipcMain.on("phodit.fullscreen", (event: any, arg: any) => {
+ipcMain.on(EventConstants.PHODIT.FULL_SCREEN, (event: any, arg: any) => {
   mainWindow.setFullScreen(true);
   mainWindow.maximize();
 });
 
-ipcMain.on("phodit.unfullscreen", (event: any, arg: any) => {
+ipcMain.on(EventConstants.PHODIT.UN_FULL_SCREEN, (event: any, arg: any) => {
   mainWindow.setFullScreen(false);
   mainWindow.unmaximize();
 });
@@ -357,7 +357,7 @@ ipcMain.on(EventConstants.PHODIT.SHOW_WORD, (event: any, arg: any) => {
 });
 
 
-ipcMain.on("phodit.suggest.get", (event: any, arg: any) => {
+ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {
   if (arg.length < 2) {
     mainWindow.webContents.send("phodit.suggest.send", []);
   }
@@ -373,5 +373,5 @@ ipcMain.on("phodit.suggest.get", (event: any, arg: any) => {
     });
   }
 
-  mainWindow.webContents.send("phodit.suggest.send", response);
+  mainWindow.webContents.send(EventConstants.PHODIT.SUGGEST_SEND, response);
 });

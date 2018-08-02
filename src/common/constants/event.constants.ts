@@ -14,6 +14,7 @@ export const EventConstants = {
     OPEN_GUIDE: "phodit.open.guide",
     SHOW_SLIDES: "phodit.show.echoesworks",
     SHOW_WORD: "phodit.show.word",
+    GIT_STATUS: "phodit.git.status",
   },
   CLIENT: {
     SAVE_FILE: "client.save.file",
