@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'interact-bar',
@@ -6,11 +6,20 @@ import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angula
   styleUrls: ['./interact-bar.component.css'],
   encapsulation: ViewEncapsulation.Native
 })
-export class InteractBar {
+export class InteractBar implements AfterViewInit {
+  @Input() filename = '';
   @Output() action = new EventEmitter<any>();
   renameModel = {
-    name: ''
+    name: this.filename
   };
+
+
+  ngAfterViewInit(): void {
+  }
+
+  ngDoCheck(): void {
+    this.renameModel.name = this.filename;
+  }
 
   onSubmit() {
     console.log(this.renameModel.name);
@@ -19,4 +28,6 @@ export class InteractBar {
     }
     this.action.emit(this.renameModel.name);
   }
+
+
 }

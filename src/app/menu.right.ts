@@ -52,11 +52,15 @@ function createEditorMenu() {
 function createFileMenu() {
   menu.append(new MenuItem({
     label: "Rename", click() {
+      if (!node.filename) {
+        return;
+      }
       console.log("Rename", node.filename);
       const bar = document.querySelector('interact-bar');
 
+      bar.setAttribute('filename', node.filename.split("/").pop());
       bar.setAttribute('style', "display: block;");
-      bar.addEventListener('action', (event:any) => {
+      bar.addEventListener('action', (event: any) => {
         bar.setAttribute('style', "display: none;");
       });
 
@@ -71,8 +75,8 @@ function createFileMenu() {
   menu.append(new MenuItem({
     label: "Delete", click() {
       console.log("Delete", node.filename);
-      fs.unlink(node.filename,function(err: any){
-        if(err) return console.log(err);
+      fs.unlink(node.filename, function (err: any) {
+        if (err) return console.log(err);
         ipcRenderer.send(EventConstants.PHODIT.RELOAD_PATH);
 
         node = null;
