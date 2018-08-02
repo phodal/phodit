@@ -50,15 +50,16 @@ function createEditorMenu() {
 }
 
 function createFileMenu() {
-  if (node.hasOwnProperty('collapsed')) {
-    return;
-  }
   menu.append(new MenuItem({
     label: "Rename", click() {
       console.log("Rename", node.filename);
       node = null;
     },
   }));
+
+  if (node.hasOwnProperty('collapsed')) {
+    return;
+  }
 
   menu.append(new MenuItem({
     label: "Delete", click() {
