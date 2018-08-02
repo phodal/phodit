@@ -47,12 +47,6 @@ function createEditorMenu() {
       require('electron').shell.openExternal(`http://www.phodal.com/search/?q=${text}`);
     },
   }));
-
-  // menu.append(new MenuItem({
-  //   label: "Clipboard", click() {
-  //
-  //   },
-  // }));
 }
 
 function createFileMenu() {
