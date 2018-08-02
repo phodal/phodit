@@ -53,6 +53,13 @@ function createFileMenu() {
   menu.append(new MenuItem({
     label: "Rename", click() {
       console.log("Rename", node.filename);
+      const bar = document.querySelector('interact-bar');
+
+      bar.setAttribute('style', "display: block;");
+      bar.addEventListener('action', (event:any) => {
+        bar.setAttribute('style', "display: none;");
+      });
+
       node = null;
     },
   }));
