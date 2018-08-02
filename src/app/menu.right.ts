@@ -52,15 +52,20 @@ function createEditorMenu() {
 function createFileMenu() {
   menu.append(new MenuItem({
     label: "Rename", click() {
-      if (!node.filename) {
+      const filePath = node.filename;
+      if (!filePath) {
         return;
       }
-      console.log("Rename", node.filename);
       const bar = document.querySelector('interact-bar');
+      const folderPath = filePath.replace(/[^\/]*$/, "");
 
-      bar.setAttribute('filename', node.filename.split("/").pop());
+      bar.setAttribute('filename', filePath.split("/").pop());
       bar.setAttribute('style', "display: block;");
       bar.addEventListener('action', (event: any) => {
+        let newPath = folderPath + event.detail;
+        fs.rename(filePath, newPath, function(err) {
+          if ( err ) console.log('ERROR: ' + err);
+        });
         bar.setAttribute('style', "display: none;");
       });
 

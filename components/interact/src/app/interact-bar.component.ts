@@ -8,21 +8,16 @@ import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewEncap
 })
 export class InteractBar implements AfterViewInit {
   @Input() filename = '';
-  @Output() action = new EventEmitter<any>();
+  @Output() action = new EventEmitter<string>();
   renameModel = {
     name: this.filename
   };
 
-
   ngAfterViewInit(): void {
-  }
-
-  ngDoCheck(): void {
     this.renameModel.name = this.filename;
   }
 
   onSubmit() {
-    console.log(this.renameModel.name);
     if (!this.renameModel.name) {
       return;
     }
