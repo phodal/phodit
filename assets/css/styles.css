@@ -229,3 +229,9 @@ li p {
   font-size: 14px;
   color: #384452;
 }
+
+interact-bar {
+  background: #ddd;
+  z-index: 999;
+  position: absolute;
+}

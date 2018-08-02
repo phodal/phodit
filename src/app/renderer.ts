@@ -186,3 +186,10 @@ window.document.addEventListener(EventConstants.CLIENT.SHOW_WORD, (event: any) =
     }
   });
 });
+
+const bar = document.querySelector('interact-bar');
+console.log(bar);
+bar.addEventListener('action', (event:any) => {
+  console.log(`"action" emitted: ${event.detail}`);
+});
+// setTimeout(() => bar.label = 'Second Value', 3000);
