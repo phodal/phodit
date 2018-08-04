@@ -12,7 +12,7 @@ export function createHelpPage(BrowserWindow: any) {
     aboutWindow = new BrowserWindow({
       height: 800,
       width: 600,
-      title: "帮助",
+      title: "Markdown 帮助",
       backgroundColor: "#ddd",
     });
 
