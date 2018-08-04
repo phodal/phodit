@@ -1,6 +1,6 @@
 import * as path from "path";
 
-export function buildAboutPage(BrowserWindow: any) {
+export function createHelpPage(BrowserWindow: any) {
   let aboutWindow: any = null;
 
   function openAboutWindow() {

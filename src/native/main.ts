@@ -5,7 +5,7 @@ import * as path from "path";
 import {IFileSave} from "../common/interface/IFileSave";
 import {git} from "./features/git";
 import {buildMenu} from "./i18n/menu/menu";
-import {buildAboutPage} from "./pages/about.page";
+import {createHelpPage} from "./pages/help.page";
 import {createSlidePage} from "./pages/silde.page";
 import {openHtmlPage} from "./pages/html.page";
 import {EventConstants} from "../common/constants/event.constants";
@@ -199,7 +199,7 @@ function reload() {
 }
 
 function openAboutPage() {
-  buildAboutPage(BrowserWindow);
+  createHelpPage(BrowserWindow);
 }
 
 function createWindow() {
