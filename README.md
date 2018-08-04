@@ -32,6 +32,7 @@ Tech Stack
  - marked -> Markdown Parser
  - highlight.js -> Code Highlight
  - lunr -> search engine 
+ - Angular -> Rename box
  
 Goal
 ---
