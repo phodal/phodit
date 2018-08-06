@@ -4249,7 +4249,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-"lodash@>=3.5 <5", lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0:
+"lodash@>=3.5 <5", lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.3.0:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
 
@@ -5606,13 +5606,12 @@ react-scripts@1.1.4:
   optionalDependencies:
     fsevents "^1.1.3"
 
-"react-ui-tree@https://github.com/phraniiac/react-ui-tree":
-  version "3.1.0"
-  resolved "https://github.com/phraniiac/react-ui-tree#92fe2e0a8d97b5f7a02da196dda9a6af0b5303b8"
+"react-ui-tree@https://github.com/phodal/react-ui-tree":
+  version "4.0.0"
+  resolved "https://github.com/phodal/react-ui-tree#caf2f8138c71644ad9da78535326250b133c420e"
   dependencies:
     classnames "^2.2.5"
     js-tree "^2.0.1"
-    lodash "^4.17.5"
     prop-types "^15.5.10"
 
 react@^16.4.1:

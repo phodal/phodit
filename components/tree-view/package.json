@@ -7,7 +7,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4",
-    "react-ui-tree": "https://github.com/phraniiac/react-ui-tree"
+    "react-ui-tree": "https://github.com/phodal/react-ui-tree"
   },
   "scripts": {
     "start": "react-scripts start && yarn copyfile",
