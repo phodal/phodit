@@ -110,6 +110,7 @@ class App extends Component {
         <div className="tree">
           <Tree
             paddingLeft={10}
+            draggable={false}
             tree={this.state.tree}
             onChange={this.handleChange}
             renderNode={this.renderNode}
