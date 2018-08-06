@@ -243,13 +243,13 @@ interact-bar {
   border-left: 0.3rem solid #1abc9c;
   margin-left: 0;
   margin-right: 0;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1rem;
 }
 
 .cm-quote-1:before {
   color: #1abc9c;
   content: open-quote;
-  font-size: 4em;
+  font-size: 2em;
   line-height: 0.1em;
   margin-right: 0.25em;
   vertical-align: -0.4em;
