@@ -238,23 +238,3 @@ interact-bar {
   bottom: 22px;
   left: 0;
 }
-
-.cm-quote-1 {
-  border-left: 0.3rem solid #1abc9c;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 1rem 1rem;
-}
-
-.cm-quote-1:before {
-  color: #1abc9c;
-  content: open-quote;
-  font-size: 2em;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
-}
-
-.cm-quote-1:after {
-  content: none;
-}
