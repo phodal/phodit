@@ -51,6 +51,22 @@ Goal
  - 微前端架构 
  - Web Worker
 
+### Setup
+
+#### Electron
+
+```
+yarn install 
+yarn build:app
+```
+
+#### Components
+
+```
+yarn install
+yarn build
+```
+
 License
 ---
 
