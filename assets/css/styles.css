@@ -240,6 +240,13 @@ interact-bar {
   left: 0;
 }
 
+.cm-quote {
+  border-left: 0.3rem solid #1abc9c;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 1rem 1.5rem;
+}
+
 /* Turn on custom 8px wide scrollbar */
 ::-webkit-scrollbar {
   width: 8px; /* 1px wider than Lion. */
