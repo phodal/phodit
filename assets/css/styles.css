@@ -270,3 +270,7 @@ interact-bar {
   background: rgba(0,0,0,0.61); /* Some darker color when you click it */
   -webkit-border-radius: 100px;
 }
+
+.editor-preview pre > code {
+  white-space: pre-wrap;
+}
