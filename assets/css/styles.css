@@ -271,6 +271,10 @@ interact-bar {
   -webkit-border-radius: 100px;
 }
 
+#input .CodeMirror {
+  color: #384452;
+}
+
 .CodeMirror pre {
   font-size: 12px;
 }
