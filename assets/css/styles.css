@@ -240,7 +240,7 @@ interact-bar {
   left: 0;
 }
 
-.cm-quote {
+.CodeMirror-line > span > .cm-quote:first-child {
   border-left: 0.3rem solid #1abc9c;
   margin-left: 0;
   margin-right: 0;
