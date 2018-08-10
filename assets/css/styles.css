@@ -48,8 +48,13 @@ textarea#input {
   height: calc(100vh - 22px);
 }
 
+#tree-view .tree,
 #tree-view {
-  background: #21252b;
+  background: #384452;
+}
+
+#tree-view .m-node .inner {
+  color: #d1d8df;
 }
 
 #input-section {
