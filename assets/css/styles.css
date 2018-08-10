@@ -63,7 +63,7 @@ textarea#input {
   position: absolute;
   bottom: 30px;
   width: 100vw;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #d1d8df;
   background: #fff;
 }
 
@@ -83,7 +83,7 @@ textarea#input {
   width: 100%;
   max-width: 100%;
   border-radius: 0;
-  border: 1px solid #ddd;
+  border: 1px solid #d1d8df;
   background-color: #fdfdfd;
 }
 
@@ -102,7 +102,7 @@ textarea#input {
   width: 100%;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #d1d8df;
   padding: 0 5px;
   top: -1px;
 }
@@ -137,7 +137,7 @@ textarea#input {
   bottom: 0;
   position: fixed;
   background: #fdfdfd;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #d1d8df;
   height: 22px;
   z-index: 9;
 }
@@ -159,7 +159,7 @@ textarea#input {
 
 #input.full-screen .editor-preview-side.editor-preview-active-side {
   top: 49px;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid #d1d8df;
 }
 
 #input .editor-preview-side.editor-preview-active-side {
@@ -232,7 +232,7 @@ li p {
 }
 
 interact-bar {
-  background: #ddd;
+  background: #d1d8df;
   z-index: 999;
   position: fixed;
   width: 100%;
