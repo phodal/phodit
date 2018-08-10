@@ -57,6 +57,11 @@ textarea#input {
   color: #d1d8df;
 }
 
+#input .editor-toolbar a,
+#input .editor-toolbar button {
+  color: #384452!important;
+}
+
 #input-section {
   height: calc(100vh - 22px);
   max-height: calc(100vh - 22px);
