@@ -126,7 +126,7 @@ function open() {
     ],
     properties: ["openFile", "openDirectory", "multiSelections"],
   }, (fileNames: any) => {
-    console.log(fileNames);
+    // console.log(fileNames);
     if (!fileNames) {
       return;
     }
@@ -162,7 +162,7 @@ function saveFile(data: any, isTempFile: boolean) {
   if (!currentFile) {
     return;
   }
-  console.log(currentFile);
+  // console.log(currentFile);
   if (!isTempFile && !currentFile.endsWith(".tmp")) {
     fs.writeFileSync(currentFile, data);
   } else {
@@ -237,7 +237,7 @@ function createWindow() {
       }
 
       if (data && data.file) {
-        console.log(data);
+        // console.log(data);
         openFile(data.file);
       }
     });
@@ -247,7 +247,7 @@ function createWindow() {
       }
 
       if (data && data.file) {
-        console.log(data);
+        // console.log(data);
         openPath(data.file);
       }
     });
@@ -259,7 +259,6 @@ function createWindow() {
   // });
 
   mainWindow.webContents.on("will-navigate", function(event: any, url) {
-    console.log("will-navigate");
     if (url != mainWindow.webContents.getURL()) {
       event.preventDefault();
       const win = new BrowserWindow({show: false});
