@@ -20,7 +20,7 @@ export function createHelpPage(BrowserWindow: any) {
       aboutWindow = null;
     });
 
-    aboutWindow.loadFile(path.join(__dirname, "../../../views/about.html"));
+    aboutWindow.loadFile(path.join(__dirname, "../../../views/help.html"));
 
     aboutWindow.once("ready-to-show", () => aboutWindow.show());
 
