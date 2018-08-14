@@ -100,11 +100,14 @@ function openPath(pathName: any, isWatch = false) {
 
   let dirFiles: any[] = [];
   if (!isWatch) {
-    chokidar.watch(pathName, {ignored: /(^|[\/\\])\../}).on('unlink', (event: any, path: any) => {
-      reloadPath(true);
-    }).on('add', (event: any, path: any) => {
-      reloadPath(true);
-    });
+    chokidar
+      .watch(pathName, {ignored: /(^|[\/\\])\../})
+      .on('unlink', (event: any, path: any) => {
+        reloadPath(true);
+      })
+      .on('add', (event: any, path: any) => {
+        reloadPath(true);
+      });
   }
 
   fs.readdir(pathName, (err, files) => {
