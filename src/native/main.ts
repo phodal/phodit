@@ -37,7 +37,6 @@ function dirTree(filename: string) {
   };
 
   if (stats.isDirectory()) {
-    // info.type = "folder";
     info.collapsed = true;
     info.children = fs.readdirSync(filename).filter((child: string) => {
       return child !== ".git" && child !== ".DS_Store" && child !== ".idea";
@@ -46,7 +45,6 @@ function dirTree(filename: string) {
     });
   } else {
     info.leaf = true;
-    // info.type = "file";
   }
 
   return info;
