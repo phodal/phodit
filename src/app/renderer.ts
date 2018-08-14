@@ -139,6 +139,13 @@ ipcRenderer.on(EventConstants.TEMP_FILE_STATUS, (event: any, arg: any) => {
   state.isCurrentFileTemp = arg.isTempFile;
 });
 
+// 加载完成
+ipcRenderer.on('phodit.lifecycle.load', (event: any, arg: any) => {
+  if (!state.currentFile) {
+    simplemde.value('');
+  }
+});
+
 // 打开左侧树型文件
 window.document.addEventListener(EventConstants.CLIENT.TREE_OPEN, (event: any) => {
   let file = JSON.parse(event.detail).filename;

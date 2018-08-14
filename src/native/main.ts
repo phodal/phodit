@@ -251,6 +251,8 @@ function createWindow() {
         openPath(data.file);
       }
     });
+
+    mainWindow.webContents.send("phodit.lifecycle.load");
   });
   //
   // mainWindow.webContents.on('new-window', function(e, url) {
