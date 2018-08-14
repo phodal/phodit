@@ -113,7 +113,7 @@ function openPath(pathName: any, isWatch = false) {
   fs.readdir(pathName, (err, files) => {
     dirFiles = dirTree(pathName);
 
-    mainWindow.webContents.send(EventConstants.PHODIT.GIT_STATUS, git.status(pathName));
+    // mainWindow.webContents.send(EventConstants.PHODIT.GIT_STATUS, git.status(pathName));
     mainWindow.webContents.send(EventConstants.PHODIT.OPEN_PATH, {
       path: pathName,
       tree: dirFiles
