@@ -1,10 +1,11 @@
 import * as path from "path";
 import {ipcMain} from "electron";
+import {pandoc} from "../features/pandoc";
 
-export function createSlidePage(BrowserWindow: any, content: any) {
+export function createSlidePage(BrowserWindow: any, arg: any) {
   let slideWindow: any = null;
 
-  function createSlidePage() {
+  function createSlidePage(filePath: any) {
     if (slideWindow) {
       slideWindow.focus();
       return;
@@ -21,7 +22,7 @@ export function createSlidePage(BrowserWindow: any, content: any) {
       slideWindow = null;
     });
 
-    slideWindow.loadFile(path.join(__dirname, "../../../views/slide.html"));
+    slideWindow.loadFile(filePath);
 
     slideWindow.once("ready-to-show", () => slideWindow.show());
 
@@ -32,19 +33,21 @@ export function createSlidePage(BrowserWindow: any, content: any) {
 
     slideWindow.openDevTools();
 
-    ipcMain.on("phodit.slide.ready", (event: any, arg: any) => {
-      console.log(arg);
-      if (slideWindow && slideWindow.webContents) {
-        slideWindow.webContents.send("phodit.slide.send.content", content);
-      }
-      event.sender.send('phodit.slide.send.content', 'content')
-    });
+    // ipcMain.on("phodit.slide.ready", (event: any, arg: any) => {
+    //   console.log(arg);
+    //   if (slideWindow && slideWindow.webContents) {
+    //     slideWindow.webContents.send("phodit.slide.send.arg", arg);
+    //   }
+    //   event.sender.send('phodit.slide.send.arg', 'arg')
+    // });
 
 
     if (!slideWindow.webContents) {
-      createSlidePage();
+      createSlidePage(filePath);
     }
   }
 
-  createSlidePage();
+  pandoc.slide(arg.file).then((filePath: any) => {
+    createSlidePage(filePath);
+  })
 }
