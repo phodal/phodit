@@ -4,3 +4,6 @@
 [submodule "editor"]
 	path = editor
 	url = https://github.com/phodal/phodit-mde
+[submodule "views/reveal.js"]
+	path = views/reveal.js
+	url = https://github.com/hakimel/reveal.js/
