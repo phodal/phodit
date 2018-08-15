@@ -80,6 +80,7 @@ window.document.addEventListener(EventConstants.CLIENT.HIDDEN_TERMINAL, () => {
 window.document.addEventListener(EventConstants.CLIENT.SHOW_SLIDES, () => {
   ipcRenderer.send(EventConstants.PHODIT.SHOW_SLIDES, {
     isTempFile: state.isCurrentFileTemp,
+    file: state.currentFile,
     data: simplemde.value(),
   });
 });
