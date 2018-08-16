@@ -41,7 +41,7 @@ function createEditorMenu() {
   }));
 
   menu.append(new MenuItem({
-    label: "Phodal.com", click() {
+    label: "Phodal", click() {
       let text = (globalStore.eventTarget as any).innerText;
       require('electron').shell.openExternal(`http://www.phodal.com/search/?q=${text}`);
     },
@@ -62,6 +62,7 @@ function createFileMenu() {
       bar.setAttribute('style', "display: block;");
       bar.addEventListener('action', (event: any) => {
         let newPath = folderPath + event.detail;
+        console.log(`Rename file from: ${filePath} to ${newPath}`);
         fs.rename(filePath, newPath, function(err) {
           if ( err ) console.log('ERROR: ' + err);
         });
