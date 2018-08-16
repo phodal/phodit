@@ -73,6 +73,16 @@ function createFileMenu() {
     },
   }));
 
+  menu.append(new MenuItem({
+    label: "Open Folder", click() {
+      let path = node.filename;
+      if (!node.hasOwnProperty('collapsed')) {
+
+      }
+      ipcRenderer.send("phodit.system.open.path", path);
+    },
+  }));
+
   if (node.hasOwnProperty('collapsed')) {
     return;
   }

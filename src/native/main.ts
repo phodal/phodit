@@ -358,6 +358,9 @@ ipcMain.on(EventConstants.PHODIT.SHOW_WORD, (event: any, arg: any) => {
   pandoc.word(arg);
 });
 
+ipcMain.on("phodit.system.open.path", (event: any, arg: any) => {
+  pandoc.word(arg);
+});
 
 ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {
   if (arg.length < 2) {
