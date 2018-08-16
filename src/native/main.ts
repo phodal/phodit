@@ -359,7 +359,8 @@ ipcMain.on(EventConstants.PHODIT.SHOW_WORD, (event: any, arg: any) => {
 });
 
 ipcMain.on("phodit.system.open.path", (event: any, arg: any) => {
-  pandoc.word(arg);
+  console.log(arg);
+  require('electron').shell.showItemInFolder(arg);
 });
 
 ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {

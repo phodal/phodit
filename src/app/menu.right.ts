@@ -1,6 +1,5 @@
 import {EventConstants} from "../common/constants/event.constants";
 import * as fs from "fs";
-import {IFileOpen} from "../common/interface/IFileOpen";
 
 const {remote, ipcRenderer} = require("electron");
 
@@ -74,12 +73,8 @@ function createFileMenu() {
   }));
 
   menu.append(new MenuItem({
-    label: "Open Folder", click() {
-      let path = node.filename;
-      if (!node.hasOwnProperty('collapsed')) {
-
-      }
-      ipcRenderer.send("phodit.system.open.path", path);
+    label: "Open In Folder", click() {
+      ipcRenderer.send("phodit.system.open.path", node.filename);
     },
   }));
 
