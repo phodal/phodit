@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EchoesWorks</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="pandoc">
+    <title>README</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+    </style>
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
 </head>
 <body>
 </body>
 <script>
 window.onload = function(){
   const { ipcRenderer } = require("electron");
-  ipcRenderer.on('phodit.slide.send.content', function(event, arg) {
-    console.log(event, arg.data);
-
-    data = arg.data;
-    if (!data) {
-      return;
-    }
-    var innerHTML = EchoesWorks.md.parse(data);
-    console.log(innerHTML);
-    document.querySelector('slide').innerHTML = innerHTML;
-    EchoesWorks.imageHandler();
-    new EchoesWorks({element: 'slide'});
+  ipcRenderer.on('phodit.slide.send.content', function(event, data) {
+    document.querySelector('body').innerHTML = data;
   });
 
   ipcRenderer.send("phodit.slide.ready");

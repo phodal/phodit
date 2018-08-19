@@ -1,6 +1,7 @@
 import * as path from "path";
 import {pandoc} from "../features/pandoc";
 import * as fs from "fs";
+import {ipcMain} from "electron";
 
 export function createSlidePage(BrowserWindow: any, arg: any) {
   let slideWindow: any = null;
@@ -35,6 +36,12 @@ export function createSlidePage(BrowserWindow: any, arg: any) {
     if (!slideWindow.webContents) {
       createSlidePage(data);
     }
+
+    ipcMain.on("phodit.slide.ready", (event: any, arg: any) => {
+      if (slideWindow.webContents) {
+        slideWindow.webContents.send("phodit.slide.send.content", data);
+      }
+    });
   }
 
   pandoc.slide(arg.file).then((filePath: any) => {
