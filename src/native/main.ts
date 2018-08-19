@@ -52,14 +52,15 @@ function dirTree(filename: string) {
 
 function openFile(willLoadFile: string, isTempFile: boolean = false) {
   if (/\.(jpe?g|png|gif|bmp|ico)$/i.test(willLoadFile)) {
-    mainWindow.previewFile(willLoadFile);
-    // dialog.showErrorBox("Error", "not support format");
-    return;
+    return mainWindow.previewFile(willLoadFile);
   }
 
   if (/\.(html)$/i.test(willLoadFile)) {
-    openHtmlPage(BrowserWindow, willLoadFile);
-    return;
+    return openHtmlPage(BrowserWindow, willLoadFile);
+  }
+
+  if (/\.(doc?x)$/i.test(willLoadFile)) {
+    return shell.openItem(willLoadFile);
   }
 
   if (mainWindow && !isTempFile) {
