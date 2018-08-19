@@ -52,7 +52,7 @@ function dirTree(filename: string) {
 
 function openFile(willLoadFile: string, isTempFile: boolean = false) {
   if (/\.(jpe?g|png|gif|bmp|ico)$/i.test(willLoadFile)) {
-    shell.openItem(willLoadFile);
+    mainWindow.previewFile(willLoadFile);
     // dialog.showErrorBox("Error", "not support format");
     return;
   }
