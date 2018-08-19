@@ -78,7 +78,7 @@ window.document.addEventListener(EventConstants.CLIENT.HIDDEN_TERMINAL, () => {
 
 // ShowSlides
 window.document.addEventListener(EventConstants.CLIENT.SHOW_SLIDES, () => {
-  if (state.currentFile) {
+  if (!state.currentFile) {
     return;
   }
   ipcRenderer.send(EventConstants.PHODIT.SHOW_SLIDES, {
