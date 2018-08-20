@@ -24,12 +24,15 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
-    <!--[if lt IE 9]>
-    <script src="reveal.js/lib/js/html5shiv.js"></script>
-    <![endif]-->
+    <script src="reveal.js/lib/js/head.min.js"></script>
+    <script src="reveal.js/js/reveal.js"></script>
   </head>
 </head>
 <body>
+<div class="reveal">
+  <div class="slides">
+  </div>
+</div>
 </body>
 <script>
 window.onload = function(){
@@ -40,5 +43,21 @@ window.onload = function(){
 
   ipcRenderer.send("phodit.slide.ready");
 };
+</script>
+<script>
+
+  // Full list of configuration options available at:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    // Push each slide change to the browser history
+    history: true,
+
+    // Optional reveal.js plugins
+    dependencies: [
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+      { src: 'reveal.js/plugin/notes/notes.js', async: true }
+    ]
+  });
 </script>
 </html>
