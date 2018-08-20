@@ -26,38 +26,34 @@
     </script>
     <script src="reveal.js/lib/js/head.min.js"></script>
     <script src="reveal.js/js/reveal.js"></script>
+    <script>
+      window.onload = function(){
+        const { ipcRenderer } = require("electron");
+        ipcRenderer.on('phodit.slide.send.content', function(event, data) {
+          document.querySelector('html').innerHTML = data;
+          setTimeout(function() {
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+              // Push each slide change to the browser history
+              history: true,
+
+              // Optional reveal.js plugins
+              dependencies: [
+                { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+                { src: 'reveal.js/plugin/notes/notes.js', async: true }
+              ]
+            });
+
+          }, 10)
+        });
+
+        ipcRenderer.send("phodit.slide.ready");
+      };
+    </script>
   </head>
 </head>
 <body>
-<div class="reveal">
-  <div class="slides">
-  </div>
-</div>
 </body>
-<script>
-window.onload = function(){
-  const { ipcRenderer } = require("electron");
-  ipcRenderer.on('phodit.slide.send.content', function(event, data) {
-    document.querySelector('html').innerHTML = data;
-  });
-
-  ipcRenderer.send("phodit.slide.ready");
-};
-</script>
-<script>
-
-  // Full list of configuration options available at:
-  // https://github.com/hakimel/reveal.js#configuration
-  Reveal.initialize({
-    // Push each slide change to the browser history
-    history: true,
-
-    // Optional reveal.js plugins
-    dependencies: [
-      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
-      { src: 'reveal.js/plugin/notes/notes.js', async: true }
-    ]
-  });
-</script>
 </html>
