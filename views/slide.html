@@ -35,7 +35,7 @@
 window.onload = function(){
   const { ipcRenderer } = require("electron");
   ipcRenderer.on('phodit.slide.send.content', function(event, data) {
-    document.querySelector('body').innerHTML = data;
+    document.querySelector('html').innerHTML = data;
   });
 
   ipcRenderer.send("phodit.slide.ready");

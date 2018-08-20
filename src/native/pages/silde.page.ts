@@ -38,7 +38,7 @@ export function createSlidePage(BrowserWindow: any, arg: any) {
     }
 
     ipcMain.on("phodit.slide.ready", (event: any, arg: any) => {
-      if (slideWindow.webContents) {
+      if (slideWindow && slideWindow.webContents) {
         slideWindow.webContents.send("phodit.slide.send.content", data);
       }
     });
