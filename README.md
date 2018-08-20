@@ -33,16 +33,17 @@ Tech Stack
  - highlight.js -> Code Highlight
  - lunr -> search engine 
  - Angular -> Rename box
+ - Reveal.js -> Slide
  
 Goal
 ---
 
  - 支持基于 Git 和 Markdown 的写作模式
- - 支持微信公众号编辑器
  - 各式语法高亮
  - 导出 Word 和 PDF（考虑 Pandoc）
- - Markdown Slide 预览及更高级效果
+ - Markdown Slide 一键运行
  - 一键发布到各个平台的自动化脚本
+ - 支持微信公众号编辑器
 
 ### 技术细节
 
