@@ -1,8 +1,10 @@
 import spawnPandoc from "./spawn-pandoc";
-import {shell} from "electron";
+const tmp = require("tmp");
 
 export default function slide(path: string) {
-  let newPath = path.replace(/\.md/, '.html');
+  const tmpobj = tmp.fileSync();
+  let newPath = tmpobj.name;
+
   return new Promise(function (resolve, reject) {
     spawnPandoc(` -t revealjs -s ${path} -o ${newPath} -V theme=simple`, {}, function (err: any, stdout: any, stdrr: any) {
       if (err) {
@@ -11,7 +13,7 @@ export default function slide(path: string) {
       }
 
       stdout.trim();
-      resolve(newPath);
+      resolve(tmpobj.name);
     });
   });
 }
