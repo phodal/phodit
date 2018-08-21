@@ -126,6 +126,7 @@ ipcRenderer.on(EventConstants.PHODIT.OPEN_ONE_FILE, (event: any, arg: IFileOpen)
   simplemde.codemirror.setOption("mode", getCodeMirrorMode(state.currentFile));
   state.isCurrentFileTemp = arg.isTempFile;
   simplemde.value(arg.data);
+  localStorage.setItem('currentFile', arg.file);
 });
 
 // 保存文件
