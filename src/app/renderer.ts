@@ -9,6 +9,13 @@ import {EventConstants} from "../common/constants/event.constants";
 
 // require("devtron").install();
 
+
+declare global {
+  interface Window {
+    simplemde: any
+  }
+}
+
 const {ipcRenderer} = require("electron");
 const swal = require("sweetalert");
 
@@ -38,6 +45,8 @@ const simplemde = new (window as any).SimpleMDE({
   },
   element: document.getElementById("input-section"),
 });
+
+window.simplemde = simplemde;
 
 // 打开帮助
 window.document.addEventListener(EventConstants.CLIENT.OPEN_GUIDE, (data) => {
