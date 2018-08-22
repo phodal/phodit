@@ -1,3 +1,7 @@
+::selection {
+  background:transparent;
+}
+
 .header {
   height: 22px;
   width: 100%;
