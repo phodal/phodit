@@ -48,6 +48,14 @@ const simplemde = new (window as any).SimpleMDE({
 
 window.simplemde = simplemde;
 
+function updatePos(currentFile: string) {
+  let lastPos = localStorage.getItem("line_" + currentFile);
+  if (lastPos) {
+    let parsedPos = JSON.parse(lastPos);
+    simplemde.codemirror.setCursor(parsedPos.line, parsedPos.ch);
+  }
+}
+
 // 打开帮助
 window.document.addEventListener(EventConstants.CLIENT.OPEN_GUIDE, (data) => {
   ipcRenderer.send(EventConstants.PHODIT.OPEN_GUIDE, simplemde.value());
@@ -126,6 +134,8 @@ ipcRenderer.on(EventConstants.PHODIT.OPEN_ONE_FILE, (event: any, arg: IFileOpen)
   simplemde.codemirror.setOption("mode", getCodeMirrorMode(state.currentFile));
   state.isCurrentFileTemp = arg.isTempFile;
   simplemde.value(arg.data);
+  updatePos(arg.file);
+
   localStorage.setItem('currentFile', arg.file);
 });
 
