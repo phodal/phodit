@@ -54,12 +54,14 @@ Goal
 
 ### Setup
 
-#### Electron
+requirements: ``pandoc``, ``node.js``
 
 ```
 yarn install 
 yarn build:app
 ```
+
+[setup nodejieba in Windows](https://github.com/yanyiwu/nodejieba)
 
 #### Components
 
