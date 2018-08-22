@@ -32,13 +32,8 @@
         ipcRenderer.on('phodit.slide.send.content', function(event, data) {
           document.querySelector('html').innerHTML = data;
           setTimeout(function() {
-            // Full list of configuration options available at:
-            // https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
-              // Push each slide change to the browser history
               history: true,
-
-              // Optional reveal.js plugins
               dependencies: [
                 { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
                 { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
