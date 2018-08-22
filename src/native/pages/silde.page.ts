@@ -15,7 +15,7 @@ export function createSlidePage(BrowserWindow: any, arg: any) {
     slideWindow = new BrowserWindow({
       height: 1440,
       width: 960,
-      title: "帮助",
+      title: "Slide",
       fullscreen: true,
     });
 
