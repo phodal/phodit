@@ -1,30 +1,28 @@
 import * as path from "path";
 
 export function createHelpPage(BrowserWindow: any) {
-  let aboutWindow: any = null;
+  let helpWindow: any = null;
 
   function openAboutWindow() {
-    if (aboutWindow) {
-      aboutWindow.focus();
+    if (helpWindow) {
+      helpWindow.focus();
       return;
     }
 
-    aboutWindow = new BrowserWindow({
+    helpWindow = new BrowserWindow({
       height: 800,
       width: 600,
       title: "Markdown 帮助",
       backgroundColor: "#ddd",
     });
 
-    aboutWindow.on("closed", function() {
-      aboutWindow = null;
+    helpWindow.on("closed", function() {
+      helpWindow = null;
     });
 
-    aboutWindow.loadFile(path.join(__dirname, "../../../views/help.html"));
+    helpWindow.loadFile(path.join(__dirname, "../../../views/help.html"));
 
-    aboutWindow.once("ready-to-show", () => aboutWindow.show());
-
-    // aboutWindow.webContents.openDevTools();
+    helpWindow.once("ready-to-show", () => helpWindow.show());
   }
 
   openAboutWindow();
