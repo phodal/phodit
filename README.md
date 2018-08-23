@@ -56,6 +56,13 @@ Goal
 
 requirements: ``pandoc``, ``node.js``
 
+Submodule 
+
+```
+git submodule init
+git submodule update
+```
+
 ```
 yarn install 
 yarn build:app
@@ -64,6 +71,15 @@ yarn build:app
 [setup nodejieba in Windows](https://github.com/yanyiwu/nodejieba)
 
 #### Components
+
+Name       |    Path                | Stacks 
+-----------|------------------------|--------
+ editor    |  ./editor              | SimpleMDE
+ header    |  ./component/header    | Stencil.js
+ interact  |  ./component/interact   | Angular
+ tree-view |  ./component/tree-view | React
+
+Setup && build
 
 ```
 yarn install
