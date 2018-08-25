@@ -1,6 +1,6 @@
 {
   "name": "phodit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Phodal's new Markdown Editor",
   "main": "dist/native/main.js",
   "scripts": {
