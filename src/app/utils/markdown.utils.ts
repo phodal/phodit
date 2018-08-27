@@ -56,10 +56,11 @@ export function markdownRender(text: string, file: string) {
 }
 
 export function removeLastDirectoryPartOf(path: string) {
-  const splitArray = path.split("/");
   if (!path) {
     return path;
   }
+
+  const splitArray = path.split("/");
   splitArray.pop();
   return (splitArray.join("/"));
 }

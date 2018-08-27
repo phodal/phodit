@@ -1,4 +1,17 @@
+import {removeLastDirectoryPartOf} from "./markdown.utils";
+
+export function getFileName(path: string)  {
+  if (!path) {
+    return path;
+  }
+  console.log(path);
+  const splitArray = path.split("/");
+  return splitArray[splitArray.length - 1];
+}
+
 export function getCodeMirrorMode(file: string) {
+  file = getFileName(file);
+
   if (file.endsWith('.css')) {
     return 'css';
   }
