@@ -48,6 +48,18 @@ const simplemde = new (window as any).SimpleMDE({
 
 window.simplemde = simplemde;
 
+// @ts-ignore
+const clipboard = new ClipboardJS('.wechat-button');
+
+clipboard.on('success', function(event: any) {
+  console.info('Action:', event.action);
+  console.info('Text:', event.text);
+  console.info('Trigger:', event.trigger);
+
+  event.clearSelection();
+});
+
+
 function updatePos(currentFile: string) {
   let lastPos = localStorage.getItem("line_" + currentFile);
   if (lastPos) {
