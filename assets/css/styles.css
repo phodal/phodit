@@ -181,6 +181,11 @@ textarea#input {
   border-left: none;
 }
 
+#input .editor-preview-side pre > code {
+  font-size: 12px;
+  padding: 0;
+}
+
 #terminal-section {
   position: absolute;
   width: 100%;
