@@ -117,13 +117,15 @@ window.document.addEventListener(EventConstants.CLIENT.SHOW_SLIDES, () => {
   });
 });
 
-// 展示 SIDE
+// 隐藏 SIDE
 window.document.addEventListener(EventConstants.CLIENT.HIDDEN_SIDE, () => {
   document.getElementById('tree-view').setAttribute('style', "display: none;");
+  document.querySelector(".wechat-button").setAttribute("data-clipboard-target", ".editor-preview-side")
 });
 
-// 隐藏 SIDE
+// 展示 SIDE
 window.document.addEventListener(EventConstants.CLIENT.SHOW_SIDE, () => {
+  document.querySelector(".wechat-button").removeAttribute("data-clipboard-target")
   if (state.isPath) {
     document.getElementById('tree-view').setAttribute('style', "display: block;");
   }
