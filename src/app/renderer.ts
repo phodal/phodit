@@ -61,7 +61,7 @@ clipboard.on('success', function (event: any) {
 
 let wechatButton = document.querySelector('.wechat-button');
 wechatButton.addEventListener('click', function () {
-  console.log('wechatButton')
+  // createEvent('phodit.editor.toggle.preview', "");
 })
 
 
