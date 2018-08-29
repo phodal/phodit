@@ -51,13 +51,18 @@ window.simplemde = simplemde;
 // @ts-ignore
 const clipboard = new ClipboardJS('.wechat-button');
 
-clipboard.on('success', function(event: any) {
+clipboard.on('success', function (event: any) {
   console.info('Action:', event.action);
   console.info('Text:', event.text);
   console.info('Trigger:', event.trigger);
 
   event.clearSelection();
 });
+
+let wechatButton = document.querySelector('.wechat-button');
+wechatButton.addEventListener('click', function () {
+  console.log('wechatButton')
+})
 
 
 function updatePos(currentFile: string) {
