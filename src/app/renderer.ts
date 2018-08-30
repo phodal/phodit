@@ -52,18 +52,14 @@ window.simplemde = simplemde;
 const clipboard = new ClipboardJS('.wechat-button');
 
 clipboard.on('success', function (event: any) {
-  console.info('Action:', event.action);
-  console.info('Text:', event.text);
-  console.info('Trigger:', event.trigger);
-
+  swal({
+    title: "Copy Success", text: "Copy Success", icon: "info", dangerMode: true,
+    buttons: {
+      confirm: {text: "OK"}
+    }
+  })
   event.clearSelection();
 });
-
-let wechatButton = document.querySelector('.wechat-button');
-wechatButton.addEventListener('click', function () {
-  // createEvent('phodit.editor.toggle.preview', "");
-})
-
 
 function updatePos(currentFile: string) {
   let lastPos = localStorage.getItem("line_" + currentFile);
@@ -211,25 +207,10 @@ window.document.addEventListener(EventConstants.CLIENT.SEND_MARKDOWN, (event: an
 // Pandoc 转换
 window.document.addEventListener(EventConstants.CLIENT.SHOW_WORD, (event: any) => {
   swal({
-    title: "Open File",
-    text: "Are you want to Open File",
-    icon: "info",
-    dangerMode: true,
+    title: "Open File", text: "Are you want to Open File", icon: "info", dangerMode: true,
     buttons: {
-      cancel: {
-        text: "Cancel",
-        value: null,
-        visible: true,
-        className: "",
-        closeModal: true,
-      },
-      confirm: {
-        text: "OK",
-        value: true,
-        visible: true,
-        className: "",
-        closeModal: true
-      }
+      cancel: {text: "Cancel", visible: true},
+      confirm: {text: "OK"}
     }
   }).then((willDelete: any) => {
     if (willDelete) {
