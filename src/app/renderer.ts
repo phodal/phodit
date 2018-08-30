@@ -53,7 +53,7 @@ const clipboard = new ClipboardJS('.wechat-button');
 
 clipboard.on('success', function (event: any) {
   swal({
-    title: "Copy Success", text: "Copy Success", icon: "info", dangerMode: true,
+    title: "Copy Success", icon: "success", dangerMode: true,
     buttons: {
       confirm: {text: "OK"}
     }
