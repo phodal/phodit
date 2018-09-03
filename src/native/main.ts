@@ -10,6 +10,7 @@ import {createSlidePage} from "./pages/silde.page";
 import {openHtmlPage} from "./pages/html.page";
 import {EventConstants} from "../common/constants/event.constants";
 import {pandoc} from "./features/pandoc";
+import {dockMenu} from "./i18n/menu/menu.dock";
 
 const tmp = require("tmp");
 const chokidar = require('chokidar');
@@ -294,6 +295,8 @@ function createWindow() {
   });
   // }
 }
+
+app.dock.setMenu(Menu.buildFromTemplate(dockMenu));
 
 app.on("ready", createWindow);
 
