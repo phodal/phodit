@@ -316,6 +316,9 @@ app.on("open-file", (event, arg) => {
   openFile(arg);
 });
 
+// TODO: add protocol support
+app.setAsDefaultProtocolClient("md");
+
 ipcMain.on(EventConstants.PHODIT.OPEN_FILE, (event: any, arg: any) => {
   openFile(arg);
 });
