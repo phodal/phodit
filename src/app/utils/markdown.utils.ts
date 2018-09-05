@@ -34,7 +34,7 @@ export function markdownRender(text: string, file: string) {
   // https://marked.js.org/#/USING_ADVANCED.md
   let renderer = new marked.Renderer();
   renderer.listitem = (text: any) => {
-    return '<li><p><span style="color: #333;">' + text + '</span></p></li>\n';
+    return '<li><p><span style="color: #384452;">' + text + '</span></p></li>\n';
   };
 
   marked.setOptions({
