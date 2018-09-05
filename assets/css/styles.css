@@ -243,11 +243,9 @@ blockquote, dl, figure, form, ol, p, pre, table, ul {
   margin-bottom: 16px;
 }
 
-ol li,
-ul li,
 li p {
-  font-size: 14px;
-  color: #384452;
+  display: inline-block;
+  margin: 0;
 }
 
 interact-bar {
