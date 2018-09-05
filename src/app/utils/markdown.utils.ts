@@ -32,8 +32,13 @@ class MarkdownImprove {
 export function markdownRender(text: string, file: string) {
   // Options list
   // https://marked.js.org/#/USING_ADVANCED.md
+  let renderer = new marked.Renderer();
+  renderer.listitem = (text: any) => {
+    return '<li><p><span style="color: #333;">' + text + '</span></p></li>\n';
+  };
+
   marked.setOptions({
-    renderer: new marked.Renderer(),
+    renderer: renderer,
     highlight: function(code: string) {
       return require('highlight.js').highlightAuto(code).value;
     },
