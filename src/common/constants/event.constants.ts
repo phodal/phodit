@@ -14,6 +14,7 @@ export const EventConstants = {
     OPEN_GUIDE: "phodit.open.guide",
     SHOW_SLIDES: "phodit.show.echoesworks",
     SHOW_WORD: "phodit.show.word",
+    SHOW_PDF: "phodit.show.pdf",
     GIT_STATUS: "phodit.git.status",
   },
   CLIENT: {
@@ -22,6 +23,7 @@ export const EventConstants = {
     FULL_SCREEN: "phodit.editor.fullscreen",
     UN_FULL_SCREEN: "phodit.editor.unfullscreen",
     SHOW_WORD: "phodit.editor.show.word",
+    SHOW_PDF: "phodit.editor.show.pdf",
     SHOW_TERMINAL: "phodit.editor.git.commit",
     HIDDEN_TERMINAL: "phodit.editor.hidden.terminal",
     OPEN_GUIDE: "phodit.editor.open.guide",

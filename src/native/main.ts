@@ -365,6 +365,10 @@ ipcMain.on(EventConstants.PHODIT.SHOW_WORD, (event: any, arg: any) => {
   pandoc.word(arg);
 });
 
+ipcMain.on(EventConstants.PHODIT.SHOW_PDF, (event: any, arg: any) => {
+  pandoc.pdf(arg);
+});
+
 ipcMain.on("phodit.system.open.path", (event: any, arg: any) => {
   console.log(arg);
   require('electron').shell.showItemInFolder(arg);

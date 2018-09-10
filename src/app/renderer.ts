@@ -218,3 +218,18 @@ window.document.addEventListener(EventConstants.CLIENT.SHOW_WORD, (event: any) =
     }
   });
 });
+
+// Pandoc 转换
+window.document.addEventListener(EventConstants.CLIENT.SHOW_PDF, (event: any) => {
+  swal({
+    title: "Open File", text: "Are you want to Open File", icon: "info", dangerMode: true,
+    buttons: {
+      cancel: {text: "Cancel", visible: true},
+      confirm: {text: "OK"}
+    }
+  }).then((willDelete: any) => {
+    if (willDelete) {
+      ipcRenderer.send(EventConstants.PHODIT.SHOW_PDF, state.currentFile);
+    }
+  });
+});
