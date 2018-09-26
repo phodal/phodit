@@ -2,6 +2,10 @@
   background:transparent;
 }
 
+#input .CodeMirror {
+  font-family: "FZNewShuSong_GB18030-Z10";
+}
+
 .CodeMirror div.CodeMirror-cursor {
   border-left: 2px solid #103af3;
 }
