@@ -2,6 +2,10 @@
   background:transparent;
 }
 
+.CodeMirror div.CodeMirror-cursor {
+  border-left: 2px solid #103af3;
+}
+
 .header {
   height: 22px;
   width: 100%;
