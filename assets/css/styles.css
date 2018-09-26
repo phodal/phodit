@@ -6,6 +6,22 @@
   font-family: "FZNewShuSong_GB18030-Z10";
 }
 
+#input .CodeMirror-code pre.CodeMirror-line  {
+  font-family: "Source Code Variable";
+}
+
+.cm-keyword,
+.cm-property,
+.cm-operator,
+.cm-def,
+.cm-number,
+.cm-variable,
+.cm-variable-2,
+.cm-string,
+.cm-string-2 {
+  font-size: 12px;
+}
+
 .CodeMirror div.CodeMirror-cursor {
   border-left: 2px solid #0b85f3;
 }
