@@ -2,10 +2,6 @@
   background:transparent;
 }
 
-#input .CodeMirror {
-  font-family: "FZNewShuSong_GB18030-Z10";
-}
-
 #input .CodeMirror-code pre.CodeMirror-line  {
   font-family: "Source Code Variable", "FZNewShuSong_GB18030-Z10";
 }
