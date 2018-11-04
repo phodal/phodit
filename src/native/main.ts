@@ -52,15 +52,15 @@ function dirTree(filename: string) {
 }
 
 function openFile(willLoadFile: string, isTempFile: boolean = false) {
-  if (/\.(jpe?g|png|gif|bmp|ico)$/i.test(willLoadFile)) {
+  let imageRegex = /\.(jpe?g|png|gif|bmp|ico)$/i;
+  let htmlRegex = /\.(html)$/i;
+  let wordRegex = /\.(doc?x)$/i;
+
+  if (imageRegex.test(willLoadFile)) {
     return mainWindow.previewFile(willLoadFile);
-  }
-
-  if (/\.(html)$/i.test(willLoadFile)) {
+  } else if (htmlRegex.test(willLoadFile)) {
     return openHtmlPage(BrowserWindow, willLoadFile);
-  }
-
-  if (/\.(doc?x)$/i.test(willLoadFile)) {
+  } else if (wordRegex.test(willLoadFile)) {
     return shell.openItem(willLoadFile);
   }
 
