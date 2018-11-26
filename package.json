@@ -22,10 +22,10 @@
   "homepage": "https://github.com/phodal/phodit#readme",
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron": "^3.0.10",
-    "electron-packager": "^12.2.0",
+    "electron": "^2.0.5",
+    "electron-packager": "^12.1.0",
     "tslint": "^5.10.0",
-    "typescript": "^3.1.6"
+    "typescript": "^2.9.2"
   },
   "dependencies": {
     "chokidar": "^2.0.4",
