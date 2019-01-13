@@ -27,6 +27,17 @@
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   },
+  "build": {
+    "fileAssociations": [{
+      "ext": "md",
+      "name": "Phodit Editor",
+      "role": "Editor"
+    }, {
+      "ext": "md",
+      "name": "Phodit Editor",
+      "role": "Editor"
+    }]
+  },
   "dependencies": {
     "chokidar": "^2.0.4",
     "electron-json-storage": "^4.1.1",
