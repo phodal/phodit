@@ -28,13 +28,19 @@
     "typescript": "^2.9.2"
   },
   "build": {
+    "appId": "com.phodal.phodit",
+    "productName": "Phodit",
+    "directories": {
+      "output": "build"
+    },
+    "copyright": "Copyright © year ${author}",
     "fileAssociations": [{
       "ext": "md",
-      "name": "Phodit Editor",
+      "name": "Phodit",
       "role": "Editor"
     }, {
       "ext": "md",
-      "name": "Phodit Editor",
+      "name": "Phodit",
       "role": "Editor"
     }]
   },
