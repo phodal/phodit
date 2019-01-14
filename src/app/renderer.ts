@@ -235,10 +235,8 @@ window.document.addEventListener(EventConstants.CLIENT.SHOW_PDF, (event: any) =>
 });
 
 function init() {
-  ['cut', 'copy', 'paste'].forEach(function(event) {
-    document.addEventListener(event, function(e) {
+  simplemde.codemirror.on('change', function(cm, change) {
 
-    });
   });
 }
 
