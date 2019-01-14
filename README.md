@@ -22,6 +22,8 @@ Features
  - search by: Google, Baidu, WIKI, Zhihu, Github
  - **Phodal's blog relative search**
  - fold title
+ - wechat publish format
+ - slides support (by reveal.js)
  
 Tech Stack
 ---
