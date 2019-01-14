@@ -8,7 +8,7 @@
 
 Screenshots
 
-![Screenshots](./docs/phodit-ss.jpg)
+![Screenshots](./docs/phodit.jpg)
 
 Features
 ---
@@ -21,6 +21,7 @@ Features
  - code highlight support
  - search by: Google, Baidu, WIKI, Zhihu, Github
  - **Phodal's blog relative search**
+ - fold title
  
 Tech Stack
 ---
