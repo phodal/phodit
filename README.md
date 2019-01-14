@@ -3,7 +3,7 @@
 > a personal markdown editor with electron for Phodal
 
 <p align="center">
-  <img width="128" height="128" src="./assets/imgs/icons/png/128x128.png">
+  <img width="128" height="128" src="./assets/imgs/icons/png/256x256.png">
 </p> 
 
 Screenshots
