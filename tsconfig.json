@@ -10,7 +10,11 @@
       "*": [
         "node_modules/*"
       ]
-    }
+    },
+    "lib": [
+      "es2018",
+      "dom"
+    ]
   },
   "include": [
     "src/**/*"
