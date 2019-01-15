@@ -296,6 +296,18 @@ function createWindow() {
   // }
 }
 
+function reloadPath(isWatch = false) {
+  storage.get("storage.last.path", function (error: any, data: any) {
+    if (error) {
+      throw error;
+    }
+
+    if (data && data.file) {
+      openPath(data.file, isWatch);
+    }
+  });
+}
+
 app.dock.setMenu(Menu.buildFromTemplate(dockMenu));
 
 app.on("ready", createWindow);
@@ -344,18 +356,6 @@ ipcMain.on(EventConstants.PHODIT.UN_FULL_SCREEN, (event: any, arg: any) => {
   mainWindow.setFullScreen(false);
   mainWindow.unmaximize();
 });
-
-function reloadPath(isWatch = false) {
-  storage.get("storage.last.path", function (error: any, data: any) {
-    if (error) {
-      throw error;
-    }
-
-    if (data && data.file) {
-      openPath(data.file, isWatch);
-    }
-  });
-}
 
 ipcMain.on(EventConstants.PHODIT.RELOAD_PATH, (event: any, arg: any) => {
   reloadPath();
