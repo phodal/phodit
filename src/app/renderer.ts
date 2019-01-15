@@ -235,7 +235,7 @@ window.document.addEventListener(EventConstants.CLIENT.SHOW_PDF, (event: any) =>
 });
 
 function init() {
-  simplemde.codemirror.on('change', function(cm, change) {
+  simplemde.codemirror.on('change', function(cm: any, change: any) {
 
   });
 }
