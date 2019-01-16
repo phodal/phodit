@@ -8,6 +8,7 @@ import {getCodeMirrorMode} from "./utils/file.utils";
 import {EventConstants} from "../common/constants/event.constants";
 
 // require("devtron").install();
+
 declare global {
   interface Window {
     simplemde: any
@@ -226,13 +227,6 @@ class ClientUI {
     // 改变临时文件的状态
     ipcRenderer.on(EventConstants.TEMP_FILE_STATUS, (event: any, arg: any) => {
       this.state.isCurrentFileTemp = arg.isTempFile;
-    });
-
-    // 加载完成
-    ipcRenderer.on('phodit.lifecycle.load', (event: any, arg: any) => {
-      // if (!this.state.currentFile) {
-      //   this.simplemde.value('');
-      // }
     });
   };
 }

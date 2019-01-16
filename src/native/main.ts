@@ -318,7 +318,7 @@ ipcMain.on(EventConstants.PHODIT.OPEN_GUIDE, (event: any, arg: any) => {
   openAboutPage();
 });
 
-ipcMain.on("phodit.show.echoesworks", (event: any, arg: any) => {
+ipcMain.on(EventConstants.PHODIT.SHOW_SLIDES, (event: any, arg: any) => {
   createSlidePage(BrowserWindow, arg);
 });
 
@@ -344,7 +344,7 @@ ipcMain.on(EventConstants.PHODIT.SHOW_PDF, (event: any, arg: any) => {
   pandoc.pdf(arg);
 });
 
-ipcMain.on("phodit.system.open.path", (event: any, arg: any) => {
+ipcMain.on(EventConstants.PHODIT.OPEN_SYSTEM_PATH, (event: any, arg: any) => {
   console.log(arg);
   require('electron').shell.showItemInFolder(arg);
 });
@@ -370,13 +370,13 @@ ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {
 
 function initMain() {
   console.log(`storage path: ${defaultDataPath}`);
-
   app.dock.setMenu(Menu.buildFromTemplate(dockMenu));
 
   app.on("ready", createWindow);
 
   app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
+    let isMacOS = process.platform === "darwin";
+    if (!isMacOS) {
       app.quit();
     }
   });
@@ -391,8 +391,9 @@ function initMain() {
     openFile(arg);
   });
 
-// TODO: add protocol support
+  // TODO: add protocol support
   app.setAsDefaultProtocolClient("md");
+  app.setAsDefaultProtocolClient("markdown");
 }
 
 initMain();
