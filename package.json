@@ -4,11 +4,12 @@
   "description": "Phodal's new Markdown Editor",
   "main": "dist/native/main.js",
   "scripts": {
-    "build": "tsc && cp -a views dist",
-    "build:app": "electron-packager --ignore=components --ignore=editor/node_modules --ignore=nlp . Phodit --platform=darwin --icon=assets/imgs/icons/mac/icon.icns --overwrite",
+    "build:native": "tsc && cp -a views dist",
+    "build:packager": "electron-packager --ignore=components --ignore=editor/node_modules --ignore=nlp . Phodit --platform=darwin --icon=assets/imgs/icons/mac/icon.icns --overwrite",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "npm run build && electron ./dist/native/main.js",
+    "start": "yar build:native && electron ./dist/native/main.js",
+    "pack": "build:native && electron-builder",
     "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\""
   },
   "repository": {
@@ -32,9 +33,6 @@
   "build": {
     "appId": "com.phodal.phodit",
     "productName": "Phodit",
-    "directories": {
-      "output": "build"
-    },
     "copyright": "Copyright © year ${author}",
     "fileAssociations": [
       {
@@ -47,7 +45,33 @@
         "name": "Phodit",
         "role": "Editor"
       }
-    ]
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "nsis": {
+      "createDesktopShortcut": "always"
+    },
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "category": "Development"
+    }
   },
   "dependencies": {
     "@types/clipboard": "^2.0.1",

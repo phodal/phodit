@@ -32,3 +32,4 @@ Phodit-darwin-x64/
 componets/**/dist
 assets/data
 logo.png
+*.tgz
