@@ -50,6 +50,7 @@
     "files": [
       "!components/**",
       "!editor/**",
+      "!views/reveal.js/test**",
       "!.git/**",
       "!.editorconfig"
     ],
