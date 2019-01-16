@@ -33,3 +33,4 @@ componets/**/dist
 assets/data
 logo.png
 *.tgz
+build

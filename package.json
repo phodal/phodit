@@ -6,10 +6,10 @@
   "scripts": {
     "build:native": "tsc && cp -a views dist",
     "build:packager": "electron-packager --ignore=components --ignore=editor/node_modules --ignore=nlp . Phodit --platform=darwin --icon=assets/imgs/icons/mac/icon.icns --overwrite",
+    "build:app": "build:native && electron-builder ./",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start": "yar build:native && electron ./dist/native/main.js",
-    "pack": "build:native && electron-builder",
     "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\""
   },
   "repository": {
@@ -33,6 +33,7 @@
   "build": {
     "appId": "com.phodal.phodit",
     "productName": "Phodit",
+    "asar": "false",
     "copyright": "Copyright © year ${author}",
     "fileAssociations": [
       {
@@ -46,11 +47,21 @@
         "role": "Editor"
       }
     ],
+    "files": [
+      "!components/**",
+      "!editor/**",
+      "!.git/**",
+      "!.editorconfig"
+    ],
     "directories": {
       "output": "build"
     },
     "mac": {
+      "icon": "assets/imgs/icons/mac/icon.icns",
       "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "icon": "assets/imgs/icons/win/icon.ico"
     },
     "nsis": {
       "createDesktopShortcut": "always"
@@ -70,6 +81,7 @@
       ]
     },
     "linux": {
+      "icon": "assets/imgs/icons/png/1024x1024.png",
       "category": "Development"
     }
   },
