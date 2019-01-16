@@ -3,7 +3,7 @@ let pty = require('node-pty');
 let Terminal = require('xterm').Terminal;
 
 export function createTerminal(path?: string) {
-// Initialize node-pty with an appropriate shell
+  // Initialize node-pty with an appropriate shell
   const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL'];
   const ptyProcess = pty.spawn(shell, [], {
     name: 'xterm-color',
@@ -13,11 +13,11 @@ export function createTerminal(path?: string) {
     env: process.env
   });
 
-// Initialize xterm.js and attach it to the DOM
+  // Initialize xterm.js and attach it to the DOM
   const xterm = new Terminal();
   xterm.open(document.getElementById('terminal'));
 
-// Setup communication between xterm.js and node-pty
+  // Setup communication between xterm.js and node-pty
   xterm.on('data', (data: any) => {
     ptyProcess.write(data);
   });

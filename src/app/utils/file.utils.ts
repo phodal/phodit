@@ -1,5 +1,3 @@
-import {removeLastDirectoryPartOf} from "./markdown.utils";
-
 export function getFileName(path: string)  {
   if (!path) {
     return path;

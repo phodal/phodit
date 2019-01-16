@@ -1,5 +1,5 @@
 export function createEvent(name: string, data: any) {
-  let event: CustomEvent;
+  let event: CustomEvent<string>;
   if (typeof data === "string") {
     event = new CustomEvent(name, {
       detail: data,

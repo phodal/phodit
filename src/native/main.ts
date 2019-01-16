@@ -25,8 +25,6 @@ const dataWithIndex: any[] = [];
 let lunrIdx: any;
 let currentFile: string;
 
-console.log(`storage path: ${defaultDataPath}`);
-
 let mainWindow: Electron.BrowserWindow;
 let dir;
 
@@ -308,29 +306,6 @@ function reloadPath(isWatch = false) {
   });
 }
 
-app.dock.setMenu(Menu.buildFromTemplate(dockMenu));
-
-app.on("ready", createWindow);
-
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
-});
-
-app.on("activate", () => {
-  if (mainWindow === null) {
-    createWindow();
-  }
-});
-
-app.on("open-file", (event, arg) => {
-  openFile(arg);
-});
-
-// TODO: add protocol support
-app.setAsDefaultProtocolClient("md");
-
 ipcMain.on(EventConstants.PHODIT.OPEN_FILE, (event: any, arg: any) => {
   openFile(arg);
 });
@@ -392,3 +367,32 @@ ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {
 
   mainWindow.webContents.send(EventConstants.PHODIT.SUGGEST_SEND, response);
 });
+
+function initMain() {
+  console.log(`storage path: ${defaultDataPath}`);
+
+  app.dock.setMenu(Menu.buildFromTemplate(dockMenu));
+
+  app.on("ready", createWindow);
+
+  app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") {
+      app.quit();
+    }
+  });
+
+  app.on("activate", () => {
+    if (mainWindow === null) {
+      createWindow();
+    }
+  });
+
+  app.on("open-file", (event, arg) => {
+    openFile(arg);
+  });
+
+// TODO: add protocol support
+  app.setAsDefaultProtocolClient("md");
+}
+
+initMain();
