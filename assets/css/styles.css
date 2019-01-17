@@ -345,3 +345,22 @@ interact-bar {
   --sidebar-color: #333;
   --box-color: grey;
 }
+
+[data-theme^="dark"] #input .editor-statusbar,
+[data-theme^="dark"] #input .editor-toolbar {
+  background: #282a36;
+}
+
+[data-theme^="dark"] .editor-toolbar i.separator {
+  border-left: none;
+}
+
+[data-theme^="dark"] #input .editor-toolbar a,
+[data-theme^="dark"] #input .editor-statusbar,
+[data-theme^="dark"] #input .editor-toolbar button {
+  color: #f8f8f2!important;
+}
+
+[data-theme^="dark"] #input .editor-toolbar button:hover {
+  background: grey!important;
+}
