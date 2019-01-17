@@ -35,5 +35,6 @@ export const EventConstants = {
     GET_RENDERER_MARKDOWN: "phodit.editor.get.result",
     SHOW_SIDE: "phodit.editor.showside",
     HIDDEN_SIDE: "phodit.editor.hiddenside",
+    TOGGLE_THEME: "phodit.editor.theme.toggle",
   },
 };

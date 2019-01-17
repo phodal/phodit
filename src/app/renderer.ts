@@ -7,6 +7,7 @@ import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils"
 import {getCodeMirrorMode} from "./utils/file.utils";
 import {EventConstants} from "../common/constants/event.constants";
 const { remote } = require('electron');
+const {systemPreferences} = remote;
 
 // require("devtron").install();
 
@@ -107,6 +108,11 @@ class ClientUI {
     // Terminal hidden
     window.document.addEventListener(EventConstants.CLIENT.HIDDEN_TERMINAL, () => {
       document.getElementById('terminal-section').setAttribute('style', "display: none;");
+    });
+
+    // Toggle Themes
+    window.document.addEventListener(EventConstants.CLIENT.TOGGLE_THEME, () => {
+      this.toggleTheme()
     });
 
     // ShowSlides
@@ -231,25 +237,33 @@ class ClientUI {
     });
   };
 
+
+  setOSTheme() {
+    window.localStorage.os_theme = systemPreferences.isDarkMode() ? 'dark' : 'light';
+    if ('__setTheme' in window) {
+      (window as any).__setTheme();
+    }
+  };
+
+  toggleTheme() {
+    if (window.localStorage.os_theme === 'dark') {
+      window.localStorage.os_theme = 'light';
+    } else {
+      window.localStorage.os_theme = 'dark';
+    }
+
+    (window as any).__setTheme();
+  }
+
   setupThemes() {
     if (process.platform == 'darwin') {
-      const {systemPreferences} = remote;
-
-      const setOSTheme = () => {
-        window.localStorage.os_theme = systemPreferences.isDarkMode() ? 'dark' : 'light';
-        console.log(window.localStorage.os_theme);
-
-        if ('__setTheme' in window) {
-          (window as any).__setTheme();
-        }
-      };
 
       systemPreferences.subscribeNotification(
         'AppleInterfaceThemeChangedNotification',
-        setOSTheme,
+        this.setOSTheme,
       );
 
-      setOSTheme()
+      this.setOSTheme()
     }
   }
 }
