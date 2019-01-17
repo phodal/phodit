@@ -346,6 +346,7 @@ interact-bar {
   --box-color: grey;
 }
 
+[data-theme^="dark"] .CodeMirror,
 [data-theme^="dark"] #input .editor-statusbar,
 [data-theme^="dark"] #input .editor-toolbar {
   background: #282a36;
@@ -361,6 +362,18 @@ interact-bar {
   color: #f8f8f2!important;
 }
 
+[data-theme^="dark"] #input .CodeMirror {
+  color: #fff;
+  background: #44475a;
+  border-left: none;
+}
+
+[data-theme^="dark"] #input .CodeMirror-code pre.CodeMirror-line {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
+  font-size: 15px;
+}
+
+[data-theme^="dark"] .CodeMirror-gutters,
 [data-theme^="dark"] #input .editor-toolbar button:hover {
-  background: grey!important;
+  background: #44475a!important;
 }
