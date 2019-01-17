@@ -240,9 +240,7 @@ class ClientUI {
         console.log(window.localStorage.os_theme);
 
         if ('__setTheme' in window) {
-          let OSTheme = localStorage.os_theme;
-          let defaultTheme = 'light';
-          document.documentElement.setAttribute('data-theme', OSTheme || defaultTheme,)
+          (window as any).__setTheme();
         }
       };
 
