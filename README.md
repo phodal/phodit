@@ -1,6 +1,6 @@
-# Phodit
+# Phodit - 私人定制的 Markdown 编辑器
 
-> a personal markdown editor with electron for Phodal
+> 一个基于 Electron 的私人定制的 Markdown 编辑器
 
 <p align="center">
   <img width="128" height="128" src="./assets/imgs/icons/png/256x256.png">
@@ -13,43 +13,42 @@ Screenshots
 Features
 ---
 
- - support for git markdown project
- - Terminal integration
- - tree navigator
- - fullscreen support
- - preview markdown
- - code highlight support
- - search by: Google, Baidu, WIKI, Zhihu, Github
- - **Phodal's blog relative search**
- - fold title
- - wechat publish format
- - slides support (by reveal.js)
+ - **标题折叠**
+ - 集成 Terminal 
+ - 支持所见所得模式
+ - 支持使用 Git 来编写 markdown 项目
+ - 树型结构文件夹
+ - 全屏
+ - markdown 预览
+ - 语法高亮
+ - 右键选择搜索: Google, Baidu, WIKI, Zhihu, Github
+ - [phodal.com](https://www.phodal.com) 相关文章搜索（通过 "《"开始搜索）
+ - 微信公众号排版支持
+ - 支持 Slide 编写(by reveal.js)
+ - `.md` 和 `.markdown` 文件关联打开
  
 Tech Stack
 ---
 
- - Stencil.js + Web Components -> Terminal Header
- - SimpleMDE + CodeMirror -> Editor
+Phodit 是一个使用**微前端架构**开发的 Electron 应用：
+
  - React.js -> TreeView
+ - Angular -> Rename box
+ - Stencil.js + Web Components -> Terminal Header
+ 
+相应的技术栈有：
+ 
+ - SimpleMDE + CodeMirror -> Editor
  - xterm -> Terminal
  - marked -> Markdown Parser
  - highlight.js -> Code Highlight
  - lunr -> search engine 
- - Angular -> Rename box
  - Reveal.js -> Slide
  
 Goal
 ---
 
  - 一键发布到各个平台的自动化脚本
- - 支持微信公众号编辑器
-
-### 技术细节
-
- - 国际化支持
- - WebComponents 内建
- - 微前端架构 
- - Web Worker
 
 ### Setup
 
