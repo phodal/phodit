@@ -6,6 +6,7 @@ import {createEvent} from "./utils/event.util";
 import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
 import {getCodeMirrorMode} from "./utils/file.utils";
 import {EventConstants} from "../common/constants/event.constants";
+const { remote } = require('electron');
 
 // require("devtron").install();
 
@@ -229,8 +230,33 @@ class ClientUI {
       this.state.isCurrentFileTemp = arg.isTempFile;
     });
   };
+
+  setupThemes() {
+    if (process.platform == 'darwin') {
+      const {systemPreferences} = remote;
+
+      const setOSTheme = () => {
+        window.localStorage.os_theme = systemPreferences.isDarkMode() ? 'dark' : 'light';
+        console.log(window.localStorage.os_theme);
+
+        if ('__setTheme' in window) {
+          let OSTheme = localStorage.os_theme;
+          let defaultTheme = 'light';
+          document.documentElement.setAttribute('data-theme', OSTheme || defaultTheme,)
+        }
+      };
+
+      systemPreferences.subscribeNotification(
+        'AppleInterfaceThemeChangedNotification',
+        setOSTheme,
+      );
+
+      setOSTheme()
+    }
+  }
 }
 
 let client = new ClientUI();
 client.init();
 client.bindEvent();
+client.setupThemes();

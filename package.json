@@ -9,7 +9,7 @@
     "build:app": "build:native && electron-builder ./",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "yar build:native && electron ./dist/native/main.js",
+    "start": "yarn build:native && electron ./dist/native/main.js",
     "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\""
   },
   "repository": {

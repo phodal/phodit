@@ -328,3 +328,20 @@ interact-bar {
 .CodeMirror-foldgutter-folded:after {
   content: "\25B8";
 }
+
+[data-theme^="light"],
+[data-theme] [data-theme^="light"] {
+  --main-color: #000;
+  --background-color: #fff;
+  --box-color: lightgrey;
+}
+
+[data-theme^="dark"],
+[data-theme] [data-theme^="dark"],
+[data-theme="light-dark-sidebar"] nav {
+  --blue-color: #1da1f2;
+  --main-color: #fff;
+  --background-color: #000;
+  --sidebar-color: #333;
+  --box-color: grey;
+}
