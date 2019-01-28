@@ -1,19 +1,20 @@
-import {IFileOpen} from "../common/interface/IFileOpen";
-import "./menu.right";
-import "./key.event";
-import {createTerminal} from './plugins/terminal';
-import {createEvent} from "./utils/event.util";
-import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
-import {getCodeMirrorMode} from "./utils/file.utils";
 import {EventConstants} from "../common/constants/event.constants";
-const { remote } = require('electron');
+import {IFileOpen} from "../common/interface/IFileOpen";
+import "./key.event";
+import "./menu.right";
+import {createTerminal} from "./plugins/terminal";
+import {createEvent} from "./utils/event.util";
+import {getCodeMirrorMode} from "./utils/file.utils";
+import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
+const { remote } = require("electron");
 const {systemPreferences} = remote;
 
 // require("devtron").install();
 
 declare global {
+  // tslint:disable-next-line
   interface Window {
-    simplemde: any
+    simplemde: any;
   }
 }
 
@@ -21,16 +22,16 @@ const {ipcRenderer} = require("electron");
 const swal = require("sweetalert");
 
 class ClientUI {
-  state = {
+  public state = {
     isShowTerminal: false,
     hasCreateTerminal: false,
-    currentFile: '',
+    currentFile: "",
     isCurrentFileTemp: false,
     isOneFile: false,
-    isPath: false
+    isPath: false,
   };
 
-  simplemde = new (window as any).SimpleMDE({
+  public simplemde = new (window as any).SimpleMDE({
     spellChecker: false,
     autosave: {
       enabled: true,
@@ -38,41 +39,41 @@ class ClientUI {
       delay: 1000,
     },
     promptTexts: {
-      link: 'link',
-      image: 'image'
+      link: "link",
+      image: "image",
     },
     autoDownloadFontAwesome: false,
     renderingConfig: {
-      codeSyntaxHighlighting: true
+      codeSyntaxHighlighting: true,
     },
     element: document.getElementById("input-section"),
   });
 
-  init () {
+  public init() {
     (window as any).simplemde = this.simplemde;
    // @ts-ignore
-    const clipboard = new ClipboardJS('.wechat-button');
+    const clipboard = new ClipboardJS(".wechat-button");
 
-    clipboard.on('success', function (event: any) {
+    clipboard.on("success", (event: any) => {
       swal({
         title: "Copy Success", icon: "success", dangerMode: true,
         buttons: {
-          confirm: {text: "OK"}
-        }
+          confirm: {text: "OK"},
+        },
       });
       event.clearSelection();
     });
   }
 
-  updatePos(currentFile: string) {
-    let lastPos = localStorage.getItem("line_" + currentFile);
+  public updatePos(currentFile: string) {
+    const lastPos = localStorage.getItem("line_" + currentFile);
     if (lastPos) {
-      let parsedPos = JSON.parse(lastPos);
+      const parsedPos = JSON.parse(lastPos);
       this.simplemde.codemirror.setCursor(parsedPos.line, parsedPos.ch);
     }
   }
 
-  bindEvent () {
+  public bindEvent() {
     // 打开帮助
     window.document.addEventListener(EventConstants.CLIENT.OPEN_GUIDE, (data) => {
       ipcRenderer.send(EventConstants.PHODIT.OPEN_GUIDE, this.simplemde.value());
@@ -80,13 +81,13 @@ class ClientUI {
 
     // 全屏
     window.document.addEventListener(EventConstants.CLIENT.FULL_SCREEN, (data) => {
-      document.getElementById('input').classList.add('full-screen');
+      document.getElementById("input").classList.add("full-screen");
       ipcRenderer.send(EventConstants.PHODIT.FULL_SCREEN);
     });
 
     // 取消全屏
     window.document.addEventListener(EventConstants.CLIENT.UN_FULL_SCREEN, (data) => {
-      document.getElementById('input').classList.remove('full-screen');
+      document.getElementById("input").classList.remove("full-screen");
       ipcRenderer.send(EventConstants.PHODIT.UN_FULL_SCREEN);
     });
 
@@ -99,20 +100,20 @@ class ClientUI {
 
       this.state.isShowTerminal = !this.state.isShowTerminal;
       if (this.state.isShowTerminal) {
-        document.getElementById('terminal-section').setAttribute('style', "display: block;");
+        document.getElementById("terminal-section").setAttribute("style", "display: block;");
       } else {
-        document.getElementById('terminal-section').setAttribute('style', "display: none;");
+        document.getElementById("terminal-section").setAttribute("style", "display: none;");
       }
     });
 
     // Terminal hidden
     window.document.addEventListener(EventConstants.CLIENT.HIDDEN_TERMINAL, () => {
-      document.getElementById('terminal-section').setAttribute('style', "display: none;");
+      document.getElementById("terminal-section").setAttribute("style", "display: none;");
     });
 
     // Toggle Themes
     window.document.addEventListener(EventConstants.CLIENT.TOGGLE_THEME, () => {
-      this.toggleTheme()
+      this.toggleTheme();
     });
 
     // ShowSlides
@@ -129,15 +130,15 @@ class ClientUI {
 
     // 隐藏 SIDE
     window.document.addEventListener(EventConstants.CLIENT.HIDDEN_SIDE, () => {
-      document.getElementById('tree-view').setAttribute('style', "display: none;");
-      document.querySelector(".wechat-button").setAttribute("data-clipboard-target", ".editor-preview-side")
+      document.getElementById("tree-view").setAttribute("style", "display: none;");
+      document.querySelector(".wechat-button").setAttribute("data-clipboard-target", ".editor-preview-side");
     });
 
     // 展示 SIDE
     window.document.addEventListener(EventConstants.CLIENT.SHOW_SIDE, () => {
-      document.querySelector(".wechat-button").removeAttribute("data-clipboard-target")
+      document.querySelector(".wechat-button").removeAttribute("data-clipboard-target");
       if (this.state.isPath) {
-        document.getElementById('tree-view').setAttribute('style', "display: block;");
+        document.getElementById("tree-view").setAttribute("style", "display: block;");
       }
     });
 
@@ -148,7 +149,7 @@ class ClientUI {
 
     // 打开左侧树型文件
     window.document.addEventListener(EventConstants.CLIENT.TREE_OPEN, (event: any) => {
-      let file = JSON.parse(event.detail).filename;
+      const file = JSON.parse(event.detail).filename;
       this.state.currentFile = file;
       this.state.isOneFile = true;
 
@@ -171,8 +172,8 @@ class ClientUI {
         title: "Open File", text: "Are you want to Open File", icon: "info", dangerMode: true,
         buttons: {
           cancel: {text: "Cancel", visible: true},
-          confirm: {text: "OK"}
-        }
+          confirm: {text: "OK"},
+        },
       }).then((willDelete: any) => {
         if (willDelete) {
           ipcRenderer.send(EventConstants.PHODIT.SHOW_WORD, this.state.currentFile);
@@ -186,8 +187,8 @@ class ClientUI {
         title: "Open File", text: "Are you want to Open File", icon: "info", dangerMode: true,
         buttons: {
           cancel: {text: "Cancel", visible: true},
-          confirm: {text: "OK"}
-        }
+          confirm: {text: "OK"},
+        },
       }).then((willDelete: any) => {
         if (willDelete) {
           ipcRenderer.send(EventConstants.PHODIT.SHOW_PDF, this.state.currentFile);
@@ -209,7 +210,7 @@ class ClientUI {
       this.simplemde.value(arg.data);
       this.updatePos(arg.file);
 
-      localStorage.setItem('currentFile', arg.file);
+      localStorage.setItem("currentFile", arg.file);
     });
 
     // 保存文件
@@ -223,11 +224,11 @@ class ClientUI {
     // 打开某一目录
     ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
       this.state.isPath = true;
-      document.getElementById('tree-view').setAttribute('style', "display: block");
+      document.getElementById("tree-view").setAttribute("style", "display: block");
 
       createEvent("phodit.tree.open", {
         path: arg.path,
-        tree: arg.tree
+        tree: arg.tree,
       });
     });
 
@@ -235,40 +236,39 @@ class ClientUI {
     ipcRenderer.on(EventConstants.TEMP_FILE_STATUS, (event: any, arg: any) => {
       this.state.isCurrentFileTemp = arg.isTempFile;
     });
-  };
+  }
 
 
-  setOSTheme() {
-    window.localStorage.os_theme = systemPreferences.isDarkMode() ? 'dark' : 'light';
-    if ('__setTheme' in window) {
+  public setOSTheme() {
+    window.localStorage.os_theme = systemPreferences.isDarkMode() ? "dark" : "light";
+    if ("__setTheme" in window) {
       (window as any).__setTheme();
     }
-  };
+  }
 
-  toggleTheme() {
-    if (window.localStorage.os_theme === 'dark') {
-      window.localStorage.os_theme = 'light';
+  public toggleTheme() {
+    if (window.localStorage.os_theme === "dark") {
+      window.localStorage.os_theme = "light";
     } else {
-      window.localStorage.os_theme = 'dark';
+      window.localStorage.os_theme = "dark";
     }
 
     (window as any).__setTheme();
   }
 
-  setupThemes() {
-    if (process.platform == 'darwin') {
-
+  public setupThemes() {
+    if (process.platform === "darwin") {
       systemPreferences.subscribeNotification(
-        'AppleInterfaceThemeChangedNotification',
+        "AppleInterfaceThemeChangedNotification",
         this.setOSTheme,
       );
 
-      this.setOSTheme()
+      this.setOSTheme();
     }
   }
 }
 
-let client = new ClientUI();
+const client = new ClientUI();
 client.init();
 client.bindEvent();
 client.setupThemes();
