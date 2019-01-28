@@ -34,3 +34,4 @@ assets/data
 logo.png
 *.tgz
 build
+.idea

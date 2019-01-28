@@ -16,7 +16,7 @@ export function createHelpPage(BrowserWindow: any) {
       backgroundColor: "#ddd",
     });
 
-    helpWindow.on("closed", function() {
+    helpWindow.on("closed", () => {
       helpWindow = null;
     });
 

@@ -2,18 +2,18 @@ import {app, BrowserWindow, dialog, ipcMain, Menu, shell} from "electron";
 import * as fs from "fs";
 import * as path from "path";
 
+import {EventConstants} from "../common/constants/event.constants";
 import {IFileSave} from "../common/interface/IFileSave";
 import {git} from "./features/git";
-import {buildMenu} from "./i18n/menu/menu";
-import {createHelpPage} from "./pages/help.page";
-import {createSlidePage} from "./pages/silde.page";
-import {openHtmlPage} from "./pages/html.page";
-import {EventConstants} from "../common/constants/event.constants";
 import {pandoc} from "./features/pandoc";
+import {buildMenu} from "./i18n/menu/menu";
 import {dockMenu} from "./i18n/menu/menu.dock";
+import {createHelpPage} from "./pages/help.page";
+import {openHtmlPage} from "./pages/html.page";
+import {createSlidePage} from "./pages/silde.page";
 
 const tmp = require("tmp");
-const chokidar = require('chokidar');
+const chokidar = require("chokidar");
 
 const windowStateKeeper = require("electron-window-state");
 const storage = require("electron-json-storage");
@@ -39,9 +39,7 @@ function dirTree(filename: string) {
     info.collapsed = true;
     info.children = fs.readdirSync(filename).filter((child: string) => {
       return child !== ".git" && child !== ".DS_Store" && child !== ".idea";
-    }).map(function(child) {
-      return dirTree(filename + "/" + child);
-    });
+    }).map((child) => dirTree(filename + "/" + child));
   } else {
     info.leaf = true;
   }
@@ -50,9 +48,9 @@ function dirTree(filename: string) {
 }
 
 function openFile(willLoadFile: string, isTempFile: boolean = false) {
-  let imageRegex = /\.(jpe?g|png|gif|bmp|ico)$/i;
-  let htmlRegex = /\.(html)$/i;
-  let wordRegex = /\.(doc?x)$/i;
+  const imageRegex = /\.(jpe?g|png|gif|bmp|ico)$/i;
+  const htmlRegex = /\.(html)$/i;
+  const wordRegex = /\.(doc?x)$/i;
 
   if (imageRegex.test(willLoadFile)) {
     return mainWindow.previewFile(willLoadFile);
@@ -100,10 +98,10 @@ function openPath(pathName: any, isWatch = false) {
   if (!isWatch) {
     chokidar
       .watch(pathName, {ignored: /(^|[\/\\])\../})
-      .on('unlink', (event: any, path: any) => {
+      .on("unlink", () => {
         reloadPath(true);
       })
-      .on('add', (event: any, path: any) => {
+      .on("add", () => {
         reloadPath(true);
       });
   }
@@ -114,7 +112,7 @@ function openPath(pathName: any, isWatch = false) {
     // mainWindow.webContents.send(EventConstants.PHODIT.GIT_STATUS, git.status(pathName));
     mainWindow.webContents.send(EventConstants.PHODIT.OPEN_PATH, {
       path: pathName,
-      tree: dirFiles
+      tree: dirFiles,
     });
   });
 }
@@ -181,13 +179,15 @@ function saveFile(data: any, isTempFile: boolean) {
 }
 
 function newFile() {
-  tmp.file(function _tempFileCreated(err: any, path: any, fd: any, cleanupCallback: any) {
-    if (err) { throw err; }
+  tmp.file(function _tempFileCreated(err: any, lastPath: any, fd: any, cleanupCallback: any) {
+    if (err) {
+      throw err;
+    }
 
     checkWindow();
 
-    storage.set("storage.last.file", {file: path});
-    openFile(path, true);
+    storage.set("storage.last.file", {file: lastPath});
+    openFile(lastPath, true);
   });
 }
 
@@ -205,8 +205,8 @@ function openAboutPage() {
 
 function createWindow() {
   const mainWindowState = windowStateKeeper({
-    defaultWidth: 1000,
     defaultHeight: 800,
+    defaultWidth: 1000,
   });
 
   mainWindow = new BrowserWindow({
@@ -215,7 +215,7 @@ function createWindow() {
     width: mainWindowState.width,
     height: mainWindowState.height,
     // frame: false,
-    icon: path.join(__dirname,'../../assets/imgs/icons/mac/icon.icns'),
+    icon: path.join(__dirname, "../../assets/imgs/icons/mac/icon.icns"),
     backgroundColor: "#fff",
     webPreferences: {
       nodeIntegrationInWorker: true,
@@ -231,8 +231,8 @@ function createWindow() {
   });
 
   mainWindow.setDocumentEdited(true);
-  mainWindow.webContents.on("did-finish-load", function() {
-    storage.get("storage.last.file", function(error: any, data: any) {
+  mainWindow.webContents.on("did-finish-load", () => {
+    storage.get("storage.last.file", (error: any, data: any) => {
       if (error) {
         throw error;
       }
@@ -242,7 +242,7 @@ function createWindow() {
         openFile(data.file);
       }
     });
-    storage.get("storage.last.path", function(error: any, data: any) {
+    storage.get("storage.last.path", (error: any, data: any) => {
       if (error) {
         throw error;
       }
@@ -261,8 +261,8 @@ function createWindow() {
   //   require('electron').shell.openExternal(url);
   // });
 
-  mainWindow.webContents.on("will-navigate", function(event: any, url) {
-    if (url != mainWindow.webContents.getURL()) {
+  mainWindow.webContents.on("will-navigate", (event: any, url) => {
+    if (url !== mainWindow.webContents.getURL()) {
       event.preventDefault();
       const win = new BrowserWindow({show: false});
       win.loadURL(url);
@@ -295,7 +295,7 @@ function createWindow() {
 }
 
 function reloadPath(isWatch = false) {
-  storage.get("storage.last.path", function (error: any, data: any) {
+  storage.get("storage.last.path", (error: any, data: any) => {
     if (error) {
       throw error;
     }
@@ -346,7 +346,7 @@ ipcMain.on(EventConstants.PHODIT.SHOW_PDF, (event: any, arg: any) => {
 
 ipcMain.on(EventConstants.PHODIT.OPEN_SYSTEM_PATH, (event: any, arg: any) => {
   console.log(arg);
-  require('electron').shell.showItemInFolder(arg);
+  require("electron").shell.showItemInFolder(arg);
 });
 
 ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {
@@ -375,7 +375,7 @@ function initMain() {
   app.on("ready", createWindow);
 
   app.on("window-all-closed", () => {
-    let isMacOS = process.platform === "darwin";
+    const isMacOS = process.platform === "darwin";
     if (!isMacOS) {
       app.quit();
     }
