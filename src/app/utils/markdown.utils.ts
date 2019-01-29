@@ -15,7 +15,7 @@ class MarkdownImprove {
     const that = this;
     const matches = text.match(imgRegexGlobal);
     if (matches && matches.length > 0) {
-      matches.forEach(function(image: any) {
+      matches.forEach((image: any) => {
         const originImage = image;
         if (imgRegex.test(image)) {
           const result = imgRegex.exec(image);
@@ -32,15 +32,15 @@ class MarkdownImprove {
 export function markdownRender(text: string, file: string) {
   // Options list
   // https://marked.js.org/#/USING_ADVANCED.md
-  let renderer = new marked.Renderer();
-  renderer.listitem = (text: any) => {
-    return '<li><p><span style="color: #384452;">' + text + '</span></p></li>\n';
+  const renderer = new marked.Renderer();
+  renderer.listitem = (item: any) => {
+    return '<li><p><span style="color: #384452;">' + item + "</span></p></li>\n";
   };
 
   marked.setOptions({
-    renderer: renderer,
-    highlight: function(code: string) {
-      return require('highlight.js').highlightAuto(code).value;
+    renderer,
+    highlight(code: string) {
+      return require("highlight.js").highlightAuto(code).value;
     },
     footnote: true,
     pedantic: false,
@@ -50,7 +50,7 @@ export function markdownRender(text: string, file: string) {
     sanitize: false,
     smartLists: true,
     smartypants: false,
-    xhtml: false
+    xhtml: false,
   });
 
   if (file) {

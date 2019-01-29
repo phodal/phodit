@@ -19,7 +19,7 @@ export function createSlidePage(BrowserWindow: any, arg: any) {
       fullscreen: true,
     });
 
-    slideWindow.on("closed", function () {
+    slideWindow.on("closed", () => {
       slideWindow = null;
     });
 
@@ -27,7 +27,7 @@ export function createSlidePage(BrowserWindow: any, arg: any) {
     slideWindow.loadFile(path.join(__dirname, "../../../views/slide.html"));
 
     slideWindow.once("ready-to-show", () => slideWindow.show());
-    slideWindow.webContents.on("did-finish-load", function () {
+    slideWindow.webContents.on("did-finish-load", () => {
 
     });
 
@@ -37,7 +37,7 @@ export function createSlidePage(BrowserWindow: any, arg: any) {
       createSlidePage(data);
     }
 
-    ipcMain.on("phodit.slide.ready", (event: any, arg: any) => {
+    ipcMain.on("phodit.slide.ready", () => {
       if (slideWindow && slideWindow.webContents) {
         slideWindow.webContents.send("phodit.slide.send.content", data);
       }
@@ -52,6 +52,6 @@ export function createSlidePage(BrowserWindow: any, arg: any) {
       }
 
       createSlidePage(data);
-    })
+    });
   });
 }

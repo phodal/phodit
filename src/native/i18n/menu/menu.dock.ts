@@ -1,9 +1,9 @@
 export const dockMenu = [
   {
-    label: 'New Window',
+    label: "New Window",
     click() {
-      console.log('New Window')
-    }
+      console.log("New Window");
+    },
   },
   // {
   //   label: 'New Window with Settings',

@@ -14,14 +14,12 @@ export function openHtmlPage(BrowserWindow: any, filePath: any) {
       backgroundColor: "#fff",
     });
 
-    htmlPage.on("closed", function() {
+    htmlPage.on("closed", () => {
       htmlPage = null;
     });
 
     htmlPage.loadFile(filePath);
-
     htmlPage.once("ready-to-show", () => htmlPage.show());
-
     // htmlPage.webContents.openDevTools();
   }
 

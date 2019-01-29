@@ -1,5 +1,5 @@
-import {EventConstants} from "../common/constants/event.constants";
 import * as fs from "fs";
+import {EventConstants} from "../common/constants/event.constants";
 
 const {remote, ipcRenderer} = require("electron");
 
@@ -8,42 +8,42 @@ let menu = new MenuRight();
 let node: any = null;
 
 const globalStore = {
-  eventTarget: {}
+  eventTarget: {},
 };
 
 function createEditorMenu() {
   menu.append(new MenuItem({
     label: "Google", click() {
-      let text = (globalStore.eventTarget as any).innerText;
-      require('electron').shell.openExternal(`https://www.google.com/search?q=${text}`);
+      const text = (globalStore.eventTarget as any).innerText;
+      require("electron").shell.openExternal(`https://www.google.com/search?q=${text}`);
     },
   }));
 
   menu.append(new MenuItem({
     label: "Baidu", click() {
-      let text = (globalStore.eventTarget as any).innerText;
-      require('electron').shell.openExternal(`https://www.baidu.com/s?wd=${text}`);
+      const text = (globalStore.eventTarget as any).innerText;
+      require("electron").shell.openExternal(`https://www.baidu.com/s?wd=${text}`);
     },
   }));
 
   menu.append(new MenuItem({
     label: "GitHub", click() {
-      let text = (globalStore.eventTarget as any).innerText;
-      require('electron').shell.openExternal(`https://github.com/search?q=${text}&ref=opensearch`);
+      const text = (globalStore.eventTarget as any).innerText;
+      require("electron").shell.openExternal(`https://github.com/search?q=${text}&ref=opensearch`);
     },
   }));
 
   menu.append(new MenuItem({
     label: "Wiki", click() {
-      let text = (globalStore.eventTarget as any).innerText;
-      require('electron').shell.openExternal(`https://zh.wikipedia.org/wiki/Special:Search?search=${text}`);
+      const text = (globalStore.eventTarget as any).innerText;
+      require("electron").shell.openExternal(`https://zh.wikipedia.org/wiki/Special:Search?search=${text}`);
     },
   }));
 
   menu.append(new MenuItem({
     label: "Phodal", click() {
-      let text = (globalStore.eventTarget as any).innerText;
-      require('electron').shell.openExternal(`http://www.phodal.com/search/?q=${text}`);
+      const text = (globalStore.eventTarget as any).innerText;
+      require("electron").shell.openExternal(`http://www.phodal.com/search/?q=${text}`);
     },
   }));
 }
@@ -55,18 +55,18 @@ function createFileMenu() {
       if (!filePath) {
         return;
       }
-      const bar = document.querySelector('interact-bar');
+      const bar = document.querySelector("interact-bar");
       const folderPath = filePath.replace(/[^\/]*$/, "");
 
-      bar.setAttribute('filename', filePath.split("/").pop());
-      bar.setAttribute('style', "display: block;");
-      bar.addEventListener('action', (event: any) => {
-        let newPath = folderPath + event.detail;
+      bar.setAttribute("filename", filePath.split("/").pop());
+      bar.setAttribute("style", "display: block;");
+      bar.addEventListener("action", (event: any) => {
+        const newPath = folderPath + event.detail;
         console.log(`Rename file from: ${filePath} to ${newPath}`);
         fs.rename(filePath, newPath, function(err) {
-          if ( err ) console.log('ERROR: ' + err);
+          if ( err ) { console.log("ERROR: " + err); }
         });
-        bar.setAttribute('style', "display: none;");
+        bar.setAttribute("style", "display: none;");
       });
 
       node = null;
@@ -79,15 +79,15 @@ function createFileMenu() {
     },
   }));
 
-  if (node.hasOwnProperty('collapsed')) {
+  if (node.hasOwnProperty("collapsed")) {
     return;
   }
 
   menu.append(new MenuItem({
     label: "Delete", click() {
       console.log("Delete", node.filename);
-      fs.unlink(node.filename, function (err: any) {
-        if (err) return console.log(err);
+      fs.unlink(node.filename, (err: any) => {
+        if (err) { return console.log(err); }
         ipcRenderer.send(EventConstants.PHODIT.RELOAD_PATH);
 
         node = null;
@@ -98,7 +98,7 @@ function createFileMenu() {
 
 // FileMenu Click
 window.document.addEventListener(EventConstants.CLIENT.FILE_MENU_CLICK, (data: any) => {
-  let nodeInfo = JSON.parse(data.detail);
+  const nodeInfo = JSON.parse(data.detail);
   node = nodeInfo;
 });
 
