@@ -16,11 +16,20 @@ export function getCodeMirrorMode(file: string) {
   if (file.endsWith(".js")) {
     return "js";
   }
+  if (file.endsWith(".html")) {
+    return "xml";
+  }
   if (file.endsWith(".tex")) {
     return "tex";
   }
   if (file.endsWith(".tex")) {
     return "textile";
+  }
+  if (file.endsWith(".xml")) {
+    return "xml";
+  }
+  if (file.endsWith(".yml")) {
+    return "yaml";
   }
   if (file.toLowerCase() === "makefile") {
     return "cmake";
