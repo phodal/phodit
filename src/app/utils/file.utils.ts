@@ -10,29 +10,31 @@ export function getFileName(path: string)  {
 export function getCodeMirrorMode(file: string) {
   file = getFileName(file);
 
-  if (file.endsWith(".css")) {
-    return "css";
-  }
-  if (file.endsWith(".js")) {
-    return "js";
-  }
-  if (file.endsWith(".html")) {
-    return "xml";
-  }
-  if (file.endsWith(".tex")) {
-    return "tex";
-  }
-  if (file.endsWith(".tex")) {
-    return "textile";
-  }
-  if (file.endsWith(".xml")) {
-    return "xml";
-  }
-  if (file.endsWith(".yml")) {
-    return "yaml";
-  }
   if (file.toLowerCase() === "makefile") {
     return "cmake";
   }
-  return "gfm";
+
+  let format = "gfm";
+  if (file.endsWith(".css")) {
+    format = "css";
+  }
+  if (file.endsWith(".js")) {
+    format = "js";
+  }
+  if (file.endsWith(".html")) {
+    format = "xml";
+  }
+  if (file.endsWith(".tex")) {
+    format = "tex";
+  }
+  if (file.endsWith(".tex")) {
+    format = "textile";
+  }
+  if (file.endsWith(".xml")) {
+    format = "xml";
+  }
+  if (file.endsWith(".yml")) {
+    format = "yaml";
+  }
+  return format;
 }
