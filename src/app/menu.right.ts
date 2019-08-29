@@ -63,8 +63,35 @@ function createFileMenu() {
       bar.addEventListener("action", (event: any) => {
         const newPath = folderPath + event.detail;
         console.log(`Rename file from: ${filePath} to ${newPath}`);
-        fs.rename(filePath, newPath, function(err) {
-          if ( err ) { console.log("ERROR: " + err); }
+        fs.rename(filePath, newPath, (err) => {
+          if (err) {
+            console.log("ERROR: " + err);
+          }
+        });
+        bar.setAttribute("style", "display: none;");
+      });
+
+      node = null;
+    },
+  }));
+
+  menu.append(new MenuItem({
+    label: "New File", click() {
+      const filePath = node.filename;
+      if (!filePath) {
+        return;
+      }
+      const bar = document.querySelector("interact-bar");
+
+      bar.setAttribute("filename", "");
+      bar.setAttribute("style", "display: block;");
+      bar.addEventListener("action", (event: any) => {
+        const newPath = `${filePath}/${event.detail}`;
+        console.log(`New file from: ${newPath}`);
+        fs.writeFile(newPath, "", (err) => {
+          if (err) {
+            console.log("ERROR: " + err);
+          }
         });
         bar.setAttribute("style", "display: none;");
       });
@@ -87,7 +114,9 @@ function createFileMenu() {
     label: "Delete", click() {
       console.log("Delete", node.filename);
       fs.unlink(node.filename, (err: any) => {
-        if (err) { return console.log(err); }
+        if (err) {
+          return console.log(err);
+        }
         ipcRenderer.send(EventConstants.PHODIT.RELOAD_PATH);
 
         node = null;
