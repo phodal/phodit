@@ -1,6 +1,6 @@
 {
   "name": "phodit",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Phodal's new Markdown Editor",
   "main": "dist/native/main.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "appId": "com.phodal.phodit",
     "productName": "Phodit",
     "asar": "false",
-    "copyright": "Copyright © year ${author}",
+    "copyright": "Copyright © 2018 ~ 2019 ${author} (https://ww.phodal.com)",
     "fileAssociations": [
       {
         "ext": "md",
