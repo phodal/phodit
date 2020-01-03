@@ -1,11 +1,11 @@
 ::selection {
   background:transparent;
 }
-
+/*
 #input .CodeMirror-code pre.CodeMirror-line  {
   font-family: "Source Code Variable", "FZNewShuSong_GB18030-Z10";
 }
-
+*/
 .CodeMirror div.CodeMirror-cursor {
   border-left: 2px solid #0b85f3;
 }
