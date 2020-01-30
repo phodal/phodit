@@ -1,5 +1,7 @@
 # Phodit - 私人定制的 Markdown 编辑器
 
+[![Markdown Improve](https://img.shields.io/badge/markdown--improve-Phodal-blue.svg)](https://github.com/phodal/markdown-improve)
+
 > 一个基于 Electron 的私人定制的 Markdown 编辑器
 
 <p align="center">
