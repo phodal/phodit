@@ -2,7 +2,7 @@ export function getFileName(path: string)  {
   if (!path) {
     return path;
   }
-  console.log(path);
+
   const splitArray = path.split("/");
   return splitArray[splitArray.length - 1];
 }
