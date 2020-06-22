@@ -2,6 +2,7 @@ const os = require("os");
 const pty = require("node-pty");
 const Terminal = require("xterm").Terminal;
 const FitAddon = require('xterm-addon-fit').FitAddon;
+const WebLinksAddon = require('xterm-addon-web-links').WebLinksAddon;
 
 export function createTerminal(path?: string) {
   // Initialize node-pty with an appropriate shell
@@ -22,6 +23,8 @@ export function createTerminal(path?: string) {
   });
   const fitaddon = new FitAddon();
   xterm.loadAddon(fitaddon);
+  xterm.loadAddon(new WebLinksAddon());
+
   xterm.open(document.getElementById("terminal"));
   fitaddon.fit();
 
