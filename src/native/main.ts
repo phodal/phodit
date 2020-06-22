@@ -57,7 +57,8 @@ function openFile(willLoadFile: string, isTempFile: boolean = false) {
   } else if (htmlRegex.test(willLoadFile)) {
     return openHtmlPage(BrowserWindow, willLoadFile);
   } else if (wordRegex.test(willLoadFile)) {
-    return shell.openItem(willLoadFile);
+    return shell.openPath(willLoadFile).then(() => {
+    });
   }
 
   if (mainWindow && !isTempFile) {
@@ -124,8 +125,7 @@ function open() {
       {name: "All Files", extensions: ["*"]},
     ],
     properties: ["openFile", "openDirectory", "multiSelections"],
-  }, (fileNames: any) => {
-    // console.log(fileNames);
+  }).then((fileNames: any) => {
     if (!fileNames) {
       return;
     }
@@ -165,7 +165,7 @@ function saveFile(data: any, isTempFile: boolean) {
   if (!isTempFile && !currentFile.endsWith(".tmp")) {
     fs.writeFileSync(currentFile, data);
   } else {
-    dialog.showSaveDialog(mainWindow, {}, (filename) => {
+    dialog.showSaveDialog(mainWindow, {}).then((filename: any) => {
       isTempFile = false;
 
       mainWindow.webContents.send(EventConstants.TEMP_FILE_STATUS, {
@@ -215,9 +215,10 @@ function createWindow() {
     width: mainWindowState.width,
     height: mainWindowState.height,
     // frame: false,
-    icon: path.join(__dirname, "../../assets/imgs/icons/mac/icon.icns"),
+    // icon: path.join(__dirname, "../../assets/imgs/icons/mac/icon.icns"),
     backgroundColor: "#fff",
     webPreferences: {
+      nodeIntegration: true,
       nodeIntegrationInWorker: true,
     },
   });
@@ -371,6 +372,7 @@ ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {
 function initMain() {
   console.log(`storage path: ${defaultDataPath}`);
   app.dock.setMenu(Menu.buildFromTemplate(dockMenu));
+  app.allowRendererProcessReuse = false;
 
   app.on("ready", createWindow);
 

@@ -10,7 +10,8 @@
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start": "yarn build:native && electron ./dist/native/main.js",
-    "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\""
+    "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\"",
+    "rebuild": "electron-rebuild -f -w node-pty"
   },
   "repository": {
     "type": "git",
@@ -23,13 +24,15 @@
   },
   "homepage": "https://github.com/phodal/phodit#readme",
   "devDependencies": {
+    "@types/clipboard": "^2.0.1",
+    "@types/node": "12.12.6",
     "devtron": "^1.4.0",
-    "electron": "^4.0.1",
-    "electron-builder": "^20.38.5",
-    "electron-packager": "^13.0.1",
-    "electron-rebuild": "^1.8.2",
-    "tslint": "^5.12.1",
-    "typescript": "^3.2.2"
+    "electron": "^9.0.4",
+    "electron-builder": "^22.7.0",
+    "electron-packager": "^14.2.1",
+    "electron-rebuild": "^1.11.0",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.5"
   },
   "build": {
     "appId": "com.phodal.phodit",
@@ -88,17 +91,16 @@
     }
   },
   "dependencies": {
-    "@types/clipboard": "^2.0.1",
-    "chokidar": "^2.0.4",
-    "electron-json-storage": "^4.1.5",
+    "chokidar": "^3.4.0",
+    "electron-json-storage": "^4.1.8",
     "electron-window-state": "^5.0.3",
-    "highlight.js": "^9.13.1",
+    "highlight.js": "^10.1.1",
     "lunr": "https://github.com/codepiano/lunr.js",
-    "marked": "^0.6.0",
-    "node-pty": "^0.8.0",
+    "marked": "^1.1.0",
+    "node-pty": "^0.9.0",
     "sweetalert": "^2.1.2",
-    "tmp": "^0.0.33",
-    "winston": "^3.1.0",
-    "xterm": "^3.10.1"
+    "tmp": "^0.2.1",
+    "winston": "^3.3.1",
+    "xterm": "^4.7.0"
   }
 }

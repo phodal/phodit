@@ -6,8 +6,10 @@ import {createTerminal} from "./plugins/terminal";
 import {createEvent} from "./utils/event.util";
 import {getCodeMirrorMode} from "./utils/file.utils";
 import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
-const { remote } = require("electron");
+
+const {remote, ipcRenderer} = require("electron");
 const {systemPreferences} = remote;
+const swal = require("sweetalert");
 
 // require("devtron").install();
 
@@ -17,9 +19,6 @@ declare global {
     simplemde: any;
   }
 }
-
-const {ipcRenderer} = require("electron");
-const swal = require("sweetalert");
 
 class ClientUI {
   public state = {
@@ -51,7 +50,7 @@ class ClientUI {
 
   public init() {
     (window as any).simplemde = this.simplemde;
-   // @ts-ignore
+    // @ts-ignore
     const clipboard = new ClipboardJS(".wechat-button");
 
     clipboard.on("success", (event: any) => {

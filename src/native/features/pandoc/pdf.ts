@@ -18,7 +18,7 @@ export default function pdf(path: string) {
       }
 
       fs.unlink(htmlPath, () => {});
-      shell.openItem(pdfPath);
+      shell.openPath(pdfPath).then(() => {})
       return stdout.trim();
     });
   });

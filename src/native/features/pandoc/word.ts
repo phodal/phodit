@@ -9,7 +9,7 @@ export default function word(path: string) {
       return;
     }
 
-    shell.openItem(newPath);
+    shell.openPath(newPath).then(() => {})
     return stdout.trim();
   });
 

@@ -4,13 +4,13 @@ const Terminal = require("xterm").Terminal;
 
 export function createTerminal(path?: string) {
   // Initialize node-pty with an appropriate shell
-  const shell = process.env[os.platform() === "win32" ? "COMSPEC" : "SHELL"];
+  const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
   const ptyProcess = pty.spawn(shell, [], {
-    name: "xterm-color",
+    name: 'xterm-color',
     cols: 80,
     rows: 30,
-    cwd: path || process.cwd(),
-    env: process.env,
+    cwd: process.env.HOME,
+    env: process.env
   });
 
   // Initialize xterm.js and attach it to the DOM
