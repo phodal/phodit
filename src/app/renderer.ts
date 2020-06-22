@@ -1,3 +1,4 @@
+import {nativeTheme} from "electron";
 import {EventConstants} from "../common/constants/event.constants";
 import {IFileOpen} from "../common/interface/IFileOpen";
 import "./key.event";
@@ -239,7 +240,7 @@ class ClientUI {
 
 
   public setOSTheme() {
-    window.localStorage.os_theme = systemPreferences.isDarkMode() ? "dark" : "light";
+    window.localStorage.os_theme = nativeTheme.shouldUseDarkColors;
     if ("__setTheme" in window) {
       (window as any).__setTheme();
     }
