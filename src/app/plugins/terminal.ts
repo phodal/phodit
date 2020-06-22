@@ -1,27 +1,36 @@
 const os = require("os");
 const pty = require("node-pty");
 const Terminal = require("xterm").Terminal;
+const FitAddon = require('xterm-addon-fit').FitAddon;
 
 export function createTerminal(path?: string) {
   // Initialize node-pty with an appropriate shell
-  const shell = os.platform() === 'win32' ? 'powershell.exe' : 'bash';
+  const shell = process.env[os.platform() === "win32" ? "COMSPEC" : "SHELL"];
   const ptyProcess = pty.spawn(shell, [], {
     name: 'xterm-color',
     cols: 80,
-    rows: 30,
-    cwd: process.env.HOME,
+    rows: 15,
+    cwd: path || process.cwd(),
     env: process.env
   });
 
   // Initialize xterm.js and attach it to the DOM
-  const xterm = new Terminal();
+  const xterm = new Terminal({
+    cols: 80,
+    rows: 15,
+    cursorBlink: true,
+  });
+  const fitaddon = new FitAddon();
+  xterm.loadAddon(fitaddon);
   xterm.open(document.getElementById("terminal"));
+  fitaddon.fit();
 
   // Setup communication between xterm.js and node-pty
-  xterm.on("data", (data: any) => {
+  xterm.onData((data: any) => {
     ptyProcess.write(data);
   });
-  ptyProcess.on("data", function(data: any) {
+
+  ptyProcess.on("data", (data: any) => {
     xterm.write(data);
   });
 

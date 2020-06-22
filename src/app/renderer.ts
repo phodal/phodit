@@ -1,4 +1,3 @@
-import {nativeTheme} from "electron";
 import {EventConstants} from "../common/constants/event.constants";
 import {IFileOpen} from "../common/interface/IFileOpen";
 import "./key.event";
@@ -8,7 +7,7 @@ import {createEvent} from "./utils/event.util";
 import {getCodeMirrorMode} from "./utils/file.utils";
 import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
 
-const {remote, ipcRenderer} = require("electron");
+const {nativeTheme, remote, ipcRenderer} = require("electron");
 const {systemPreferences} = remote;
 const swal = require("sweetalert");
 
@@ -240,6 +239,7 @@ class ClientUI {
 
 
   public setOSTheme() {
+    // tslint:disable-next-line:no-shadowed-variable
     window.localStorage.os_theme = nativeTheme.shouldUseDarkColors;
     if ("__setTheme" in window) {
       (window as any).__setTheme();
