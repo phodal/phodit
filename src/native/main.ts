@@ -4,7 +4,6 @@ import * as path from "path";
 
 import {EventConstants} from "../common/constants/event.constants";
 import {IFileSave} from "../common/interface/IFileSave";
-import {git} from "./features/git";
 import {pandoc} from "./features/pandoc";
 import {buildMenu} from "./i18n/menu/menu";
 import {dockMenu} from "./i18n/menu/menu.dock";
@@ -18,11 +17,7 @@ const chokidar = require("chokidar");
 const windowStateKeeper = require("electron-window-state");
 const storage = require("electron-json-storage");
 const defaultDataPath = storage.getDefaultDataPath();
-const blogpostData = require("../../assets/data/output.json");
 
-const lunr = require("lunr");
-const dataWithIndex: any[] = [];
-let lunrIdx: any;
 let currentFile: string;
 
 let mainWindow: Electron.BrowserWindow;
@@ -293,18 +288,6 @@ function createWindow() {
     newFile,
   }));
   Menu.setApplicationMenu(menu);
-
-  // if (!cluster.isMaster) {
-  lunrIdx = lunr(function() {
-    this.field("title", {boost: 10});
-    // this.field('content');
-
-    for (const item of blogpostData) {
-      this.add(item);
-      dataWithIndex[item.id] = item;
-    }
-  });
-  // }
 }
 
 function reloadPath(isWatch = false) {
@@ -363,22 +346,7 @@ ipcMain.on(EventConstants.PHODIT.OPEN_SYSTEM_PATH, (event: any, arg: any) => {
 });
 
 ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {
-  if (arg.length < 2) {
-    mainWindow.webContents.send("phodit.suggest.send", []);
-  }
 
-  const searchResults = lunrIdx.search(arg);
-  const response = [];
-
-  for (const result of searchResults) {
-    const blogpost = dataWithIndex[result.ref];
-    response.push({
-      text: `[${blogpost.title}](https://www.phodal.com/blog/${blogpost.slug})》`,
-      displayText: blogpost.title,
-    });
-  }
-
-  mainWindow.webContents.send(EventConstants.PHODIT.SUGGEST_SEND, response);
 });
 
 function initMain() {
