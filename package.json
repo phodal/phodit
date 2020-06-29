@@ -11,7 +11,8 @@
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "start": "yarn build:native && electron ./dist/native/main.js",
     "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\"",
-    "rebuild": "electron-rebuild -f -w node-pty"
+    "rebuild": "electron-rebuild -f -w node-pty",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "electron-builder": "^22.7.0",
     "electron-packager": "^14.2.1",
     "electron-rebuild": "^1.11.0",
+    "mocha": "^8.0.1",
+    "spectron": "^11.0.0",
     "tslint": "^6.1.2",
     "typescript": "^3.9.5"
   },
