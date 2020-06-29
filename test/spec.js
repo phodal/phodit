@@ -9,12 +9,7 @@ describe('Application launch', function () {
   beforeEach(function () {
     this.app = new Application({
       path: electronPath,
-      args: [path.join(__dirname, '..')],
-      chromeDriverArgs: [
-        '--no-sandbox',
-        '--whitelisted-ips=',
-        '--disable-dev-shm-usage'
-      ],
+      args: [path.join(__dirname, '..')]
     })
     return this.app.start()
   })
