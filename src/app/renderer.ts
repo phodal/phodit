@@ -240,7 +240,7 @@ class ClientUI {
 
   public setOSTheme() {
     // tslint:disable-next-line:no-shadowed-variable
-    window.localStorage.os_theme = nativeTheme.shouldUseDarkColors;
+    window.localStorage.os_theme = nativeTheme && nativeTheme.shouldUseDarkColors;
     if ("__setTheme" in window) {
       (window as any).__setTheme();
     }
