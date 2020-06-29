@@ -1,4 +1,4 @@
-import {app, BrowserWindow, dialog, ipcMain, Menu, shell} from "electron";
+import {app, BrowserWindow, dialog, ipcMain, Menu, OpenDialogReturnValue, shell} from "electron";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -111,6 +111,7 @@ function openPath(pathName: any, isWatch = false) {
     try {
       dirFiles = dirTree(pathName);
     } catch (e) {
+      storage.remove("storage.last.path");
       console.log(e);
     }
 
@@ -129,7 +130,8 @@ function open() {
       {name: "All Files", extensions: ["*"]},
     ],
     properties: ["openFile", "openDirectory", "multiSelections"],
-  }).then((fileNames: any) => {
+  }).then((dialogValue: OpenDialogReturnValue) => {
+    const fileNames = dialogValue.filePaths;
     if (!fileNames) {
       return;
     }
