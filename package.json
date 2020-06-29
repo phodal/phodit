@@ -12,7 +12,7 @@
     "start": "yarn build:native && electron ./dist/native/main.js",
     "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\"",
     "rebuild": "electron-rebuild -f -w node-pty",
-    "test": "mocha"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
