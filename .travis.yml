@@ -1,5 +1,6 @@
-language: node_js
+sudo: false
 
+language: node_js
 node_js:
   - 12
 
@@ -11,4 +12,22 @@ addons:
 install:
   - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-  - npm install
+
+cache:
+  directories:
+    - node_modules
+    - app/node_modules
+    - $HOME/.cache/electron
+    - $HOME/.cache/electron-builder
+    - $HOME/.npm/_prebuilds
+
+env:
+  global:
+    - ELECTRON_CACHE=$HOME/.cache/electron
+    - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+
+jobs:
+  include:
+    - stage: Test
+      script:
+        - npm test
