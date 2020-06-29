@@ -29,7 +29,13 @@ let mainWindow: Electron.BrowserWindow;
 let dir;
 
 function dirTree(filename: string) {
-  const stats = fs.lstatSync(filename);
+  let stats;
+  try {
+    stats = fs.lstatSync(filename);
+  } catch (e) {
+    storage.remove("storage.last.path");
+    return;
+  }
   const info: any = {
     filename,
     module: path.basename(filename),
