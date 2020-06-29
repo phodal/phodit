@@ -25,4 +25,10 @@ describe('Application launch', function () {
       assert.equal(count, 1)
     })
   })
+
+  it('verify title', function () {
+    return this.app.client.getTitle().then(function (title) {
+      assert.equal(title, "Phodit")
+    })
+  })
 })
