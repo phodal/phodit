@@ -1,9 +1,10 @@
-os: osx
-osx_image: xcode10.2
-dist: bionic
+#os: osx
+#osx_image: xcode10.2
+#dist: bionic
+os: linux
 language: node_js
 node_js:
-  - '14'
+  - '12'
 
 cache:
   directories:
