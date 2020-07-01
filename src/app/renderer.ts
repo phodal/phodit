@@ -7,11 +7,8 @@ import {createEvent} from "./utils/event.util";
 import {getCodeMirrorMode} from "./utils/file.utils";
 import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
 
-const {nativeTheme, remote, ipcRenderer} = require("electron");
-const {systemPreferences} = remote;
+const {nativeTheme, ipcRenderer} = require("electron");
 const swal = require("sweetalert");
-
-// require("devtron").install();
 
 declare global {
   // tslint:disable-next-line
@@ -237,10 +234,8 @@ class ClientUI {
     });
   }
 
-
   public setOSTheme() {
-    // tslint:disable-next-line:no-shadowed-variable
-    window.localStorage.os_theme = nativeTheme && nativeTheme.shouldUseDarkColors;
+    window.localStorage.os_theme = !!nativeTheme && nativeTheme.shouldUseDarkColors;
     if ("__setTheme" in window) {
       (window as any).__setTheme();
     }
@@ -257,14 +252,9 @@ class ClientUI {
   }
 
   public setupThemes() {
-    if (process.platform === "darwin") {
-      systemPreferences.subscribeNotification(
-        "AppleInterfaceThemeChangedNotification",
-        this.setOSTheme,
-      );
-
-      this.setOSTheme();
-    }
+    nativeTheme.on('updated', function theThemeHasChanged () {
+      this.setOSTheme()
+    })
   }
 }
 
