@@ -48,5 +48,5 @@ describe('example application launch', function () {
       .getBounds()
       .should.eventually.have.property('height')
       .and.be.above(0);
-  });;
+  });
 });
