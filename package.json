@@ -12,7 +12,7 @@
     "start": "yarn build:native && electron ./dist/native/main.js",
     "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\"",
     "rebuild": "electron-rebuild -f -w node-pty",
-    "test": "./node_modules/.bin/mocha"
+    "test": "xvfb-maybe mocha"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,10 @@
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
     "@types/node": "12.12.6",
+    "assert": "^2.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "chai-roughly": "^1.0.0",
     "devtron": "^1.4.0",
     "electron": "^9.0.4",
     "electron-builder": "^22.7.0",
@@ -37,7 +39,8 @@
     "mocha": "^8.0.1",
     "spectron": "^11.0.0",
     "tslint": "^6.1.2",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "xvfb-maybe": "^0.2.1"
   },
   "build": {
     "appId": "com.phodal.phodit",
