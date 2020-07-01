@@ -1,8 +1,8 @@
-os: linux
+os: osx
+osx_image: xcode10.2
 dist: bionic
 language: node_js
 node_js:
-  - '12'
   - '14'
 
 cache:
