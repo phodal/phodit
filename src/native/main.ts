@@ -1,4 +1,4 @@
-import {app, BrowserWindow, dialog, ipcMain, Menu, OpenDialogReturnValue, shell} from "electron";
+import {app, BrowserWindow, dialog, ipcMain, Menu, nativeImage, OpenDialogReturnValue, shell} from "electron";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -216,12 +216,16 @@ function createWindow() {
     defaultWidth: 1000,
   });
 
+  const image = nativeImage.createFromPath(__dirname + '../../assets/imgs/icons/mac/icon.icns');
+  image.setTemplateImage(true);
+
   mainWindow = new BrowserWindow({
     x: mainWindowState.x,
     y: mainWindowState.y,
     width: mainWindowState.width,
     height: mainWindowState.height,
-    frame: false,
+    // frame: false,
+    icon: image,
     backgroundColor: "#fff",
     webPreferences: {
       nodeIntegration: true,
