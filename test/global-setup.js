@@ -1,8 +1,8 @@
-const Application = require('..').Application;
 const assert = require('assert');
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const chaiRoughly = require('chai-roughly');
+const Application = require('spectron').Application;
 
 const path = require('path');
 
