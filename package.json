@@ -38,6 +38,7 @@
     "electron-rebuild": "^1.11.0",
     "mocha": "^8.0.1",
     "spectron": "^11.0.0",
+    "temp": "^0.9.1",
     "tslint": "^6.1.2",
     "typescript": "^3.9.5",
     "xvfb-maybe": "^0.2.1"
