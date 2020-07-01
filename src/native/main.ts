@@ -224,8 +224,8 @@ function createWindow() {
     y: mainWindowState.y,
     width: mainWindowState.width,
     height: mainWindowState.height,
-    // frame: false,
     icon: image,
+    show: false,
     backgroundColor: "#fff",
     webPreferences: {
       nodeIntegration: true,
@@ -265,6 +265,9 @@ function createWindow() {
 
     mainWindow.webContents.setFrameRate(30)
     mainWindow.webContents.send("phodit.lifecycle.load");
+
+    mainWindow.show();
+    mainWindow.focus();
   });
 
   //
