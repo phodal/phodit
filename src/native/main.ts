@@ -1,4 +1,4 @@
-import {app, BrowserWindow, dialog, ipcMain, Menu, nativeImage, OpenDialogReturnValue, shell} from "electron";
+import {app, BrowserWindow, dialog, ipcMain, Menu, nativeImage, OpenDialogReturnValue, shell, Tray} from "electron";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -149,10 +149,10 @@ function open() {
 
 function checkWindow() {
   if (!mainWindow) {
-    return createWindow();
+    return onAppReady();
   }
   if (mainWindow && !mainWindow.webContents) {
-    return createWindow();
+    return onAppReady();
   }
 }
 
@@ -210,7 +210,7 @@ function openAboutPage() {
   createHelpPage(BrowserWindow);
 }
 
-function createWindow() {
+function onAppReady() {
   const mainWindowState = windowStateKeeper({
     defaultHeight: 800,
     defaultWidth: 1000,
@@ -233,6 +233,17 @@ function createWindow() {
       // offscreen: true
     },
   });
+
+  const iconPath = path.join(__dirname, '../../assets/imgs/icons/png/16x16.png');
+  const tray = new Tray(nativeImage.createFromPath(iconPath));
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Item1', type: 'radio' },
+    { label: 'Item2', type: 'radio' },
+    { label: 'Item3', type: 'radio', checked: true },
+    { label: 'Item4', type: 'radio' }
+  ])
+  tray.setToolTip('Phodit')
+  tray.setContextMenu(contextMenu)
 
   mainWindowState.manage(mainWindow);
 
@@ -356,7 +367,7 @@ function initMain() {
   app.dock.setMenu(Menu.buildFromTemplate(dockMenu));
   app.allowRendererProcessReuse = false;
 
-  app.on("ready", createWindow);
+  app.on("ready", onAppReady);
 
   app.on("window-all-closed", () => {
     const isMacOS = process.platform === "darwin";
@@ -367,7 +378,7 @@ function initMain() {
 
   app.on("activate", () => {
     if (mainWindow === null) {
-      createWindow();
+      onAppReady();
     }
   });
 

@@ -252,7 +252,8 @@ class ClientUI {
   }
 
   public setupThemes() {
-    nativeTheme.on('updated', function theThemeHasChanged () {
+    // tslint:disable-next-line:no-unused-expression
+    nativeTheme && nativeTheme.on('updated', function theThemeHasChanged () {
       this.setOSTheme()
     })
   }
