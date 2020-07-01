@@ -32,5 +32,5 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 script:
-  - PROGRESS="--no-progress" npm run build
+  - PROGRESS="--no-progress" npm run build:app
   - PROGRESS="--no-progress" npm run test
