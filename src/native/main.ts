@@ -22,6 +22,7 @@ let currentFile: string;
 
 let mainWindow: Electron.BrowserWindow;
 let dir;
+let tray = null;
 
 function dirTree(filename: string) {
   let stats;
@@ -235,12 +236,9 @@ function onAppReady() {
   });
 
   const iconPath = path.join(__dirname, '../../assets/imgs/icons/png/16x16.png');
-  const tray = new Tray(nativeImage.createFromPath(iconPath));
+  tray = new Tray(nativeImage.createFromPath(iconPath));
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Item1', type: 'radio' },
-    { label: 'Item2', type: 'radio' },
-    { label: 'Item3', type: 'radio', checked: true },
-    { label: 'Item4', type: 'radio' }
   ])
   tray.setToolTip('Phodit')
   tray.setContextMenu(contextMenu)
