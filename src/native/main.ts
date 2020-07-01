@@ -221,12 +221,12 @@ function createWindow() {
     y: mainWindowState.y,
     width: mainWindowState.width,
     height: mainWindowState.height,
-    // frame: false,
-    // icon: path.join(__dirname, "../../assets/imgs/icons/mac/icon.icns"),
+    frame: false,
     backgroundColor: "#fff",
     webPreferences: {
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
+      // offscreen: true
     },
   });
 
@@ -246,7 +246,6 @@ function createWindow() {
       }
 
       if (data && data.file) {
-        // console.log(data);
         openFile(data.file);
       }
     });
@@ -256,13 +255,14 @@ function createWindow() {
       }
 
       if (data && data.file) {
-        // console.log(data);
         openPath(data.file);
       }
     });
 
+    mainWindow.webContents.setFrameRate(30)
     mainWindow.webContents.send("phodit.lifecycle.load");
   });
+
   //
   // mainWindow.webContents.on('new-window', function(e, url) {
   //   e.preventDefault();
