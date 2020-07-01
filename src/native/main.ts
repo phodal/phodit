@@ -348,12 +348,7 @@ ipcMain.on(EventConstants.PHODIT.SHOW_PDF, (event: any, arg: any) => {
 });
 
 ipcMain.on(EventConstants.PHODIT.OPEN_SYSTEM_PATH, (event: any, arg: any) => {
-  console.log(arg);
   require("electron").shell.showItemInFolder(arg);
-});
-
-ipcMain.on(EventConstants.PHODIT.GET_SUGGEST, (event: any, arg: any) => {
-
 });
 
 function initMain() {
