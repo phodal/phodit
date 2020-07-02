@@ -49,6 +49,7 @@ class ClientUI {
     (window as any).simplemde = this.simplemde;
     // @ts-ignore
     const clipboard = new ClipboardJS(".wechat-button");
+    this.simplemde.codemirror.focus()
 
     clipboard.on("success", (event: any) => {
       swal({
