@@ -279,12 +279,6 @@ function onAppReady() {
     mainWindow.focus();
   });
 
-  //
-  // mainWindow.webContents.on('new-window', function(e, url) {
-  //   e.preventDefault();
-  //   require('electron').shell.openExternal(url);
-  // });
-
   mainWindow.webContents.on("will-navigate", (event: any, url) => {
     if (url !== mainWindow.webContents.getURL()) {
       event.preventDefault();
