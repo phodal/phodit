@@ -1,17 +1,18 @@
+const {ipcRenderer, remote} = require('electron');
+import {Menu, MenuItem} from "electron";
 import * as fs from "fs";
 import {EventConstants} from "../common/constants/event.constants";
 
-const {remote, ipcRenderer} = require("electron");
+console.log(remote);
 
-const {Menu: MenuRight, MenuItem} = remote;
-let menu = new MenuRight();
+
 let node: any = null;
 
 const globalStore = {
   eventTarget: {},
 };
 
-function createEditorMenu() {
+function createEditorMenu(menu: Electron.Menu) {
   menu.append(new MenuItem({
     label: "Google", click() {
       const text = (globalStore.eventTarget as any).innerText;
@@ -48,7 +49,7 @@ function createEditorMenu() {
   }));
 }
 
-function createFileMenu() {
+function createFileMenu(menu: Electron.Menu) {
   menu.append(new MenuItem({
     label: "Rename", click() {
       const filePath = node.filename;
@@ -134,12 +135,13 @@ window.document.addEventListener(EventConstants.CLIENT.FILE_MENU_CLICK, (data: a
 window.addEventListener("contextmenu", (event: any) => {
   event.preventDefault();
   globalStore.eventTarget = event.target;
+  const menu = new Menu();
+
   if (event.target.className === "node" || event.target.className === "node is-active") {
-    menu = new MenuRight();
-    createFileMenu();
+    createFileMenu(menu);
   } else {
-    menu = new MenuRight();
-    createEditorMenu();
+    createEditorMenu(menu);
   }
+
   menu.popup({window: remote.getCurrentWindow()});
 }, false);
