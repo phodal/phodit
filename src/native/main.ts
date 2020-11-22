@@ -247,6 +247,7 @@ function onAppReady() {
   mainWindowState.manage(mainWindow);
 
   mainWindow.loadFile(path.join(__dirname, "../../views/index.html"));
+  mainWindow.setTouchBar(touchBar);
 
   mainWindow.on("closed", () => {
     mainWindow = null;
@@ -285,7 +286,6 @@ function onAppReady() {
       event.preventDefault();
       const win = new BrowserWindow({show: false});
       win.loadURL(url);
-      win.setTouchBar(touchBar);
       win.show();
       event.newGuest = win;
     }
