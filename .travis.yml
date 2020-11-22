@@ -4,7 +4,7 @@ osx_image: xcode10.2
 #os: linux
 language: node_js
 node_js:
-  - '12'
+  - '15'
 
 cache:
   directories:
