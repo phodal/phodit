@@ -36,12 +36,13 @@
     "electron-builder": "^22.9.1",
     "electron-packager": "^15.1.0",
     "electron-rebuild": "^2.3.2",
-    "mocha": "^8.0.1",
+    "mocha": "^8.2.1",
     "spectron": "^12.0.0",
     "temp": "^0.9.1",
     "tslint": "^6.1.2",
     "typescript": "^3.9.5",
-    "xvfb-maybe": "^0.2.1"
+    "xvfb-maybe": "^0.2.1",
+    "yargs-parser": "^19.0.4"
   },
   "build": {
     "appId": "com.phodal.phodit",
