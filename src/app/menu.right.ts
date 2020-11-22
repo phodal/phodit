@@ -1,10 +1,7 @@
 const {ipcRenderer, remote} = require('electron');
-import {Menu, MenuItem} from "electron";
+const { Menu, MenuItem } = remote;
 import * as fs from "fs";
 import {EventConstants} from "../common/constants/event.constants";
-
-console.log(remote);
-
 
 let node: any = null;
 

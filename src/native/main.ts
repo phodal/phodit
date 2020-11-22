@@ -232,6 +232,7 @@ function onAppReady() {
     webPreferences: {
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
+      enableRemoteModule: true,
       // offscreen: true
     },
   });
