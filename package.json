@@ -47,7 +47,7 @@
     "appId": "com.phodal.phodit",
     "productName": "Phodit",
     "asar": "false",
-    "copyright": "Copyright © 2018 ~ 2019 ${author} (https://ww.phodal.com)",
+    "copyright": "Copyright © 2018 ~ 2021 ${author} (https://ww.phodal.com)",
     "fileAssociations": [
       {
         "ext": "md",
