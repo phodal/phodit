@@ -27,6 +27,7 @@
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
     "@types/node": "12.12.6",
+    "@types/yargs": "15.0.0",
     "assert": "^2.0.0",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
@@ -42,7 +43,7 @@
     "tslint": "^6.1.2",
     "typescript": "^3.9.5",
     "xvfb-maybe": "^0.2.1",
-    "yargs-parser": "^19.0.4"
+    "yargs-parser": "^20.2.4"
   },
   "build": {
     "appId": "com.phodal.phodit",
