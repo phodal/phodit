@@ -55,7 +55,7 @@
         "role": "Editor"
       },
       {
-        "ext": "md",
+        "ext": "markdown",
         "name": "Phodit",
         "role": "Editor"
       }
