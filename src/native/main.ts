@@ -1,6 +1,7 @@
 import {app, BrowserWindow, dialog, ipcMain, Menu, nativeImage, OpenDialogReturnValue, shell, Tray} from "electron";
 import * as fs from "fs";
 import * as path from "path";
+import {touchBar} from "../app/touch-bar";
 
 import {EventConstants} from "../common/constants/event.constants";
 import {IFileSave} from "../common/interface/IFileSave";
@@ -284,6 +285,7 @@ function onAppReady() {
       event.preventDefault();
       const win = new BrowserWindow({show: false});
       win.loadURL(url);
+      win.setTouchBar(touchBar);
       win.show();
       event.newGuest = win;
     }
