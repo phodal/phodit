@@ -9,6 +9,7 @@ import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils"
 
 const {nativeTheme, ipcRenderer} = require("electron");
 const swal = require("sweetalert");
+const hljs = require("highlight.js");
 
 declare global {
   // tslint:disable-next-line
@@ -40,7 +41,21 @@ class ClientUI {
     },
     autoDownloadFontAwesome: false,
     renderingConfig: {
-      codeSyntaxHighlighting: true,
+      hljs: true,
+      codeSyntaxHighlighting: false,
+      markedOptions: {
+        pedantic: false,
+        gfm: true,
+        tables: true,
+        breaks: false,
+        sanitize: false,
+        smartLists: true,
+        smartypants: false,
+        xhtml: false,
+        highlight(code: string) {
+          return hljs.highlightAuto(code).value;
+        }
+      },
     },
     element: document.getElementById("input-section"),
   });

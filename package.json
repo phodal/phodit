@@ -26,6 +26,7 @@
   "homepage": "https://github.com/phodal/phodit#readme",
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
+    "@types/highlightjs": "^10.1.0",
     "@types/node": "12.12.6",
     "@types/yargs": "15.0.0",
     "assert": "^2.0.0",
@@ -106,7 +107,7 @@
     "electron-json-storage": "^4.1.8",
     "electron-store": "^6.0.1",
     "electron-window-state": "^5.0.3",
-    "highlight.js": "^10.1.1",
+    "highlight.js": "latest",
     "marked": "^1.1.0",
     "node-pty": "0.10.0-beta18",
     "sweetalert": "^2.1.2",
