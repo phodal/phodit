@@ -66,6 +66,10 @@ git submodule update
 ```
 
 ```
+npm install --python=python2.7
+```
+
+```
 yarn install 
 yarn build:app
 ```
