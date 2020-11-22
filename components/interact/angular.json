@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "interact"
+  "defaultProject": "interact",
+  "cli": {
+    "analytics": false
+  }
 }
