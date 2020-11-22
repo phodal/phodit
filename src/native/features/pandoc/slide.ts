@@ -3,7 +3,7 @@ const tmp = require("tmp");
 
 export default function slide(path: string) {
   const tmpobj = tmp.fileSync();
-  let newPath = tmpobj.name;
+  const newPath = tmpobj.name;
 
   return new Promise(function (resolve, reject) {
     spawnPandoc(` -t revealjs -s ${path} -o ${newPath} -V theme=simple`, {}, function (err: any, stdout: any, stdrr: any) {

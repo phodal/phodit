@@ -3,8 +3,8 @@ import {shell} from "electron";
 import * as fs from "fs";
 
 export default function pdf(path: string) {
-  let htmlPath = path.replace(/\.md/, '.html');
-  let pdfPath = path.replace(/\.md/, '.pdf');
+  const htmlPath = path.replace(/\.md/, '.html');
+  const pdfPath = path.replace(/\.md/, '.pdf');
   spawnPandoc(`-s ${path} -o ${htmlPath}`, {}, function(err: any, stdout: any, stdrr: any) {
     if (err) {
       console.error(err);
