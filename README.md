@@ -20,6 +20,7 @@ Features
 ---
 
  - **标题折叠**
+ - 多编程语言高亮
  - 集成 Terminal 
  - 支持所见所得模式
  - markdown 实时预览
