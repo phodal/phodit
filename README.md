@@ -20,13 +20,14 @@ Features
  - **标题折叠**
  - 集成 Terminal 
  - 支持所见所得模式
+ - markdown 实时预览
+ - 工程管理
  - 支持使用 Git 来编写 markdown 项目
- - 树型结构文件夹
- - 全屏
- - markdown 预览
+ - 支持全屏
  - 语法高亮
+ - 编辑器主题切换
  - 右键选择搜索: Google, Baidu, WIKI, Zhihu, Github
- - [phodal.com](https://www.phodal.com) 相关文章搜索（通过 "《"开始搜索）
+ - ~~[phodal.com](https://www.phodal.com) 相关文章搜索（通过 "《"开始搜索）~~
  - 微信公众号排版支持
  - 支持 Slide 编写(by reveal.js)
  - `.md` 和 `.markdown` 文件关联打开
@@ -48,15 +49,10 @@ Phodit 是一个使用**微前端架构**开发的 Electron 应用：
  - highlight.js -> Code Highlight
  - lunr -> search engine 
  - Reveal.js -> Slide
- 
-Goal
----
-
- - 一键发布到各个平台的自动化脚本
 
 ### Setup
 
-requirements: ``pandoc``, ``node.js``
+requirements: ``node.js``
 
 Submodule 
 
