@@ -21,6 +21,7 @@ addons:
 
 install:
   - npm install -g xvfb-maybe
+  - npm install -g yarn
   - npm install
 
 services:
