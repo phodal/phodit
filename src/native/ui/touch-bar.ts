@@ -2,7 +2,7 @@ import {BrowserWindow} from "electron";
 
 const {TouchBar} = require('electron');
 
-import {EventConstants} from '../common/constants/event.constants';
+import {EventConstants} from '../../common/constants/event.constants';
 
 const {TouchBarButton, TouchBarSpacer} = TouchBar;
 

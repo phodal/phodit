@@ -3,9 +3,8 @@ import {IFileOpen} from "../common/interface/IFileOpen";
 import "./key.event";
 import "./menu.right";
 import {createTerminal} from "./plugins/terminal";
-import {createEvent} from "./utils/event.util";
-import {getCodeMirrorMode} from "./utils/file.utils";
-import {markdownRender, removeLastDirectoryPartOf} from "./utils/markdown.utils";
+import {createEvent} from "./support/event.util";
+import {markdownRender, removeLastDirectoryPartOf} from "./support/markdown.utils";
 
 const {nativeTheme, ipcRenderer} = require("electron");
 const swal = require("sweetalert");
@@ -77,6 +76,7 @@ class ClientUI {
   }
 
   public bindEvent() {
+    const that = this;
     // 打开帮助
     window.document.addEventListener(EventConstants.CLIENT.OPEN_GUIDE, (data) => {
       ipcRenderer.send(EventConstants.PHODIT.OPEN_GUIDE, this.easymde.value());
@@ -116,7 +116,7 @@ class ClientUI {
 
     // Toggle Themes
     window.document.addEventListener(EventConstants.CLIENT.TOGGLE_THEME, () => {
-      this.toggleTheme();
+      this.toggleTheme(that.easymde.codemirror);
     });
 
     // ShowSlides
@@ -252,11 +252,14 @@ class ClientUI {
     }
   }
 
-  public toggleTheme() {
+  public toggleTheme(codemirror: any) {
+    console.log(codemirror);
     if (window.localStorage.os_theme === "dark") {
       window.localStorage.os_theme = "light";
+      codemirror.setOption('theme', 'easymde');
     } else {
       window.localStorage.os_theme = "dark";
+      codemirror.setOption('theme', 'monokai-bright');
     }
 
     (window as any).__setTheme();

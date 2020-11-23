@@ -4,6 +4,7 @@ class MarkdownImprove {
   private file: string;
   private marked: any;
 
+  // tslint:disable-next-line:no-shadowed-variable
   constructor(file: string, marked?: any) {
     this.file = file;
     this.marked = marked;
