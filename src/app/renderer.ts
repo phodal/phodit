@@ -259,7 +259,7 @@ class ClientUI {
       codemirror.setOption('theme', 'easymde');
     } else {
       window.localStorage.os_theme = "dark";
-      codemirror.setOption('theme', 'monokai-bright');
+      codemirror.setOption('theme', 'monokai-sublime');
     }
 
     (window as any).__setTheme();
