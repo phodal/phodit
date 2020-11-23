@@ -1,14 +1,14 @@
 import {app, BrowserWindow, dialog, Menu, nativeImage, OpenDialogReturnValue, shell, Tray} from "electron";
 import * as fs from "fs";
 import * as path from "path";
-import buildTouchBar from "./ui/touch-bar";
 import {EventConstants} from "../common/constants/event.constants";
-import {dirTree} from "./support/file-support";
-import {buildMenu} from "./ui/menu";
-import {dockMenu} from "./ui/menu.dock";
 import {createHelpPage} from "./pages/help.page";
 import {openHtmlPage} from "./pages/html.page";
 import PhoditIpc from "./phodit-ipc";
+import {dirTree} from "./support/file-support";
+import {buildMenu} from "./ui/menu";
+import {dockMenu} from "./ui/menu.dock";
+import buildTouchBar from "./ui/touch-bar";
 import windowStateKeeper = require("electron-window-state");
 
 const tmp = require("tmp");
@@ -111,7 +111,7 @@ export default class Phodit {
       });
 
       this.mainWindow.webContents.setFrameRate(30);
-      this.mainWindow.webContents.send("phodit.lifecycle.load");
+      this.mainWindow.webContents.send(EventConstants.PHODIT.LOADED);
 
       this.mainWindow.show();
       this.mainWindow.focus();

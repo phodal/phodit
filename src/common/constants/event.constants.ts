@@ -1,6 +1,7 @@
 export const EventConstants = {
   TEMP_FILE_STATUS: "phodit.temp.file.status",
   PHODIT: {
+    LOADED: "phodit.lifecycle.load",
     OPEN_PATH: "phodit.open.path",
     RELOAD_PATH: "phodit.reload.path",
     SAVE_FILE: "phodit.save.file",
