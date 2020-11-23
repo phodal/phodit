@@ -6,11 +6,11 @@
   "scripts": {
     "build:native": "tsc && cp -a views dist",
     "build:packager": "electron-packager --ignore=components --ignore=editor/node_modules --ignore=nlp . Phodit --platform=darwin --icon=assets/imgs/icons/mac/icon.icns --overwrite",
-    "build:app": "npm run build:native && electron-builder ./",
+    "build:app": "npm run build:native && electron-builder",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "start": "yarn build:native && electron ./dist/native/main.js",
-    "postinstall": "./node_modules/.bin/electron-rebuild -p -t \"dev,prod,optional\"",
+    "postinstall": "yarn electron-rebuild -p -t \"dev,prod,optional\" && yarn electron-builder install-app-deps",
     "rebuild": "electron-rebuild -f -w node-pty",
     "test": "xvfb-maybe mocha"
   },
@@ -39,6 +39,7 @@
     "electron-packager": "^15.1.0",
     "electron-rebuild": "^2.3.2",
     "mocha": "^8.2.1",
+    "node-gyp": "^7.1.2",
     "spectron": "^12.0.0",
     "temp": "^0.9.1",
     "tslint": "^6.1.2",
