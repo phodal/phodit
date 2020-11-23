@@ -1,7 +1,7 @@
 import {app, BrowserWindow, dialog, ipcMain, Menu, nativeImage, OpenDialogReturnValue, shell, Tray} from "electron";
 import * as fs from "fs";
 import * as path from "path";
-import {touchBar} from "../app/touch-bar";
+import buildTouchBar from "../app/touch-bar";
 
 import {EventConstants} from "../common/constants/event.constants";
 import {IFileSave} from "../common/interface/IFileSave";
@@ -61,6 +61,7 @@ function openFile(willLoadFile: string, isTempFile: boolean = false) {
     return openHtmlPage(BrowserWindow, willLoadFile);
   } else if (wordRegex.test(willLoadFile)) {
     return shell.openPath(willLoadFile).then(() => {
+      // do something
     });
   }
 
@@ -248,7 +249,7 @@ function onAppReady() {
   mainWindowState.manage(mainWindow);
 
   mainWindow.loadFile(path.join(__dirname, "../../views/index.html"));
-  mainWindow.setTouchBar(touchBar);
+  mainWindow.setTouchBar(buildTouchBar(mainWindow));
 
   mainWindow.on("closed", () => {
     mainWindow = null;

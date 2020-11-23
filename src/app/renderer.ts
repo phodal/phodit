@@ -14,7 +14,7 @@ const hljs = require("highlight.js");
 declare global {
   // tslint:disable-next-line
   interface Window {
-    simplemde: any;
+    easymde: any;
   }
 }
 
@@ -28,7 +28,7 @@ class ClientUI {
     isPath: false,
   };
 
-  public simplemde = new (window as any).SimpleMDE({
+  public easymde = new (window as any).EasyMDE({
     spellChecker: false,
     autosave: {
       enabled: true,
@@ -39,32 +39,22 @@ class ClientUI {
       link: "link",
       image: "image",
     },
+    minHeight: "500px",
+    maxHeight: "100%",
     autoDownloadFontAwesome: false,
+    syncSideBySidePreviewScroll: false,
     renderingConfig: {
-      hljs: true,
-      codeSyntaxHighlighting: false,
-      markedOptions: {
-        pedantic: false,
-        gfm: true,
-        tables: true,
-        breaks: false,
-        sanitize: false,
-        smartLists: true,
-        smartypants: false,
-        xhtml: false,
-        highlight(code: string) {
-          return hljs.highlightAuto(code).value;
-        }
-      },
+      singleLineBreaks: false,
+      codeSyntaxHighlighting: true
     },
     element: document.getElementById("input-section"),
   });
 
   public init() {
-    (window as any).simplemde = this.simplemde;
+    (window as any).easymde = this.easymde;
     // @ts-ignore
     const clipboard = new ClipboardJS(".wechat-button");
-    this.simplemde.codemirror.focus()
+    this.easymde.codemirror.focus()
 
     clipboard.on("success", (event: any) => {
       swal({
@@ -81,14 +71,14 @@ class ClientUI {
     const lastPos = localStorage.getItem("line_" + currentFile);
     if (lastPos) {
       const parsedPos = JSON.parse(lastPos);
-      this.simplemde.codemirror.setCursor(parsedPos.line, parsedPos.ch);
+      this.easymde.codemirror.setCursor(parsedPos.line, parsedPos.ch);
     }
   }
 
   public bindEvent() {
     // 打开帮助
     window.document.addEventListener(EventConstants.CLIENT.OPEN_GUIDE, (data) => {
-      ipcRenderer.send(EventConstants.PHODIT.OPEN_GUIDE, this.simplemde.value());
+      ipcRenderer.send(EventConstants.PHODIT.OPEN_GUIDE, this.easymde.value());
     });
 
     // 全屏
@@ -136,7 +126,7 @@ class ClientUI {
       ipcRenderer.send(EventConstants.PHODIT.SHOW_SLIDES, {
         isTempFile: this.state.isCurrentFileTemp,
         file: this.state.currentFile,
-        data: this.simplemde.value(),
+        data: this.easymde.value(),
       });
     });
 
@@ -167,7 +157,7 @@ class ClientUI {
 
       ipcRenderer.send(EventConstants.PHODIT.SAVE_FILE, {
         isTempFile: this.state.isCurrentFileTemp,
-        data: this.simplemde.value(),
+        data: this.easymde.value(),
       });
       ipcRenderer.send(EventConstants.PHODIT.OPEN_FILE, file);
     });
@@ -213,13 +203,17 @@ class ClientUI {
       createEvent(EventConstants.PHODIT.SUGGEST_TO_EDITOR, arg);
     });
 
+    // 返回获取自动完成请求
+    ipcRenderer.on(EventConstants.PHODIT.TOGGLE_THEME, (event: any, arg: any) => {
+      createEvent(EventConstants.CLIENT.TOGGLE_THEME, arg);
+    });
+
     // 打开文件
     ipcRenderer.on(EventConstants.PHODIT.OPEN_ONE_FILE, (event: any, arg: IFileOpen) => {
       this.state.currentFile = arg.file;
-      this.state.isOneFile = true;
-      this.simplemde.codemirror.setOption("mode", getCodeMirrorMode(this.state.currentFile));
+      this.state.isOneFile = false;
       this.state.isCurrentFileTemp = arg.isTempFile;
-      this.simplemde.value(arg.data);
+      this.easymde.value(arg.data);
       this.updatePos(arg.file);
 
       localStorage.setItem("currentFile", arg.file);
@@ -229,7 +223,7 @@ class ClientUI {
     ipcRenderer.on(EventConstants.CLIENT.SAVE_FILE, () => {
       ipcRenderer.send(EventConstants.PHODIT.SAVE_FILE, {
         isTempFile: this.state.isCurrentFileTemp,
-        data: this.simplemde.value(),
+        data: this.easymde.value(),
       });
     });
 
