@@ -30,6 +30,7 @@ class ClientUI {
 
   public easymde = new (window as any).EasyMDE({
     spellChecker: false,
+    theme: 'monokai-sublime',
     autosave: {
       enabled: true,
       uniqueId: "phodit",
