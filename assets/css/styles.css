@@ -379,40 +379,34 @@ interact-bar {
   background: #44475a!important;
 }
 
-
-
-/* DEFAULT THEME */
-
-.CodeMirror .cm-header {color: #44475a;}
-.CodeMirror .cm-quote {color: #090;}
-.cm-negative {color: #d44;}
-.cm-positive {color: #292;}
-.cm-header, .cm-strong {font-weight: bold;}
-.cm-em {font-style: italic;}
-.cm-link {text-decoration: underline;}
-.cm-strikethrough {text-decoration: line-through;}
-
-.CodeMirror .cm-keyword {color: #708;}
-.CodeMirror .cm-atom {color: #219;}
-.CodeMirror .cm-number {color: #164;}
-.CodeMirror .cm-def {color: #00f;}
-.CodeMirror .cm-variable,
-.CodeMirror .cm-punctuation,
-.CodeMirror .cm-property,
-.CodeMirror .cm-operator {}
-.CodeMirror .cm-variable-2 {color: #05a;}
-.CodeMirror .cm-variable-3, .CodeMirror .cm-type {color: #085;}
-.CodeMirror .cm-comment {color: #a50;}
-.CodeMirror .cm-string {color: #a11;}
-.CodeMirror .cm-string-2 {color: #f50;}
-.CodeMirror .cm-meta {color: #555;}
-.CodeMirror .cm-qualifier {color: #555;}
-.CodeMirror .cm-builtin {color: #30a;}
-.CodeMirror .cm-bracket {color: #997;}
-.CodeMirror .cm-tag {color: #170;}
-.CodeMirror .cm-attribute {color: #00c;}
-.CodeMirror .cm-hr {color: #999;}
-.CodeMirror .cm-link {color: #00c;}
-
-.CodeMirror .cm-error {color: #f00;}
-.cm-invalidchar {color: #f00;}
+[data-theme^="light"] .CodeMirror .cm-header {color: #44475a;}
+[data-theme^="light"] .CodeMirror .cm-quote {color: #090;}
+[data-theme^="light"] .cm-negative {color: #d44;}
+[data-theme^="light"] .cm-positive {color: #292;}
+[data-theme^="light"] .cm-header, .cm-strong {font-weight: bold;}
+[data-theme^="light"] .cm-em {font-style: italic;}
+[data-theme^="light"] .cm-link {text-decoration: underline;}
+[data-theme^="light"] .cm-strikethrough {text-decoration: line-through;}
+[data-theme^="light"] .CodeMirror .cm-keyword {color: #708;}
+[data-theme^="light"] .CodeMirror .cm-atom {color: #219;}
+[data-theme^="light"] .CodeMirror .cm-number {color: #164;}
+[data-theme^="light"] .CodeMirror .cm-def {color: #00f;}
+[data-theme^="light"] .CodeMirror .cm-variable,
+[data-theme^="light"] .CodeMirror .cm-punctuation,
+[data-theme^="light"] .CodeMirror .cm-property,
+[data-theme^="light"] .CodeMirror .cm-operator {}
+[data-theme^="light"] .CodeMirror .cm-variable-2 {color: #05a;}
+[data-theme^="light"] .CodeMirror .cm-variable-3, .CodeMirror .cm-type {color: #085;}
+[data-theme^="light"] .CodeMirror .cm-comment {color: #a50;}
+[data-theme^="light"] .CodeMirror .cm-string {color: #a11;}
+[data-theme^="light"] .CodeMirror .cm-string-2 {color: #f50;}
+[data-theme^="light"] .CodeMirror .cm-meta {color: #555;}
+[data-theme^="light"] .CodeMirror .cm-qualifier {color: #555;}
+[data-theme^="light"] .CodeMirror .cm-builtin {color: #30a;}
+[data-theme^="light"] .CodeMirror .cm-bracket {color: #997;}
+[data-theme^="light"] .CodeMirror .cm-tag {color: #170;}
+[data-theme^="light"] .CodeMirror .cm-attribute {color: #00c;}
+[data-theme^="light"] .CodeMirror .cm-hr {color: #999;}
+[data-theme^="light"] .CodeMirror .cm-link {color: #00c;}
+[data-theme^="light"] .CodeMirror .cm-error {color: #f00;}
+[data-theme^="light"] .cm-invalidchar {color: #f00;}
