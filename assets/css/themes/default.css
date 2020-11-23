@@ -1,0 +1,114 @@
+
+.CodeMirror .cm-header {
+  color: #44475a;
+}
+
+.CodeMirror .cm-quote {
+  color: #090;
+}
+
+.cm-negative {
+  color: #d44;
+}
+
+.cm-positive {
+  color: #292;
+}
+
+.cm-header, .cm-strong {
+  font-weight: bold;
+}
+
+.cm-em {
+  font-style: italic;
+}
+
+.cm-link {
+  text-decoration: underline;
+}
+
+.cm-strikethrough {
+  text-decoration: line-through;
+}
+
+.CodeMirror .cm-keyword {
+  color: #708;
+}
+
+.CodeMirror .cm-atom {
+  color: #219;
+}
+
+.CodeMirror .cm-number {
+  color: #164;
+}
+
+.CodeMirror .cm-def {
+  color: #00f;
+}
+
+.CodeMirror .cm-variable,
+.CodeMirror .cm-punctuation,
+.CodeMirror .cm-property,
+.CodeMirror .cm-operator {
+}
+
+.CodeMirror .cm-variable-2 {
+  color: #05a;
+}
+
+.CodeMirror .cm-variable-3, .CodeMirror .cm-type {
+  color: #085;
+}
+
+.CodeMirror .cm-comment {
+  color: #a50;
+}
+
+.CodeMirror .cm-string {
+  color: #a11;
+}
+
+.CodeMirror .cm-string-2 {
+  color: #f50;
+}
+
+.CodeMirror .cm-meta {
+  color: #555;
+}
+
+.CodeMirror .cm-qualifier {
+  color: #555;
+}
+
+.CodeMirror .cm-builtin {
+  color: #30a;
+}
+
+.CodeMirror .cm-bracket {
+  color: #997;
+}
+
+.CodeMirror .cm-tag {
+  color: #170;
+}
+
+.CodeMirror .cm-attribute {
+  color: #00c;
+}
+
+.CodeMirror .cm-hr {
+  color: #999;
+}
+
+.CodeMirror .cm-link {
+  color: #00c;
+}
+
+.CodeMirror .cm-error {
+  color: #f00;
+}
+
+.cm-invalidchar {
+  color: #f00;
+}
