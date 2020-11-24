@@ -29,7 +29,6 @@ class ClientUI {
 
   public easymde = new (window as any).EasyMDE({
     spellChecker: false,
-    theme: 'monokai-sublime',
     autosave: {
       enabled: true,
       uniqueId: "phodit",
@@ -259,7 +258,7 @@ class ClientUI {
       codemirror.setOption('theme', 'easymde');
     } else {
       window.localStorage.os_theme = "dark";
-      codemirror.setOption('theme', 'monokai-sublime');
+      codemirror.setOption('theme', 'django');
     }
 
     (window as any).__setTheme();

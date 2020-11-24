@@ -1,79 +1,54 @@
-.cm-s-monokai-sublime {
+.cm-s-django {
   font-size: 1em;
   line-height: 1.5em;
   font-family: inconsolata, monospace;
   letter-spacing: 0.3px;
   word-spacing: 1px;
-  background: #272822;
-  color: #F8F8F2;
+  background: #0B2F20;
+  color: #F8F8F8;
 }
-
-.cm-s-monokai-sublime .CodeMirror-lines {
+.cm-s-django .CodeMirror-lines {
   padding: 8px 0;
 }
-
-.cm-s-monokai-sublime .CodeMirror-gutters {
+.cm-s-django .CodeMirror-gutters {
   box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 1px 0 2px 0 rgba(0, 0, 0, 0.5);
-  background-color: #272822;
+  background-color: #0B2F20;
   padding-right: 10px;
   z-index: 3;
   border: none;
 }
-
-.cm-s-monokai-sublime div.CodeMirror-cursor {
-  border-left: 3px solid #F8F8F2;
+.cm-s-django div.CodeMirror-cursor {
+  border-left: 3px solid #F8F8F8;
 }
-
-.cm-s-monokai-sublime .CodeMirror-activeline-background {
-  background: #3E3D32;
+.cm-s-django .CodeMirror-activeline-background {
+  background: #0000004A;
 }
-
-.cm-s-monokai-sublime .CodeMirror-selected {
-  background: #49483E;
+.cm-s-django .CodeMirror-selected {
+  background: #245032;
 }
-
-.cm-s-monokai-sublime .cm-comment {
-  color: #75715E;
-}
-
-.cm-s-monokai-sublime .cm-string {
-  color: #E6DB74;
-}
-
-.cm-s-monokai-sublime .cm-number {
-  color: #66D9EF;
-}
-
-.cm-s-monokai-sublime .cm-atom {
-  color: #66D9EF;
-}
-
-.cm-s-monokai-sublime .cm-keyword {
-  color: #F92672;
-}
-
-.cm-s-monokai-sublime .cm-variable {
-  color: #A6E22E;
-}
-
-.cm-s-monokai-sublime .cm-def {
+.cm-s-django .cm-comment {
   font-style: italic;
-  color: #FD971F;
+  color: #245032;
 }
-
-.cm-s-monokai-sublime .cm-variable-2 {
-  color: #F92672;
+.cm-s-django .cm-keyword {
+  color: #96DD3B;
 }
-
-.cm-s-monokai-sublime .cm-property {
-  color: #66D9EF;
+.cm-s-django .cm-string {
+  color: #91BB9E;
 }
-
-.cm-s-monokai-sublime .cm-operator {
-  color: #F92672;
+.cm-s-django .cm-property {
+  color: #FFB454;
 }
-
-.cm-s-monokai-sublime .CodeMirror-linenumber {
-  color: #75715E;
+.cm-s-django .cm-atom {
+  color: #FFB454;
+}
+.cm-s-django .cm-number {
+  color: #FFB454;
+}
+.cm-s-django .cm-operator {
+  color: #96DD3B;
+}
+.cm-s-django .CodeMirror-linenumber {
+  color: italic;
 }
