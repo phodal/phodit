@@ -36,5 +36,8 @@ export function getCodeMirrorMode(file: string) {
   if (file.endsWith(".yml")) {
     format = "yaml";
   }
+  if (file.endsWith(".md")) {
+    format = "multiplex";
+  }
   return format;
 }

@@ -4,6 +4,7 @@ import "./key.event";
 import "./menu.right";
 import {createTerminal} from "./plugins/terminal";
 import {createEvent} from "./support/event.util";
+import {getCodeMirrorMode} from "./support/file.utils";
 import {markdownRender, removeLastDirectoryPartOf} from "./support/markdown.utils";
 
 const {nativeTheme, ipcRenderer} = require("electron");
@@ -213,6 +214,7 @@ class ClientUI {
       this.state.currentFile = arg.file;
       this.state.isOneFile = false;
       this.state.isCurrentFileTemp = arg.isTempFile;
+      this.easymde.codemirror.setOption("mode", getCodeMirrorMode(this.state.currentFile));
       this.easymde.value(arg.data);
       this.updatePos(arg.file);
 
