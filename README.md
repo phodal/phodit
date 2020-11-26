@@ -16,15 +16,17 @@ Features
 ---
 
  - **标题折叠**
- - 多编程语言高亮
- - 集成 Terminal 
  - 支持所见所得模式
+ - 编写时图片
+ - 语法高亮
+ - 集成 Terminal 
  - markdown 实时预览
  - 工程管理
  - 支持使用 Git 来编写 markdown 项目
  - 支持全屏
  - 语法高亮
  - 编辑器主题切换
+ - 导出支持（pdf、docx）
  - 右键选择搜索: Google, Baidu, WIKI, Zhihu, Github
  - ~~[phodal.com](https://www.phodal.com) 相关文章搜索（通过 "《"开始搜索）~~
  - 微信公众号排版支持
