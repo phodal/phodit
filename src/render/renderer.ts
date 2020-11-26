@@ -9,7 +9,6 @@ import {markdownRender, removeLastDirectoryPartOf} from "./support/markdown.util
 
 const {nativeTheme, ipcRenderer} = require("electron");
 const swal = require("sweetalert");
-const hljs = require("highlight.js");
 
 declare global {
   // tslint:disable-next-line
@@ -56,6 +55,16 @@ class ClientUI {
     const clipboard = new ClipboardJS(".wechat-button");
     this.easymde.codemirror.focus()
 
+    this.easymde.codemirror.on('optionChange', () => {
+      this.renderElements();
+    })
+    this.easymde.codemirror.on('cursorActivity', () => {
+      this.renderElements();
+    })
+    this.easymde.codemirror.on('viewportChange', () => {
+      this.renderElements();
+    })
+
     clipboard.on("success", (event: any) => {
       swal({
         title: "Copy Success", icon: "success", dangerMode: true,
@@ -65,6 +74,10 @@ class ClientUI {
       });
       event.clearSelection();
     });
+  }
+
+  private renderElements() {
+    this.easymde.codemirror.execCommand('markdownRenderImages');
   }
 
   public updatePos(currentFile: string) {
@@ -233,6 +246,8 @@ class ClientUI {
     ipcRenderer.on(EventConstants.PHODIT.OPEN_PATH, (event: any, arg: any) => {
       this.state.isPath = true;
       document.getElementById("tree-view").setAttribute("style", "display: block");
+      (window as any).rootPath = arg.path + '/';
+      localStorage.setItem("currentPath", arg.path + '/');
 
       createEvent("phodit.tree.open", {
         path: arg.path,
@@ -254,7 +269,6 @@ class ClientUI {
   }
 
   public toggleTheme(codemirror: any) {
-    console.log(codemirror);
     if (window.localStorage.os_theme === "dark") {
       window.localStorage.os_theme = "light";
       codemirror.setOption('theme', 'easymde');
