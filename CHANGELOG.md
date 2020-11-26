@@ -1,4 +1,19 @@
-# [0.3.0](https://github.com/phodal/phodit/compare/0.2.0...0.3.0) (2020-11-23)
+# [1.0.0](https://github.com/phodal/phodit/compare/v0.3.0...v1.0.0) (2020-11-26)
+
+
+### Bug Fixes
+
+* fix mode issues ([ea39f1d](https://github.com/phodal/phodit/commit/ea39f1d37abeeaf827a5b568e29161b707a85102))
+
+
+### Features
+
+* add image preview in articles ([f412be1](https://github.com/phodal/phodit/commit/f412be100adc1230157b14515c3aa4fdc96eff4c))
+* make nvm versions ([bf15da4](https://github.com/phodal/phodit/commit/bf15da4c239d64136d7e09371976109e86abbec0))
+
+
+
+# [0.3.0](https://github.com/phodal/phodit/compare/0.2.0...v0.3.0) (2020-11-23)
 
 
 ### Bug Fixes
@@ -91,3 +106,6 @@
 
 
 # 0.0.0 (2018-07-26)
+
+
+
