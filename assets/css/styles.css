@@ -4,7 +4,9 @@
 
 #input .CodeMirror-code pre.CodeMirror-line {
   font-size: 16px;
-  font-family: "Source Code Variable", "PingFangTC-light", serif;
+  font-weight: 500;
+
+  font-family: "Source Code Variable", "Noto Serif SC", "PingFangTC-light", serif;
 }
 
 #input .cm-s-easymde .cm-header-1,
