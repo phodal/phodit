@@ -1,10 +1,26 @@
 ::selection {
-  background:transparent;
+  background: transparent;
 }
 
-#input .CodeMirror-code pre.CodeMirror-line  {
+#input .CodeMirror-code pre.CodeMirror-line {
   font-size: 16px;
-  font-family: "Source Code Variable", "FZNewShuSong_GB18030-Z10";
+  font-family: "Source Code Variable", "PingFangTC-light", serif;
+}
+
+#input .cm-s-easymde .cm-header-1,
+#input .cm-s-easymde .cm-header-2,
+#input .cm-s-easymde .cm-header-3 {
+  font-family: "Noto Serif SC", serif;
+}
+
+#input .cm-s-easymde .cm-link {
+  color: #1abc9c;
+}
+
+#input .CodeMirror .cm-variable-2 {
+  color: #384452;
+  font-weight: bold;
+  font-family: "FZNewShuSong_GB18030-Z10", serif;
 }
 
 .CodeMirror div.CodeMirror-cursor {
@@ -72,7 +88,7 @@ textarea#input {
 
 #input .editor-toolbar a,
 #input .editor-toolbar button {
-  color: #384452!important;
+  color: #384452 !important;
 }
 
 #input-section {
@@ -277,9 +293,10 @@ interact-bar {
 ::-webkit-scrollbar {
   width: 8px; /* 1px wider than Lion. */
   /* This is more usable for users trying to click it. */
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   -webkit-border-radius: 100px;
 }
+
 /* hover effect for both scrollbar area, and scrollbar 'thumb' */
 ::-webkit-scrollbar:hover {
   background-color: rgba(0, 0, 0, 0.09);
@@ -289,11 +306,12 @@ interact-bar {
 ::-webkit-scrollbar-thumb:vertical {
   /* This is the EXACT color of Mac OS scrollbars.
      Yes, I pulled out digital color meter */
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   -webkit-border-radius: 100px;
 }
+
 ::-webkit-scrollbar-thumb:vertical:active {
-  background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+  background: rgba(0, 0, 0, 0.61); /* Some darker color when you click it */
   -webkit-border-radius: 100px;
 }
 
@@ -316,16 +334,20 @@ interact-bar {
   line-height: .3;
   cursor: pointer;
 }
+
 .CodeMirror-foldgutter {
   width: .7em;
 }
+
 .CodeMirror-foldgutter-open,
 .CodeMirror-foldgutter-folded {
   cursor: pointer;
 }
+
 .CodeMirror-foldgutter-open:after {
   content: "\25BE";
 }
+
 .CodeMirror-foldgutter-folded:after {
   content: "\25B8";
 }
