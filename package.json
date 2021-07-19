@@ -6,7 +6,7 @@
   "scripts": {
     "build:native": "tsc && cp -a views dist",
     "build:packager": "electron-packager --ignore=components --ignore=editor/node_modules --ignore=nlp . Phodit --platform=darwin --icon=assets/imgs/icons/mac/icon.icns --overwrite",
-    "build:app": "npm run build:native && electron-builder --python=python2.7",
+    "build:app": "npm run build:native && electron-builder",
     "watch": "tsc -w",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "start": "yarn build:native && electron ./dist/native/main.js",
