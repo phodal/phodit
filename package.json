@@ -110,11 +110,11 @@
     "electron-window-state": "^5.0.3",
     "highlight.js": "latest",
     "marked": "^1.1.0",
-    "node-pty": "0.10.0-beta18",
+    "node-pty": "0.10.0",
     "sweetalert": "^2.1.2",
     "tmp": "^0.2.1",
     "winston": "^3.3.1",
-    "xterm": "4.10.0-beta.4",
+    "xterm": "4.13.0",
     "xterm-addon-fit": "^0.4.0",
     "xterm-addon-web-links": "^0.4.0"
   }
