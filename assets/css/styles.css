@@ -20,10 +20,16 @@
 }
 
 #input .CodeMirror .cm-variable-2 {
-  color: #384452;
+  color: #040507;
   font-weight: bold;
   font-family: "FZNewShuSong_GB18030-Z10", serif;
 }
+
+#input .CodeMirror .cm-variable-3 {
+  color: #0a5438;
+  font-size: 95%;
+}
+
 
 .CodeMirror div.CodeMirror-cursor {
   border-left: 2px solid #0b85f3;
