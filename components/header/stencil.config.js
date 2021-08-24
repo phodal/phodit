@@ -5,6 +5,9 @@ exports.config = {
       type: 'dist'
     },
     {
+      type: 'dist-custom-elements-bundle',
+    },
+    {
       type: 'www',
       serviceWorker: false
     }
