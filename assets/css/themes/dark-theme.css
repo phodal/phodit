@@ -1,0 +1,9 @@
+.CodeMirror.cm-s-django .cm-header {
+  color: #fff;
+}
+
+/* todo: add more font size */
+#input .cm-s-django .cm-header-2 {
+  font-size: 160%;
+  line-height: 160%;
+}
