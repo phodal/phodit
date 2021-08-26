@@ -19,6 +19,7 @@ export const EventConstants = {
     GIT_STATUS: "phodit.git.status",
     OPEN_SYSTEM_PATH: "phodit.system.open.path",
     TOGGLE_THEME: "phodit.theme.toggle",
+    SET_THEME: "phodit.theme.set",
   },
   CLIENT: {
     SAVE_FILE: "client.save.file",

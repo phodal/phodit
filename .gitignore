@@ -35,3 +35,4 @@ logo.png
 *.tgz
 build
 .idea
+.DS_Store

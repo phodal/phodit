@@ -1,13 +1,14 @@
-import {EventConstants} from "../common/constants/event.constants";
-import {IFileOpen} from "../common/interface/IFileOpen";
+import { EventConstants } from "../common/constants/event.constants";
+import { IFileOpen } from "../common/interface/IFileOpen";
 import "./key.event";
 import "./menu.right";
-import {createTerminal} from "./plugins/terminal";
-import {createEvent} from "./support/event.util";
-import {getCodeMirrorMode} from "./support/file.utils";
-import {markdownRender, removeLastDirectoryPartOf} from "./support/markdown.utils";
+import { createTerminal } from "./plugins/terminal";
+import { createEvent } from "./support/event.util";
+import { getCodeMirrorMode } from "./support/file.utils";
+import { markdownRender, removeLastDirectoryPartOf } from "./support/markdown.utils";
 
 const {nativeTheme, ipcRenderer} = require("electron");
+
 const swal = require("sweetalert");
 
 declare global {
@@ -129,6 +130,7 @@ class ClientUI {
 
     // Toggle Themes
     window.document.addEventListener(EventConstants.CLIENT.TOGGLE_THEME, () => {
+      ipcRenderer.send(EventConstants.PHODIT.TOGGLE_THEME);
       this.toggleTheme(that.easymde.codemirror);
     });
 
@@ -173,6 +175,7 @@ class ClientUI {
         isTempFile: this.state.isCurrentFileTemp,
         data: this.easymde.value(),
       });
+
       ipcRenderer.send(EventConstants.PHODIT.OPEN_FILE, file);
     });
 
@@ -261,11 +264,16 @@ class ClientUI {
     });
   }
 
-  public setOSTheme() {
-    window.localStorage.os_theme = !!nativeTheme && nativeTheme.shouldUseDarkColors;
-    if ("__setTheme" in window) {
-      (window as any).__setTheme();
+  public initTheme() {
+    if (window.localStorage.os_theme === "dark") {
+      ipcRenderer.send(EventConstants.PHODIT.SET_THEME, {mode: 'dark'})
+      this.easymde.codemirror.setOption('theme', 'django');
+    } else {
+      ipcRenderer.send(EventConstants.PHODIT.SET_THEME, {mode: 'light'})
+      this.easymde.codemirror.setOption('theme', 'easymde');
     }
+
+    (window as any).__setTheme();
   }
 
   public toggleTheme(codemirror: any) {
@@ -279,16 +287,10 @@ class ClientUI {
 
     (window as any).__setTheme();
   }
-
-  public setupThemes() {
-    // tslint:disable-next-line:no-unused-expression
-    nativeTheme && nativeTheme.on('updated', function theThemeHasChanged () {
-      this.setOSTheme()
-    })
-  }
 }
 
 const client = new ClientUI();
 client.init();
 client.bindEvent();
-client.setupThemes();
+
+client.initTheme();

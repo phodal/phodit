@@ -1,8 +1,8 @@
-import {BrowserWindow, ipcMain} from "electron";
-import {EventConstants} from "../common/constants/event.constants";
-import {IFileSave} from "../common/interface/IFileSave";
-import {pandoc} from "./features/pandoc";
-import {createSlidePage} from "./pages/silde.page";
+import { BrowserWindow, ipcMain, nativeTheme } from "electron";
+import { EventConstants } from "../common/constants/event.constants";
+import { IFileSave } from "../common/interface/IFileSave";
+import { pandoc } from "./features/pandoc";
+import { createSlidePage } from "./pages/silde.page";
 import Phodit from "./phodit";
 
 export default class PhoditIpc {
@@ -41,6 +41,21 @@ export default class PhoditIpc {
 
     ipcMain.on(EventConstants.PHODIT.RELOAD_PATH, (event: any, arg: any) => {
       this.app.reloadPath();
+    });
+
+    ipcMain.on(EventConstants.PHODIT.SET_THEME, (event: any, arg: any) => {
+      nativeTheme.themeSource = arg.mode;
+      return nativeTheme.shouldUseDarkColors
+    });
+
+    ipcMain.on(EventConstants.PHODIT.TOGGLE_THEME, (event: any, arg: any) => {
+      if (nativeTheme.shouldUseDarkColors) {
+        nativeTheme.themeSource = 'light'
+      } else {
+        nativeTheme.themeSource = 'dark'
+      }
+
+      return nativeTheme.shouldUseDarkColors
     });
 
     ipcMain.on(EventConstants.PHODIT.SHOW_WORD, (event: any, arg: any) => {

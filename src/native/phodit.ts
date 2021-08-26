@@ -87,6 +87,8 @@ export default class Phodit {
 
     this.setTray();
 
+    console.info("main config dir:", storage.getDataPath());
+
     mainWindowState.manage(this.mainWindow);
     this.mainWindow.loadFile(path.join(__dirname, "../../views/index.html"));
     this.mainWindow.setTouchBar(buildTouchBar(this.mainWindow));
@@ -97,24 +99,9 @@ export default class Phodit {
 
     this.mainWindow.setDocumentEdited(true);
     this.mainWindow.webContents.on("did-finish-load", () => {
-      storage.get("storage.last.file", (error: any, data: any) => {
-        if (error) throw error;
-        if (data && data.file) {
-          that.openFile(data.file);
-        }
-      });
-      storage.get("storage.last.path", (error: any, data: any) => {
-        if (error) throw error;
-        if (data && data.file) {
-          that.openPath(data.file);
-        }
-      });
-
-      this.mainWindow.webContents.setFrameRate(30);
-      this.mainWindow.webContents.send(EventConstants.PHODIT.LOADED);
-
-      this.mainWindow.show();
-      this.mainWindow.focus();
+      setTimeout(() => {
+        this.initEditor(that);
+      }, 500);
     });
     this.mainWindow.webContents.on("will-navigate", (event: any, url) => {
       if (url !== this.mainWindow.webContents.getURL()) {
@@ -128,6 +115,28 @@ export default class Phodit {
 
     const menu = Menu.buildFromTemplate(buildMenu(app, that));
     Menu.setApplicationMenu(menu);
+  }
+
+  private initEditor(that: this) {
+    storage.get("storage.last.file", (error: any, data: any) => {
+      if (error) throw error;
+      if (data && data.file) {
+        that.openFile(data.file);
+      }
+    });
+
+    storage.get("storage.last.path", (error: any, data: any) => {
+      if (error) throw error;
+      if (data && data.file) {
+        that.openPath(data.file);
+      }
+    });
+
+    this.mainWindow.webContents.setFrameRate(30);
+    this.mainWindow.webContents.send(EventConstants.PHODIT.LOADED);
+
+    this.mainWindow.show();
+    this.mainWindow.focus();
   }
 
   private setTray() {
@@ -188,7 +197,7 @@ export default class Phodit {
     this.checkWindow();
 
     storage.set("storage.last.path", {file: pathName});
-    storage.remove("storage.last.file");
+    // storage.remove("storage.last.file");
 
     let dirFiles: any[] = [];
     if (!isWatch) {
