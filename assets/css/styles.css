@@ -380,12 +380,6 @@ interact-bar {
   --box-color: grey;
 }
 
-[data-theme^="dark"] .CodeMirror,
-[data-theme^="dark"] #input .editor-statusbar,
-[data-theme^="dark"] #input .editor-toolbar {
-  background: #282a36;
-}
-
 [data-theme^="dark"] .editor-toolbar i.separator {
   border-left: none;
 }

@@ -1,13 +1,26 @@
-#input .CodeMirror,
+/* #22272e */
+
+
+[data-theme^="dark"] .CodeMirror,
+[data-theme^="dark"] #input .editor-statusbar,
+[data-theme^="dark"] #input .editor-toolbar {
+  background: #22272e;
+}
+
+#input .CodeMirror.cm-s-django .cm-link {
+  color: #539bf5;
+}
+
+#input .CodeMirror.cm-s-django,
+#input .CodeMirror.cm-s-django .cm-variable-2,
 .CodeMirror.cm-s-django .cm-header {
-  color: #fff;
+  color: #adbac7;
 }
 
-#input .CodeMirror .cm-variable-2 {
-  color: #fff;
+#input .CodeMirror.cm-s-django .cm-quote {
+  color: #768390;
 }
 
-/* todo: add more font size */
 #input .cm-s-django .cm-header-1 {
   font-size: 200%;
   line-height: 200%;
